@@ -38,10 +38,11 @@ namespace ForkLoader
                         throw;
                     }
                     forkKey.Forks = new List<string>();
-                    foreach (string part in parts)
+                    for(int i=1; i<parts.Length; i++)
                     {
-                        forkKey.Forks.Add(part);
+                        forkKey.Forks.Add(parts[i]);
                     }
+                    forkKeys.Add(forkKey);
                 }
             }
             return forkKeys;
