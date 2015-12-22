@@ -8,14 +8,14 @@ namespace ForkLoader
 {
     public class Course
     {
-        private List<int> m_controls;
-        private string m_courseId;
-        private string m_startPointId;
-        private string m_finishId;
+        public List<int> Controls { get; set; }
+        public int CourseId { get; set; }
+        public int StartPointId { get; set; }
+        public int FinishId { get; set; }
 
-        public Course(string courseId)
+        public Course()
         {
-            m_courseId = courseId;
+            Controls = new List<int>();
         }
     }
 }

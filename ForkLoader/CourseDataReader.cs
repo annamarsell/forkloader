@@ -20,15 +20,34 @@ namespace ForkLoader
             m_filename = filename;
         }
 
-        public List<Course> ReadCourses()
+        public Dictionary<int, Course> ReadCourses()
         {
-            var courses = new List<Course>();
+            var courses = new Dictionary<int, Course>();
             using (var sr = new StreamReader(m_filename))
             {
                 var ser = new XmlSerializer(typeof (CourseData));
                 CourseData courseDatas = (CourseData)ser.Deserialize(sr);
-
-
+                foreach (global::Course iofCourse in courseDatas.Course)
+                {
+                    var course = new Course();
+                    course.CourseId = Convert.ToInt32(iofCourse.CourseId);
+                    foreach (object item in iofCourse.Items)
+                    {
+                        if (item is StartPoint)
+                        {
+                            course.StartPointId = Convert.ToInt32((item as StartPoint).StartPointCode);
+                        }
+                        else if (item is Control)
+                        {
+                            course.Controls.Add(Convert.ToInt32((item as Control).ControlCode));
+                        }
+                        else if(item is FinishPoint)
+                        {
+                            course.FinishId = Convert.ToInt32((item as FinishPoint).FinishPointCode);
+                        }
+                    }
+                    courses.Add(course.CourseId, course);
+                }
             }
             return courses;
         }
