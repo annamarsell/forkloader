@@ -10,8 +10,9 @@ namespace ForkLoader
     {
         public List<int> Controls { get; set; }
         public int CourseId { get; set; }
-        public int StartPointId { get; set; }
-        public int FinishId { get; set; }
+        public string CourseName { get; set; }
+        public string StartPointId { get; set; }
+        public string FinishId { get; set; }
 
         public Course()
         {

@@ -28,6 +28,7 @@ namespace ForkLoader
             {
                 
             }
+            return false;
         }
 
         private List<Leg> GetLegs(ForkKey key)
@@ -37,12 +38,12 @@ namespace ForkLoader
             {
                 int courseId = GetCourseIdFromFork(fork);
                 Course course = m_courses[courseId];
-                legs.Add(new Leg(course.StartPointId, course.Controls[0], true));
+                legs.Add(new Leg(course.StartPointId, course.Controls[0].ToString(), true, false));
                 for (int i = 1; i < course.Controls.Count; i++)
                 {
-                    legs.Add(new Leg(course.Controls[i-1], course.Controls[i]));
+                    legs.Add(new Leg(course.Controls[i-1].ToString(), course.Controls[i].ToString()));
                 }
-                legs.Add(new Leg(course.Controls.Last(), course.FinishId, false, true));
+                legs.Add(new Leg(course.Controls.Last().ToString(), course.FinishId, false, true));
             }
             return legs;
         }

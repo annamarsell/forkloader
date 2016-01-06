@@ -20,33 +20,41 @@ namespace ForkLoader
             m_filename = filename;
         }
 
-        public Dictionary<int, Course> ReadCourses()
+        public Dictionary<string, Course> ReadCourses()
         {
-            var courses = new Dictionary<int, Course>();
+            var courses = new Dictionary<string, Course>();
             using (var sr = new StreamReader(m_filename))
             {
                 var ser = new XmlSerializer(typeof (CourseData));
                 CourseData courseDatas = (CourseData)ser.Deserialize(sr);
-                foreach (global::Course iofCourse in courseDatas.Course)
+                foreach (RaceCourseData raceCourseData in courseDatas.RaceCourseData)
                 {
-                    var course = new Course();
-                    course.CourseId = Convert.ToInt32(iofCourse.CourseId);
-                    foreach (object item in iofCourse.Items)
+                    foreach (global::Course iofCourse in raceCourseData.Course)
                     {
-                        if (item is StartPoint)
+                        var course = new Course();
+                        course.CourseId = Convert.ToInt32(iofCourse.Id);
+                        course.CourseName = iofCourse.Name;
+                        foreach (CourseControl item in iofCourse.CourseControl)
                         {
-                            course.StartPointId = Convert.ToInt32((item as StartPoint).StartPointCode);
+                            if (item.type == ControlType.Start)
+                            {
+                                course.StartPointId = item.Control.Single();
+                            }
+                            else if (item.type == ControlType.Control)
+                            {
+                                course.Controls.Add(Convert.ToInt32(item.Control.Single()));
+                            }
+                            else if (item.type == ControlType.Finish)
+                            {
+                                course.FinishId = item.Control.Single();
+                            }
+                            else
+                            {
+                                m_loggger.WarnFormat("Unexpected control type detected {0}", item.type);
+                            }
                         }
-                        else if (item is Control)
-                        {
-                            course.Controls.Add(Convert.ToInt32((item as Control).ControlCode));
-                        }
-                        else if(item is FinishPoint)
-                        {
-                            course.FinishId = Convert.ToInt32((item as FinishPoint).FinishPointCode);
-                        }
+                        courses.Add(course.CourseName, course);
                     }
-                    courses.Add(course.CourseId, course);
                 }
             }
             return courses;

@@ -64,7 +64,7 @@ namespace ForkLoader
             courseDataReader = new CourseDataReader(courseDataFileName);
 
             List<ForkKey> forkKeys = forkKeyReader.ReadForkKeys();
-            List<Course> corses = courseDataReader.ReadCourses();
+            Dictionary<string, Course> corses = courseDataReader.ReadCourses();
 
 
             Console.ReadKey();

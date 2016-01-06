@@ -8,12 +8,12 @@ namespace ForkLoader
 {
     public class Leg
     {
-        public int FromId { get; set; }
-        public int ToId { get; set; }
+        public string FromId { get; set; }
+        public string ToId { get; set; }
         public bool FromStart { get; set; }
         public bool ToFinish { get; set; }
 
-        public Leg(int from, int to, bool fromStart = false, bool toFinish = false)
+        public Leg(string from, string to, bool fromStart = false, bool toFinish = false)
         {
             FromId = from;
             ToId = to;

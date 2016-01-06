@@ -14,9 +14,13 @@ namespace ForkLoaderTest
         [Test]
         public void CanReadCourseData()
         {
-            var sut = new CourseDataReader(@"..\..\..\TestData\T140828_coursedata.xml");
-           // var sut = new CourseDataReader(@"..\..\..\TestData\CourseData_example1.xml");
-            List<ForkLoader.Course> courses = sut.ReadCourses();
+           // var sut = new CourseDataReader(@"..\..\..\TestData\T140828_coursedata.xml");
+            var sut = new CourseDataReader(@"..\..\..\TestData\CourseTestData.xml");
+            Dictionary<string, ForkLoader.Course> courses = sut.ReadCourses();
+            Assert.IsTrue(courses.ContainsKey("Orange"));
+            ForkLoader.Course orangeCourse = courses["Orange"];
+            Assert.AreEqual(5, orangeCourse.Controls.Count);
+            Assert.AreEqual(52, orangeCourse.Controls[3]);
         }
     }
 }

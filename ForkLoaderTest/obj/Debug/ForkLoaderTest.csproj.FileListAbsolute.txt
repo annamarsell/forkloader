@@ -1,0 +1,14 @@
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\ForkLoaderTest.dll
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\ForkLoaderTest.pdb
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\ForkLoader.exe
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\nunit.core.dll
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\nunit.core.interfaces.dll
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\nunit.framework.dll
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\nunit.util.dll
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\NUnit.VisualStudio.TestAdapter.dll
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\log4net.dll
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\ForkLoader.pdb
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\bin\Debug\nunit.framework.xml
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\obj\Debug\ForkLoaderTest.csprojResolveAssemblyReference.cache
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\obj\Debug\ForkLoaderTest.dll
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoaderTest\obj\Debug\ForkLoaderTest.pdb

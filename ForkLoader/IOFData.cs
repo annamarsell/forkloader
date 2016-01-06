@@ -20,24 +20,32 @@ using System.Xml.Serialization;
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class IOFVersion {
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.orienteering.org/datastandard/3.0", IsNullable=false)]
+public partial class CompetitorList : BaseMessageElement {
     
-    private string versionField;
+    private Competitor[] competitorField;
     
-    public IOFVersion() {
-        this.versionField = "2.0.3";
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Competitor")]
+    public Competitor[] Competitor {
+        get {
+            return this.competitorField;
+        }
+        set {
+            this.competitorField = value;
+        }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string version {
+    public Extensions Extensions {
         get {
-            return this.versionField;
+            return this.extensionsField;
         }
         set {
-            this.versionField = value;
+            this.extensionsField = value;
         }
     }
 }
@@ -47,27 +55,27 @@ public partial class IOFVersion {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PersonList {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Competitor {
     
-    private IOFVersion iOFVersionField;
+    private Person personField;
     
-    private Person[] personField;
+    private Organisation[] organisationField;
+    
+    private ControlCard[] controlCardField;
+    
+    private Class[] classField;
+    
+    private Score[] scoreField;
+    
+    private Extensions extensionsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
     
     /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Person")]
-    public Person[] Person {
+    public Person Person {
         get {
             return this.personField;
         }
@@ -75,6 +83,82 @@ public partial class PersonList {
             this.personField = value;
         }
     }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Organisation")]
+    public Organisation[] Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ControlCard")]
+    public ControlCard[] ControlCard {
+        get {
+            return this.controlCardField;
+        }
+        set {
+            this.controlCardField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Class")]
+    public Class[] Class {
+        get {
+            return this.classField;
+        }
+        set {
+            this.classField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Score")]
+    public Score[] Score {
+        get {
+            return this.scoreField;
+        }
+        set {
+            this.scoreField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
 }
 
 /// <remarks/>
@@ -82,55 +166,83 @@ public partial class PersonList {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
 public partial class Person {
     
-    private PersonName personNameField;
+    private Id[] idField;
     
-    private PersonId personIdField;
+    private PersonName nameField;
     
-    private BirthDate birthDateField;
+    private System.DateTime birthDateField;
+    
+    private bool birthDateFieldSpecified;
+    
+    private Country nationalityField;
     
     private Address[] addressField;
     
-    private Tele[] teleField;
+    private Contact[] contactField;
     
-    private Nationality nationalityField;
-    
-    private ModifyDate modifyDateField;
+    private Extensions extensionsField;
     
     private PersonSex sexField;
     
     private bool sexFieldSpecified;
     
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
     /// <remarks/>
-    public PersonName PersonName {
+    [System.Xml.Serialization.XmlElementAttribute("Id")]
+    public Id[] Id {
         get {
-            return this.personNameField;
+            return this.idField;
         }
         set {
-            this.personNameField = value;
+            this.idField = value;
         }
     }
     
     /// <remarks/>
-    public PersonId PersonId {
+    public PersonName Name {
         get {
-            return this.personIdField;
+            return this.nameField;
         }
         set {
-            this.personIdField = value;
+            this.nameField = value;
         }
     }
     
     /// <remarks/>
-    public BirthDate BirthDate {
+    [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+    public System.DateTime BirthDate {
         get {
             return this.birthDateField;
         }
         set {
             this.birthDateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool BirthDateSpecified {
+        get {
+            return this.birthDateFieldSpecified;
+        }
+        set {
+            this.birthDateFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Country Nationality {
+        get {
+            return this.nationalityField;
+        }
+        set {
+            this.nationalityField = value;
         }
     }
     
@@ -146,33 +258,23 @@ public partial class Person {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Tele")]
-    public Tele[] Tele {
+    [System.Xml.Serialization.XmlElementAttribute("Contact")]
+    public Contact[] Contact {
         get {
-            return this.teleField;
+            return this.contactField;
         }
         set {
-            this.teleField = value;
+            this.contactField = value;
         }
     }
     
     /// <remarks/>
-    public Nationality Nationality {
+    public Extensions Extensions {
         get {
-            return this.nationalityField;
+            return this.extensionsField;
         }
         set {
-            this.nationalityField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
+            this.extensionsField = value;
         }
     }
     
@@ -197,39 +299,26 @@ public partial class Person {
             this.sexFieldSpecified = value;
         }
     }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PersonName {
-    
-    private string familyField;
-    
-    private Given[] givenField;
     
     /// <remarks/>
-    public string Family {
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
         get {
-            return this.familyField;
+            return this.modifyTimeField;
         }
         set {
-            this.familyField = value;
+            this.modifyTimeField = value;
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Given")]
-    public Given[] Given {
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
         get {
-            return this.givenField;
+            return this.modifyTimeFieldSpecified;
         }
         set {
-            this.givenField = value;
+            this.modifyTimeFieldSpecified = value;
         }
     }
 }
@@ -239,57 +328,16 @@ public partial class PersonName {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Given {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Id {
     
-    private string sequenceField;
+    private string typeField;
     
     private string valueField;
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string sequence {
-        get {
-            return this.sequenceField;
-        }
-        set {
-            this.sequenceField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PersonId {
-    
-    private PersonIdType typeField;
-    
-    private bool typeFieldSpecified;
-    
-    private string idManagerField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public PersonIdType type {
+    public string type {
         get {
             return this.typeField;
         }
@@ -299,79 +347,180 @@ public partial class PersonId {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute()]
+    public string Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class PersonServiceRequest {
+    
+    private Person personField;
+    
+    private ServiceRequest[] serviceRequestField;
+    
+    /// <remarks/>
+    public Person Person {
+        get {
+            return this.personField;
+        }
+        set {
+            this.personField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
+    public ServiceRequest[] ServiceRequest {
+        get {
+            return this.serviceRequestField;
+        }
+        set {
+            this.serviceRequestField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class ServiceRequest {
+    
+    private Id idField;
+    
+    private Service serviceField;
+    
+    private double requestedQuantityField;
+    
+    private double deliveredQuantityField;
+    
+    private bool deliveredQuantityFieldSpecified;
+    
+    private string commentField;
+    
+    private AssignedFee[] assignedFeeField;
+    
+    private Extensions extensionsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id Id {
+        get {
+            return this.idField;
+        }
+        set {
+            this.idField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Service Service {
+        get {
+            return this.serviceField;
+        }
+        set {
+            this.serviceField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double RequestedQuantity {
+        get {
+            return this.requestedQuantityField;
+        }
+        set {
+            this.requestedQuantityField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double DeliveredQuantity {
+        get {
+            return this.deliveredQuantityField;
+        }
+        set {
+            this.deliveredQuantityField = value;
+        }
+    }
+    
+    /// <remarks/>
     [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
+    public bool DeliveredQuantitySpecified {
         get {
-            return this.typeFieldSpecified;
+            return this.deliveredQuantityFieldSpecified;
         }
         set {
-            this.typeFieldSpecified = value;
+            this.deliveredQuantityFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Comment {
+        get {
+            return this.commentField;
+        }
+        set {
+            this.commentField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AssignedFee")]
+    public AssignedFee[] AssignedFee {
+        get {
+            return this.assignedFeeField;
+        }
+        set {
+            this.assignedFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
+    public System.DateTime modifyTime {
         get {
-            return this.idManagerField;
+            return this.modifyTimeField;
         }
         set {
-            this.idManagerField = value;
+            this.modifyTimeField = value;
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
         get {
-            return this.valueField;
+            return this.modifyTimeFieldSpecified;
         }
         set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum PersonIdType {
-    
-    /// <remarks/>
-    @int,
-    
-    /// <remarks/>
-    nat,
-    
-    /// <remarks/>
-    reg,
-    
-    /// <remarks/>
-    loc,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class BirthDate {
-    
-    private Date dateField;
-    
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
+            this.modifyTimeFieldSpecified = value;
         }
     }
 }
@@ -381,212 +530,46 @@ public partial class BirthDate {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Date {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Service {
     
-    private string dateFormatField;
+    private Id idField;
     
-    private string valueField;
+    private LanguageString[] nameField;
     
-    public Date() {
-        this.dateFormatField = "YYYY-MM-DD";
-    }
+    private Fee[] feeField;
+    
+    private LanguageString[] descriptionField;
+    
+    private double maxNumberField;
+    
+    private bool maxNumberFieldSpecified;
+    
+    private double requestedNumberField;
+    
+    private bool requestedNumberFieldSpecified;
+    
+    private Extensions extensionsField;
+    
+    private string typeField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute("YYYY-MM-DD")]
-    public string dateFormat {
+    public Id Id {
         get {
-            return this.dateFormatField;
+            return this.idField;
         }
         set {
-            this.dateFormatField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Address {
-    
-    private AddressType addressTypeField;
-    
-    private object itemField;
-    
-    private ModifyDate modifyDateField;
-    
-    private string careOfField;
-    
-    private string streetField;
-    
-    private string cityField;
-    
-    private string zipCodeField;
-    
-    /// <remarks/>
-    public AddressType AddressType {
-        get {
-            return this.addressTypeField;
-        }
-        set {
-            this.addressTypeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Country", typeof(Country))]
-    [System.Xml.Serialization.XmlElementAttribute("CountryId", typeof(CountryId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string careOf {
-        get {
-            return this.careOfField;
-        }
-        set {
-            this.careOfField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string street {
-        get {
-            return this.streetField;
-        }
-        set {
-            this.streetField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string city {
-        get {
-            return this.cityField;
-        }
-        set {
-            this.cityField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string zipCode {
-        get {
-            return this.zipCodeField;
-        }
-        set {
-            this.zipCodeField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class AddressType {
-    
-    private AddressTypeValue valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public AddressTypeValue value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum AddressTypeValue {
-    
-    /// <remarks/>
-    official,
-    
-    /// <remarks/>
-    home,
-    
-    /// <remarks/>
-    work,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Country {
-    
-    private CountryId countryIdField;
-    
-    private Name[] nameField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public CountryId CountryId {
-        get {
-            return this.countryIdField;
-        }
-        set {
-            this.countryIdField = value;
+            this.idField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("Name")]
-    public Name[] Name {
+    public LanguageString[] Name {
         get {
             return this.nameField;
         }
@@ -596,1103 +579,82 @@ public partial class Country {
     }
     
     /// <remarks/>
-    public ModifyDate ModifyDate {
+    [System.Xml.Serialization.XmlElementAttribute("Fee")]
+    public Fee[] Fee {
         get {
-            return this.modifyDateField;
+            return this.feeField;
         }
         set {
-            this.modifyDateField = value;
+            this.feeField = value;
         }
     }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CountryId {
-    
-    private CountryIdValue valueField;
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public CountryIdValue value {
+    [System.Xml.Serialization.XmlElementAttribute("Description")]
+    public LanguageString[] Description {
         get {
-            return this.valueField;
+            return this.descriptionField;
         }
         set {
-            this.valueField = value;
+            this.descriptionField = value;
         }
     }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum CountryIdValue {
     
     /// <remarks/>
-    ARG,
-    
-    /// <remarks/>
-    AUS,
-    
-    /// <remarks/>
-    AUT,
-    
-    /// <remarks/>
-    BEL,
-    
-    /// <remarks/>
-    BLR,
-    
-    /// <remarks/>
-    BRA,
-    
-    /// <remarks/>
-    BUL,
-    
-    /// <remarks/>
-    CAN,
-    
-    /// <remarks/>
-    CHI,
-    
-    /// <remarks/>
-    CHN,
-    
-    /// <remarks/>
-    COL,
-    
-    /// <remarks/>
-    CRO,
-    
-    /// <remarks/>
-    CUB,
-    
-    /// <remarks/>
-    CZE,
-    
-    /// <remarks/>
-    DEN,
-    
-    /// <remarks/>
-    ECU,
-    
-    /// <remarks/>
-    ESP,
-    
-    /// <remarks/>
-    EST,
-    
-    /// <remarks/>
-    FIN,
-    
-    /// <remarks/>
-    FRA,
-    
-    /// <remarks/>
-    GBR,
-    
-    /// <remarks/>
-    GER,
-    
-    /// <remarks/>
-    GRE,
-    
-    /// <remarks/>
-    HKG,
-    
-    /// <remarks/>
-    HUN,
-    
-    /// <remarks/>
-    INA,
-    
-    /// <remarks/>
-    IND,
-    
-    /// <remarks/>
-    IRL,
-    
-    /// <remarks/>
-    ISR,
-    
-    /// <remarks/>
-    ITA,
-    
-    /// <remarks/>
-    JAM,
-    
-    /// <remarks/>
-    JPN,
-    
-    /// <remarks/>
-    KAZ,
-    
-    /// <remarks/>
-    KOR,
-    
-    /// <remarks/>
-    LAT,
-    
-    /// <remarks/>
-    LTU,
-    
-    /// <remarks/>
-    MAS,
-    
-    /// <remarks/>
-    MDA,
-    
-    /// <remarks/>
-    MKD,
-    
-    /// <remarks/>
-    NED,
-    
-    /// <remarks/>
-    NOR,
-    
-    /// <remarks/>
-    NZL,
-    
-    /// <remarks/>
-    PAK,
-    
-    /// <remarks/>
-    POL,
-    
-    /// <remarks/>
-    POR,
-    
-    /// <remarks/>
-    PRK,
-    
-    /// <remarks/>
-    ROM,
-    
-    /// <remarks/>
-    RSA,
-    
-    /// <remarks/>
-    RUS,
-    
-    /// <remarks/>
-    SLO,
-    
-    /// <remarks/>
-    SUI,
-    
-    /// <remarks/>
-    SVK,
-    
-    /// <remarks/>
-    SWE,
-    
-    /// <remarks/>
-    TPE,
-    
-    /// <remarks/>
-    UKR,
-    
-    /// <remarks/>
-    URU,
-    
-    /// <remarks/>
-    USA,
-    
-    /// <remarks/>
-    VEN,
-    
-    /// <remarks/>
-    YOG,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Name {
-    
-    private string languageIdField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string languageId {
+    public double MaxNumber {
         get {
-            return this.languageIdField;
+            return this.maxNumberField;
         }
         set {
-            this.languageIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ModifyDate {
-    
-    private Date dateField;
-    
-    private Clock clockField;
-    
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Clock Clock {
-        get {
-            return this.clockField;
-        }
-        set {
-            this.clockField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Clock {
-    
-    private string clockFormatField;
-    
-    private string valueField;
-    
-    public Clock() {
-        this.clockFormatField = "HH:MM:SS";
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute("HH:MM:SS")]
-    public string clockFormat {
-        get {
-            return this.clockFormatField;
-        }
-        set {
-            this.clockFormatField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Tele {
-    
-    private TeleType teleTypeField;
-    
-    private ModifyDate modifyDateField;
-    
-    private string phoneNumberField;
-    
-    private string faxNumberField;
-    
-    private string mobilePhoneNumberField;
-    
-    private string mailAddressField;
-    
-    /// <remarks/>
-    public TeleType TeleType {
-        get {
-            return this.teleTypeField;
-        }
-        set {
-            this.teleTypeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string phoneNumber {
-        get {
-            return this.phoneNumberField;
-        }
-        set {
-            this.phoneNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string faxNumber {
-        get {
-            return this.faxNumberField;
-        }
-        set {
-            this.faxNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string mobilePhoneNumber {
-        get {
-            return this.mobilePhoneNumberField;
-        }
-        set {
-            this.mobilePhoneNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string mailAddress {
-        get {
-            return this.mailAddressField;
-        }
-        set {
-            this.mailAddressField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class TeleType {
-    
-    private TeleTypeValue valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public TeleTypeValue value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum TeleTypeValue {
-    
-    /// <remarks/>
-    official,
-    
-    /// <remarks/>
-    home,
-    
-    /// <remarks/>
-    work,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Nationality {
-    
-    private object itemField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Country", typeof(Country))]
-    [System.Xml.Serialization.XmlElementAttribute("CountryId", typeof(CountryId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum PersonSex {
-    
-    /// <remarks/>
-    M,
-    
-    /// <remarks/>
-    F,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Contact {
-    
-    private object itemField;
-    
-    private ContactType contactTypeField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Person", typeof(Person))]
-    [System.Xml.Serialization.XmlElementAttribute("PersonId", typeof(PersonId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ContactType ContactType {
-        get {
-            return this.contactTypeField;
-        }
-        set {
-            this.contactTypeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ContactType {
-    
-    private ContactTypeValue valueField;
-    
-    public ContactType() {
-        this.valueField = ContactTypeValue.official;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(ContactTypeValue.official)]
-    public ContactTypeValue value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ContactTypeValue {
-    
-    /// <remarks/>
-    official,
-    
-    /// <remarks/>
-    entry,
-    
-    /// <remarks/>
-    result,
-    
-    /// <remarks/>
-    info,
-    
-    /// <remarks/>
-    financial,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CompetitorList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private Competitor[] competitorField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Competitor")]
-    public Competitor[] Competitor {
-        get {
-            return this.competitorField;
-        }
-        set {
-            this.competitorField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Competitor {
-    
-    private object itemField;
-    
-    private object item1Field;
-    
-    private PreSelectedClass[] preSelectedClassField;
-    
-    private CCard[] cCardField;
-    
-    private Rank[] rankField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Person", typeof(Person))]
-    [System.Xml.Serialization.XmlElementAttribute("PersonId", typeof(PersonId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Club", typeof(Club))]
-    [System.Xml.Serialization.XmlElementAttribute("ClubId", typeof(ClubId))]
-    [System.Xml.Serialization.XmlElementAttribute("Country", typeof(Country))]
-    [System.Xml.Serialization.XmlElementAttribute("CountryId", typeof(CountryId))]
-    public object Item1 {
-        get {
-            return this.item1Field;
-        }
-        set {
-            this.item1Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("PreSelectedClass")]
-    public PreSelectedClass[] PreSelectedClass {
-        get {
-            return this.preSelectedClassField;
-        }
-        set {
-            this.preSelectedClassField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CCard")]
-    public CCard[] CCard {
-        get {
-            return this.cCardField;
-        }
-        set {
-            this.cCardField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Rank")]
-    public Rank[] Rank {
-        get {
-            return this.rankField;
-        }
-        set {
-            this.rankField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Club {
-    
-    private ClubId clubIdField;
-    
-    private Name nameField;
-    
-    private ShortName shortNameField;
-    
-    private OrganisationId organisationIdField;
-    
-    private object itemField;
-    
-    private Address[] addressField;
-    
-    private Tele[] teleField;
-    
-    private string[] webURLField;
-    
-    private Account[] accountField;
-    
-    private Contact[] contactField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public ClubId ClubId {
-        get {
-            return this.clubIdField;
-        }
-        set {
-            this.clubIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ShortName ShortName {
-        get {
-            return this.shortNameField;
-        }
-        set {
-            this.shortNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public OrganisationId OrganisationId {
-        get {
-            return this.organisationIdField;
-        }
-        set {
-            this.organisationIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Country", typeof(Country))]
-    [System.Xml.Serialization.XmlElementAttribute("CountryId", typeof(CountryId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Address")]
-    public Address[] Address {
-        get {
-            return this.addressField;
-        }
-        set {
-            this.addressField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Tele")]
-    public Tele[] Tele {
-        get {
-            return this.teleField;
-        }
-        set {
-            this.teleField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("WebURL")]
-    public string[] WebURL {
-        get {
-            return this.webURLField;
-        }
-        set {
-            this.webURLField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Account")]
-    public Account[] Account {
-        get {
-            return this.accountField;
-        }
-        set {
-            this.accountField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Contact")]
-    public Contact[] Contact {
-        get {
-            return this.contactField;
-        }
-        set {
-            this.contactField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClubId {
-    
-    private ClubIdType typeField;
-    
-    private bool typeFieldSpecified;
-    
-    private string idManagerField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public ClubIdType type {
-        get {
-            return this.typeField;
-        }
-        set {
-            this.typeField = value;
+            this.maxNumberField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
+    public bool MaxNumberSpecified {
         get {
-            return this.typeFieldSpecified;
+            return this.maxNumberFieldSpecified;
         }
         set {
-            this.typeFieldSpecified = value;
+            this.maxNumberFieldSpecified = value;
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
+    public double RequestedNumber {
         get {
-            return this.idManagerField;
+            return this.requestedNumberField;
         }
         set {
-            this.idManagerField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ClubIdType {
-    
-    /// <remarks/>
-    @int,
-    
-    /// <remarks/>
-    nat,
-    
-    /// <remarks/>
-    reg,
-    
-    /// <remarks/>
-    loc,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ShortName {
-    
-    private string languageIdField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string languageId {
-        get {
-            return this.languageIdField;
-        }
-        set {
-            this.languageIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class OrganisationId {
-    
-    private OrganisationIdType typeField;
-    
-    private bool typeFieldSpecified;
-    
-    private string idManagerField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public OrganisationIdType type {
-        get {
-            return this.typeField;
-        }
-        set {
-            this.typeField = value;
+            this.requestedNumberField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
+    public bool RequestedNumberSpecified {
         get {
-            return this.typeFieldSpecified;
+            return this.requestedNumberFieldSpecified;
         }
         set {
-            this.typeFieldSpecified = value;
+            this.requestedNumberFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
-        get {
-            return this.idManagerField;
-        }
-        set {
-            this.idManagerField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum OrganisationIdType {
-    
-    /// <remarks/>
-    @int,
-    
-    /// <remarks/>
-    nat,
-    
-    /// <remarks/>
-    reg,
-    
-    /// <remarks/>
-    loc,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Account {
-    
-    private AccountType typeField;
-    
-    private string valueField;
-    
-    public Account() {
-        this.typeField = AccountType.postalGiro;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(AccountType.postalGiro)]
-    public AccountType type {
+    public string type {
         get {
             return this.typeField;
         }
@@ -1702,407 +664,26 @@ public partial class Account {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum AccountType {
-    
-    /// <remarks/>
-    postalGiro,
-    
-    /// <remarks/>
-    bankGiro,
-    
-    /// <remarks/>
-    bankAccount,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PreSelectedClass {
-    
-    private object itemField;
-    
-    private string sequenceField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Class", typeof(Class))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassId", typeof(ClassId))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassShortName", typeof(ClassShortName))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string sequence {
+    public System.DateTime modifyTime {
         get {
-            return this.sequenceField;
+            return this.modifyTimeField;
         }
         set {
-            this.sequenceField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Class {
-    
-    private ClassId classIdField;
-    
-    private Name nameField;
-    
-    private ClassShortName classShortNameField;
-    
-    private object itemField;
-    
-    private SubstituteClass substituteClassField;
-    
-    private NotQualifiedSubstituteClass notQualifiedSubstituteClassField;
-    
-    private object[] itemsField;
-    
-    private ModifyDate modifyDateField;
-    
-    private string lowAgeField;
-    
-    private string highAgeField;
-    
-    private ClassSex sexField;
-    
-    private string numberInTeamField;
-    
-    private ClassTeamEntry teamEntryField;
-    
-    private string maxNumberInClassField;
-    
-    private ClassActualForRanking actualForRankingField;
-    
-    private ClassTimePresentation timePresentationField;
-    
-    private string allowedMinAgeField;
-    
-    private string allowedMaxAgeField;
-    
-    public Class() {
-        this.numberInTeamField = "1";
-        this.teamEntryField = ClassTeamEntry.N;
-        this.actualForRankingField = ClassActualForRanking.N;
-        this.timePresentationField = ClassTimePresentation.Y;
-    }
-    
-    /// <remarks/>
-    public ClassId ClassId {
-        get {
-            return this.classIdField;
-        }
-        set {
-            this.classIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ClassShortName ClassShortName {
-        get {
-            return this.classShortNameField;
-        }
-        set {
-            this.classShortNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClassType", typeof(ClassType))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassTypeId", typeof(ClassTypeId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public SubstituteClass SubstituteClass {
-        get {
-            return this.substituteClassField;
-        }
-        set {
-            this.substituteClassField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public NotQualifiedSubstituteClass NotQualifiedSubstituteClass {
-        get {
-            return this.notQualifiedSubstituteClassField;
-        }
-        set {
-            this.notQualifiedSubstituteClassField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EntryFee", typeof(EntryFee))]
-    [System.Xml.Serialization.XmlElementAttribute("EntryFeeId", typeof(EntryFeeId))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string lowAge {
-        get {
-            return this.lowAgeField;
-        }
-        set {
-            this.lowAgeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string highAge {
-        get {
-            return this.highAgeField;
-        }
-        set {
-            this.highAgeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public ClassSex sex {
-        get {
-            return this.sexField;
-        }
-        set {
-            this.sexField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute("1")]
-    public string numberInTeam {
-        get {
-            return this.numberInTeamField;
-        }
-        set {
-            this.numberInTeamField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(ClassTeamEntry.N)]
-    public ClassTeamEntry teamEntry {
-        get {
-            return this.teamEntryField;
-        }
-        set {
-            this.teamEntryField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string maxNumberInClass {
-        get {
-            return this.maxNumberInClassField;
-        }
-        set {
-            this.maxNumberInClassField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(ClassActualForRanking.N)]
-    public ClassActualForRanking actualForRanking {
-        get {
-            return this.actualForRankingField;
-        }
-        set {
-            this.actualForRankingField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(ClassTimePresentation.Y)]
-    public ClassTimePresentation timePresentation {
-        get {
-            return this.timePresentationField;
-        }
-        set {
-            this.timePresentationField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string allowedMinAge {
-        get {
-            return this.allowedMinAgeField;
-        }
-        set {
-            this.allowedMinAgeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string allowedMaxAge {
-        get {
-            return this.allowedMaxAgeField;
-        }
-        set {
-            this.allowedMaxAgeField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClassId {
-    
-    private ClassIdType typeField;
-    
-    private bool typeFieldSpecified;
-    
-    private string idManagerField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public ClassIdType type {
-        get {
-            return this.typeField;
-        }
-        set {
-            this.typeField = value;
+            this.modifyTimeField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
+    public bool modifyTimeSpecified {
         get {
-            return this.typeFieldSpecified;
+            return this.modifyTimeFieldSpecified;
         }
         set {
-            this.typeFieldSpecified = value;
+            this.modifyTimeFieldSpecified = value;
         }
     }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
-        get {
-            return this.idManagerField;
-        }
-        set {
-            this.idManagerField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ClassIdType {
-    
-    /// <remarks/>
-    @int,
-    
-    /// <remarks/>
-    nat,
-    
-    /// <remarks/>
-    reg,
-    
-    /// <remarks/>
-    loc,
-    
-    /// <remarks/>
-    other,
 }
 
 /// <remarks/>
@@ -2110,22 +691,21 @@ public enum ClassIdType {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClassShortName {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class LanguageString {
     
-    private string idManagerField;
+    private string languageField;
     
     private string valueField;
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
+    public string language {
         get {
-            return this.idManagerField;
+            return this.languageField;
         }
         set {
-            this.idManagerField = value;
+            this.languageField = value;
         }
     }
     
@@ -2146,216 +726,66 @@ public partial class ClassShortName {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClassType {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Fee {
     
-    private ClassTypeId classTypeIdField;
+    private Id idField;
     
-    private Name nameField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public ClassTypeId ClassTypeId {
-        get {
-            return this.classTypeIdField;
-        }
-        set {
-            this.classTypeIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClassTypeId {
-    
-    private ClassTypeIdType typeField;
-    
-    private bool typeFieldSpecified;
-    
-    private string idManagerField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public ClassTypeIdType type {
-        get {
-            return this.typeField;
-        }
-        set {
-            this.typeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
-        get {
-            return this.typeFieldSpecified;
-        }
-        set {
-            this.typeFieldSpecified = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
-        get {
-            return this.idManagerField;
-        }
-        set {
-            this.idManagerField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ClassTypeIdType {
-    
-    /// <remarks/>
-    @int,
-    
-    /// <remarks/>
-    nat,
-    
-    /// <remarks/>
-    reg,
-    
-    /// <remarks/>
-    loc,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class SubstituteClass {
-    
-    private object itemField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Class", typeof(Class))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassId", typeof(ClassId))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassShortName", typeof(ClassShortName))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class NotQualifiedSubstituteClass {
-    
-    private object itemField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Class", typeof(Class))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassId", typeof(ClassId))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassShortName", typeof(ClassShortName))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EntryFee {
-    
-    private EntryFeeId entryFeeIdField;
-    
-    private Name nameField;
+    private LanguageString[] nameField;
     
     private Amount amountField;
     
-    private ModifyDate modifyDateField;
+    private Amount taxableAmountField;
     
-    private EntryFeeTaxIncluded taxIncludedField;
+    private double percentageField;
     
-    public EntryFee() {
-        this.taxIncludedField = EntryFeeTaxIncluded.Y;
+    private bool percentageFieldSpecified;
+    
+    private double taxablePercentageField;
+    
+    private bool taxablePercentageFieldSpecified;
+    
+    private System.DateTime validFromTimeField;
+    
+    private bool validFromTimeFieldSpecified;
+    
+    private System.DateTime validToTimeField;
+    
+    private bool validToTimeFieldSpecified;
+    
+    private System.DateTime fromDateOfBirthField;
+    
+    private bool fromDateOfBirthFieldSpecified;
+    
+    private System.DateTime toDateOfBirthField;
+    
+    private bool toDateOfBirthFieldSpecified;
+    
+    private Extensions extensionsField;
+    
+    private FeeType typeField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    public Fee() {
+        this.typeField = FeeType.Normal;
     }
     
     /// <remarks/>
-    public EntryFeeId EntryFeeId {
+    public Id Id {
         get {
-            return this.entryFeeIdField;
+            return this.idField;
         }
         set {
-            this.entryFeeIdField = value;
+            this.idField = value;
         }
     }
     
     /// <remarks/>
-    public Name Name {
+    [System.Xml.Serialization.XmlElementAttribute("Name")]
+    public LanguageString[] Name {
         get {
             return this.nameField;
         }
@@ -2375,48 +805,157 @@ public partial class EntryFee {
     }
     
     /// <remarks/>
-    public ModifyDate ModifyDate {
+    public Amount TaxableAmount {
         get {
-            return this.modifyDateField;
+            return this.taxableAmountField;
         }
         set {
-            this.modifyDateField = value;
+            this.taxableAmountField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Percentage {
+        get {
+            return this.percentageField;
+        }
+        set {
+            this.percentageField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool PercentageSpecified {
+        get {
+            return this.percentageFieldSpecified;
+        }
+        set {
+            this.percentageFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double TaxablePercentage {
+        get {
+            return this.taxablePercentageField;
+        }
+        set {
+            this.taxablePercentageField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TaxablePercentageSpecified {
+        get {
+            return this.taxablePercentageFieldSpecified;
+        }
+        set {
+            this.taxablePercentageFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime ValidFromTime {
+        get {
+            return this.validFromTimeField;
+        }
+        set {
+            this.validFromTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool ValidFromTimeSpecified {
+        get {
+            return this.validFromTimeFieldSpecified;
+        }
+        set {
+            this.validFromTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime ValidToTime {
+        get {
+            return this.validToTimeField;
+        }
+        set {
+            this.validToTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool ValidToTimeSpecified {
+        get {
+            return this.validToTimeFieldSpecified;
+        }
+        set {
+            this.validToTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+    public System.DateTime FromDateOfBirth {
+        get {
+            return this.fromDateOfBirthField;
+        }
+        set {
+            this.fromDateOfBirthField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool FromDateOfBirthSpecified {
+        get {
+            return this.fromDateOfBirthFieldSpecified;
+        }
+        set {
+            this.fromDateOfBirthFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+    public System.DateTime ToDateOfBirth {
+        get {
+            return this.toDateOfBirthField;
+        }
+        set {
+            this.toDateOfBirthField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool ToDateOfBirthSpecified {
+        get {
+            return this.toDateOfBirthFieldSpecified;
+        }
+        set {
+            this.toDateOfBirthFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(EntryFeeTaxIncluded.Y)]
-    public EntryFeeTaxIncluded taxIncluded {
-        get {
-            return this.taxIncludedField;
-        }
-        set {
-            this.taxIncludedField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EntryFeeId {
-    
-    private EntryFeeIdType typeField;
-    
-    private bool typeFieldSpecified;
-    
-    private string idManagerField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public EntryFeeIdType type {
+    [System.ComponentModel.DefaultValueAttribute(FeeType.Normal)]
+    public FeeType type {
         get {
             return this.typeField;
         }
@@ -2426,59 +965,26 @@ public partial class EntryFeeId {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
-        get {
-            return this.typeFieldSpecified;
-        }
-        set {
-            this.typeFieldSpecified = value;
-        }
-    }
-    
-    /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
+    public System.DateTime modifyTime {
         get {
-            return this.idManagerField;
+            return this.modifyTimeField;
         }
         set {
-            this.idManagerField = value;
+            this.modifyTimeField = value;
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
         get {
-            return this.valueField;
+            return this.modifyTimeFieldSpecified;
         }
         set {
-            this.valueField = value;
+            this.modifyTimeFieldSpecified = value;
         }
     }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum EntryFeeIdType {
-    
-    /// <remarks/>
-    @int,
-    
-    /// <remarks/>
-    nat,
-    
-    /// <remarks/>
-    reg,
-    
-    /// <remarks/>
-    loc,
-    
-    /// <remarks/>
-    other,
 }
 
 /// <remarks/>
@@ -2486,13 +992,12 @@ public enum EntryFeeIdType {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
 public partial class Amount {
     
     private string currencyField;
     
-    private string valueField;
+    private decimal valueField;
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -2507,7 +1012,7 @@ public partial class Amount {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
+    public decimal Value {
         get {
             return this.valueField;
         }
@@ -2520,69 +1025,36 @@ public partial class Amount {
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
 [System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum EntryFeeTaxIncluded {
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Extensions {
+    
+    private System.Xml.XmlElement[] anyField;
     
     /// <remarks/>
-    Y,
-    
-    /// <remarks/>
-    N,
+    [System.Xml.Serialization.XmlAnyElementAttribute()]
+    public System.Xml.XmlElement[] Any {
+        get {
+            return this.anyField;
+        }
+        set {
+            this.anyField = value;
+        }
+    }
 }
 
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
 [System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ClassSex {
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum FeeType {
     
     /// <remarks/>
-    M,
+    Normal,
     
     /// <remarks/>
-    F,
-    
-    /// <remarks/>
-    B,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ClassTeamEntry {
-    
-    /// <remarks/>
-    Y,
-    
-    /// <remarks/>
-    N,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ClassActualForRanking {
-    
-    /// <remarks/>
-    Y,
-    
-    /// <remarks/>
-    N,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ClassTimePresentation {
-    
-    /// <remarks/>
-    Y,
-    
-    /// <remarks/>
-    N,
+    Late,
 }
 
 /// <remarks/>
@@ -2590,56 +1062,68 @@ public enum ClassTimePresentation {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CCard {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class AssignedFee {
     
-    private string cCardIdField;
+    private Fee feeField;
     
-    private PunchingUnitType punchingUnitTypeField;
+    private Amount paidAmountField;
     
-    private ModifyDate modifyDateField;
+    private Extensions extensionsField;
     
-    private string miscDataField;
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
     
     /// <remarks/>
-    public string CCardId {
+    public Fee Fee {
         get {
-            return this.cCardIdField;
+            return this.feeField;
         }
         set {
-            this.cCardIdField = value;
+            this.feeField = value;
         }
     }
     
     /// <remarks/>
-    public PunchingUnitType PunchingUnitType {
+    public Amount PaidAmount {
         get {
-            return this.punchingUnitTypeField;
+            return this.paidAmountField;
         }
         set {
-            this.punchingUnitTypeField = value;
+            this.paidAmountField = value;
         }
     }
     
     /// <remarks/>
-    public ModifyDate ModifyDate {
+    public Extensions Extensions {
         get {
-            return this.modifyDateField;
+            return this.extensionsField;
         }
         set {
-            this.modifyDateField = value;
+            this.extensionsField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string miscData {
+    public System.DateTime modifyTime {
         get {
-            return this.miscDataField;
+            return this.modifyTimeField;
         }
         set {
-            this.miscDataField = value;
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
         }
     }
 }
@@ -2649,124 +1133,44 @@ public partial class CCard {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PunchingUnitType {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class OrganisationServiceRequest {
     
-    private PunchingUnitTypeValue valueField;
+    private Organisation organisationField;
+    
+    private ServiceRequest[] serviceRequestField;
+    
+    private PersonServiceRequest[] personServiceRequestField;
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public PunchingUnitTypeValue value {
+    public Organisation Organisation {
         get {
-            return this.valueField;
+            return this.organisationField;
         }
         set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum PunchingUnitTypeValue {
-    
-    /// <remarks/>
-    manual,
-    
-    /// <remarks/>
-    SI,
-    
-    /// <remarks/>
-    Emit,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Rank {
-    
-    private object itemField;
-    
-    private string rankPositionField;
-    
-    private string rankValueField;
-    
-    private ValidFromDate validFromDateField;
-    
-    private ValidToDate validToDateField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Name", typeof(Name))]
-    [System.Xml.Serialization.XmlElementAttribute("Organisation", typeof(Organisation))]
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationId", typeof(OrganisationId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
+            this.organisationField = value;
         }
     }
     
     /// <remarks/>
-    public string RankPosition {
+    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
+    public ServiceRequest[] ServiceRequest {
         get {
-            return this.rankPositionField;
+            return this.serviceRequestField;
         }
         set {
-            this.rankPositionField = value;
+            this.serviceRequestField = value;
         }
     }
     
     /// <remarks/>
-    public string RankValue {
+    [System.Xml.Serialization.XmlElementAttribute("PersonServiceRequest")]
+    public PersonServiceRequest[] PersonServiceRequest {
         get {
-            return this.rankValueField;
+            return this.personServiceRequestField;
         }
         set {
-            this.rankValueField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ValidFromDate ValidFromDate {
-        get {
-            return this.validFromDateField;
-        }
-        set {
-            this.validFromDateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ValidToDate ValidToDate {
-        get {
-            return this.validToDateField;
-        }
-        set {
-            this.validToDateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
+            this.personServiceRequestField = value;
         }
     }
 }
@@ -2776,44 +1180,55 @@ public partial class Rank {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
 public partial class Organisation {
     
-    private OrganisationId organisationIdField;
+    private Id idField;
     
-    private Name nameField;
+    private string nameField;
     
-    private ShortName shortNameField;
+    private string shortNameField;
     
-    private object itemField;
+    private string mediaNameField;
     
-    private object item1Field;
+    private string parentOrganisationIdField;
+    
+    private Country countryField;
     
     private Address[] addressField;
     
-    private Tele[] teleField;
+    private Contact[] contactField;
+    
+    private GeoPosition positionField;
     
     private Account[] accountField;
     
-    private Contact[] contactField;
+    private Role[] roleField;
     
-    private SubOrganisation[] subOrganisationField;
+    private Image[] logotypeField;
     
-    private ModifyDate modifyDateField;
+    private Extensions extensionsField;
+    
+    private OrganisationType typeField;
+    
+    private bool typeFieldSpecified;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
     
     /// <remarks/>
-    public OrganisationId OrganisationId {
+    public Id Id {
         get {
-            return this.organisationIdField;
+            return this.idField;
         }
         set {
-            this.organisationIdField = value;
+            this.idField = value;
         }
     }
     
     /// <remarks/>
-    public Name Name {
+    public string Name {
         get {
             return this.nameField;
         }
@@ -2823,7 +1238,7 @@ public partial class Organisation {
     }
     
     /// <remarks/>
-    public ShortName ShortName {
+    public string ShortName {
         get {
             return this.shortNameField;
         }
@@ -2833,26 +1248,33 @@ public partial class Organisation {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationType", typeof(OrganisationType))]
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationTypeId", typeof(OrganisationTypeId))]
-    public object Item {
+    public string MediaName {
         get {
-            return this.itemField;
+            return this.mediaNameField;
         }
         set {
-            this.itemField = value;
+            this.mediaNameField = value;
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Country", typeof(Country))]
-    [System.Xml.Serialization.XmlElementAttribute("CountryId", typeof(CountryId))]
-    public object Item1 {
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string ParentOrganisationId {
         get {
-            return this.item1Field;
+            return this.parentOrganisationIdField;
         }
         set {
-            this.item1Field = value;
+            this.parentOrganisationIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Country Country {
+        get {
+            return this.countryField;
+        }
+        set {
+            this.countryField = value;
         }
     }
     
@@ -2868,13 +1290,23 @@ public partial class Organisation {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Tele")]
-    public Tele[] Tele {
+    [System.Xml.Serialization.XmlElementAttribute("Contact")]
+    public Contact[] Contact {
         get {
-            return this.teleField;
+            return this.contactField;
         }
         set {
-            this.teleField = value;
+            this.contactField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public GeoPosition Position {
+        get {
+            return this.positionField;
+        }
+        set {
+            this.positionField = value;
         }
     }
     
@@ -2890,6 +1322,5704 @@ public partial class Organisation {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Role")]
+    public Role[] Role {
+        get {
+            return this.roleField;
+        }
+        set {
+            this.roleField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Logotype")]
+    public Image[] Logotype {
+        get {
+            return this.logotypeField;
+        }
+        set {
+            this.logotypeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public OrganisationType type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool typeSpecified {
+        get {
+            return this.typeFieldSpecified;
+        }
+        set {
+            this.typeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Country {
+    
+    private string codeField;
+    
+    private string valueField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string code {
+        get {
+            return this.codeField;
+        }
+        set {
+            this.codeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute()]
+    public string Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Address {
+    
+    private string careOfField;
+    
+    private string streetField;
+    
+    private string zipCodeField;
+    
+    private string cityField;
+    
+    private string stateField;
+    
+    private Country countryField;
+    
+    private string typeField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public string CareOf {
+        get {
+            return this.careOfField;
+        }
+        set {
+            this.careOfField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Street {
+        get {
+            return this.streetField;
+        }
+        set {
+            this.streetField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string ZipCode {
+        get {
+            return this.zipCodeField;
+        }
+        set {
+            this.zipCodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string City {
+        get {
+            return this.cityField;
+        }
+        set {
+            this.cityField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string State {
+        get {
+            return this.stateField;
+        }
+        set {
+            this.stateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Country Country {
+        get {
+            return this.countryField;
+        }
+        set {
+            this.countryField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Contact {
+    
+    private ContactType typeField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    private string valueField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public ContactType type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute()]
+    public string Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum ContactType {
+    
+    /// <remarks/>
+    PhoneNumber,
+    
+    /// <remarks/>
+    MobilePhoneNumber,
+    
+    /// <remarks/>
+    FaxNumber,
+    
+    /// <remarks/>
+    EmailAddress,
+    
+    /// <remarks/>
+    WebAddress,
+    
+    /// <remarks/>
+    Other,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class GeoPosition {
+    
+    private double lngField;
+    
+    private double latField;
+    
+    private double altField;
+    
+    private bool altFieldSpecified;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public double lng {
+        get {
+            return this.lngField;
+        }
+        set {
+            this.lngField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public double lat {
+        get {
+            return this.latField;
+        }
+        set {
+            this.latField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public double alt {
+        get {
+            return this.altField;
+        }
+        set {
+            this.altField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool altSpecified {
+        get {
+            return this.altFieldSpecified;
+        }
+        set {
+            this.altFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Account {
+    
+    private string typeField;
+    
+    private string valueField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute()]
+    public string Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Role {
+    
+    private Person personField;
+    
+    private string typeField;
+    
+    /// <remarks/>
+    public Person Person {
+        get {
+            return this.personField;
+        }
+        set {
+            this.personField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Image {
+    
+    private string urlField;
+    
+    private string mediaTypeField;
+    
+    private string widthField;
+    
+    private string heightField;
+    
+    private double resolutionField;
+    
+    private bool resolutionFieldSpecified;
+    
+    private byte[] valueField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string url {
+        get {
+            return this.urlField;
+        }
+        set {
+            this.urlField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string mediaType {
+        get {
+            return this.mediaTypeField;
+        }
+        set {
+            this.mediaTypeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string width {
+        get {
+            return this.widthField;
+        }
+        set {
+            this.widthField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string height {
+        get {
+            return this.heightField;
+        }
+        set {
+            this.heightField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public double resolution {
+        get {
+            return this.resolutionField;
+        }
+        set {
+            this.resolutionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool resolutionSpecified {
+        get {
+            return this.resolutionFieldSpecified;
+        }
+        set {
+            this.resolutionFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute(DataType="base64Binary")]
+    public byte[] Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum OrganisationType {
+    
+    /// <remarks/>
+    IOF,
+    
+    /// <remarks/>
+    IOFRegion,
+    
+    /// <remarks/>
+    NationalFederation,
+    
+    /// <remarks/>
+    NationalRegion,
+    
+    /// <remarks/>
+    Club,
+    
+    /// <remarks/>
+    School,
+    
+    /// <remarks/>
+    Company,
+    
+    /// <remarks/>
+    Military,
+    
+    /// <remarks/>
+    Other,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamMemberRaceResult {
+    
+    private string legField;
+    
+    private string legOrderField;
+    
+    private string bibNumberField;
+    
+    private System.DateTime startTimeField;
+    
+    private bool startTimeFieldSpecified;
+    
+    private System.DateTime finishTimeField;
+    
+    private bool finishTimeFieldSpecified;
+    
+    private double timeField;
+    
+    private bool timeFieldSpecified;
+    
+    private TeamMemberRaceResultTimeBehind[] timeBehindField;
+    
+    private TeamMemberRaceResultPosition[] positionField;
+    
+    private ResultStatus statusField;
+    
+    private Score[] scoreField;
+    
+    private OverallResult overallResultField;
+    
+    private SimpleCourse courseField;
+    
+    private SplitTime[] splitTimeField;
+    
+    private ControlAnswer[] controlAnswerField;
+    
+    private Route routeField;
+    
+    private ControlCard[] controlCardField;
+    
+    private AssignedFee[] assignedFeeField;
+    
+    private ServiceRequest[] serviceRequestField;
+    
+    private Extensions extensionsField;
+    
+    private string raceNumberField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string Leg {
+        get {
+            return this.legField;
+        }
+        set {
+            this.legField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string LegOrder {
+        get {
+            return this.legOrderField;
+        }
+        set {
+            this.legOrderField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string BibNumber {
+        get {
+            return this.bibNumberField;
+        }
+        set {
+            this.bibNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime StartTime {
+        get {
+            return this.startTimeField;
+        }
+        set {
+            this.startTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool StartTimeSpecified {
+        get {
+            return this.startTimeFieldSpecified;
+        }
+        set {
+            this.startTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime FinishTime {
+        get {
+            return this.finishTimeField;
+        }
+        set {
+            this.finishTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool FinishTimeSpecified {
+        get {
+            return this.finishTimeFieldSpecified;
+        }
+        set {
+            this.finishTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Time {
+        get {
+            return this.timeField;
+        }
+        set {
+            this.timeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TimeSpecified {
+        get {
+            return this.timeFieldSpecified;
+        }
+        set {
+            this.timeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TimeBehind")]
+    public TeamMemberRaceResultTimeBehind[] TimeBehind {
+        get {
+            return this.timeBehindField;
+        }
+        set {
+            this.timeBehindField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Position")]
+    public TeamMemberRaceResultPosition[] Position {
+        get {
+            return this.positionField;
+        }
+        set {
+            this.positionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public ResultStatus Status {
+        get {
+            return this.statusField;
+        }
+        set {
+            this.statusField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Score")]
+    public Score[] Score {
+        get {
+            return this.scoreField;
+        }
+        set {
+            this.scoreField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public OverallResult OverallResult {
+        get {
+            return this.overallResultField;
+        }
+        set {
+            this.overallResultField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public SimpleCourse Course {
+        get {
+            return this.courseField;
+        }
+        set {
+            this.courseField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("SplitTime")]
+    public SplitTime[] SplitTime {
+        get {
+            return this.splitTimeField;
+        }
+        set {
+            this.splitTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ControlAnswer")]
+    public ControlAnswer[] ControlAnswer {
+        get {
+            return this.controlAnswerField;
+        }
+        set {
+            this.controlAnswerField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Route Route {
+        get {
+            return this.routeField;
+        }
+        set {
+            this.routeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ControlCard")]
+    public ControlCard[] ControlCard {
+        get {
+            return this.controlCardField;
+        }
+        set {
+            this.controlCardField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AssignedFee")]
+    public AssignedFee[] AssignedFee {
+        get {
+            return this.assignedFeeField;
+        }
+        set {
+            this.assignedFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
+    public ServiceRequest[] ServiceRequest {
+        get {
+            return this.serviceRequestField;
+        }
+        set {
+            this.serviceRequestField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string raceNumber {
+        get {
+            return this.raceNumberField;
+        }
+        set {
+            this.raceNumberField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamMemberRaceResultTimeBehind {
+    
+    private TeamMemberRaceResultTimeBehindType typeField;
+    
+    private double valueField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public TeamMemberRaceResultTimeBehindType type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute()]
+    public double Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum TeamMemberRaceResultTimeBehindType {
+    
+    /// <remarks/>
+    Leg,
+    
+    /// <remarks/>
+    Course,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamMemberRaceResultPosition {
+    
+    private TeamMemberRaceResultPositionType typeField;
+    
+    private string valueField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public TeamMemberRaceResultPositionType type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute(DataType="integer")]
+    public string Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum TeamMemberRaceResultPositionType {
+    
+    /// <remarks/>
+    Leg,
+    
+    /// <remarks/>
+    Course,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum ResultStatus {
+    
+    /// <remarks/>
+    OK,
+    
+    /// <remarks/>
+    Finished,
+    
+    /// <remarks/>
+    MissingPunch,
+    
+    /// <remarks/>
+    Disqualified,
+    
+    /// <remarks/>
+    DidNotFinish,
+    
+    /// <remarks/>
+    Active,
+    
+    /// <remarks/>
+    Inactive,
+    
+    /// <remarks/>
+    OverTime,
+    
+    /// <remarks/>
+    SportingWithdrawal,
+    
+    /// <remarks/>
+    NotCompeting,
+    
+    /// <remarks/>
+    Moved,
+    
+    /// <remarks/>
+    MovedUp,
+    
+    /// <remarks/>
+    DidNotStart,
+    
+    /// <remarks/>
+    DidNotEnter,
+    
+    /// <remarks/>
+    Cancelled,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Score {
+    
+    private string typeField;
+    
+    private double valueField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute()]
+    public double Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class OverallResult {
+    
+    private double timeField;
+    
+    private bool timeFieldSpecified;
+    
+    private double timeBehindField;
+    
+    private bool timeBehindFieldSpecified;
+    
+    private string positionField;
+    
+    private ResultStatus statusField;
+    
+    private Score[] scoreField;
+    
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    public double Time {
+        get {
+            return this.timeField;
+        }
+        set {
+            this.timeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TimeSpecified {
+        get {
+            return this.timeFieldSpecified;
+        }
+        set {
+            this.timeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double TimeBehind {
+        get {
+            return this.timeBehindField;
+        }
+        set {
+            this.timeBehindField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TimeBehindSpecified {
+        get {
+            return this.timeBehindFieldSpecified;
+        }
+        set {
+            this.timeBehindFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string Position {
+        get {
+            return this.positionField;
+        }
+        set {
+            this.positionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public ResultStatus Status {
+        get {
+            return this.statusField;
+        }
+        set {
+            this.statusField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Score")]
+    public Score[] Score {
+        get {
+            return this.scoreField;
+        }
+        set {
+            this.scoreField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.Xml.Serialization.XmlIncludeAttribute(typeof(SimpleRaceCourse))]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class SimpleCourse {
+    
+    private Id idField;
+    
+    private string nameField;
+    
+    private string courseFamilyField;
+    
+    private double lengthField;
+    
+    private bool lengthFieldSpecified;
+    
+    private double climbField;
+    
+    private bool climbFieldSpecified;
+    
+    private string numberOfControlsField;
+    
+    /// <remarks/>
+    public Id Id {
+        get {
+            return this.idField;
+        }
+        set {
+            this.idField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string CourseFamily {
+        get {
+            return this.courseFamilyField;
+        }
+        set {
+            this.courseFamilyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Length {
+        get {
+            return this.lengthField;
+        }
+        set {
+            this.lengthField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool LengthSpecified {
+        get {
+            return this.lengthFieldSpecified;
+        }
+        set {
+            this.lengthFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Climb {
+        get {
+            return this.climbField;
+        }
+        set {
+            this.climbField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool ClimbSpecified {
+        get {
+            return this.climbFieldSpecified;
+        }
+        set {
+            this.climbFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string NumberOfControls {
+        get {
+            return this.numberOfControlsField;
+        }
+        set {
+            this.numberOfControlsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class SimpleRaceCourse : SimpleCourse {
+    
+    private string raceNumberField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string raceNumber {
+        get {
+            return this.raceNumberField;
+        }
+        set {
+            this.raceNumberField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class SplitTime {
+    
+    private string controlCodeField;
+    
+    private double timeField;
+    
+    private bool timeFieldSpecified;
+    
+    private Extensions extensionsField;
+    
+    private SplitTimeStatus statusField;
+    
+    public SplitTime() {
+        this.statusField = SplitTimeStatus.OK;
+    }
+    
+    /// <remarks/>
+    public string ControlCode {
+        get {
+            return this.controlCodeField;
+        }
+        set {
+            this.controlCodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Time {
+        get {
+            return this.timeField;
+        }
+        set {
+            this.timeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TimeSpecified {
+        get {
+            return this.timeFieldSpecified;
+        }
+        set {
+            this.timeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(SplitTimeStatus.OK)]
+    public SplitTimeStatus status {
+        get {
+            return this.statusField;
+        }
+        set {
+            this.statusField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum SplitTimeStatus {
+    
+    /// <remarks/>
+    OK,
+    
+    /// <remarks/>
+    Missing,
+    
+    /// <remarks/>
+    Additional,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class ControlAnswer {
+    
+    private string answerField;
+    
+    private string correctAnswerField;
+    
+    private double timeField;
+    
+    private bool timeFieldSpecified;
+    
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    public string Answer {
+        get {
+            return this.answerField;
+        }
+        set {
+            this.answerField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string CorrectAnswer {
+        get {
+            return this.correctAnswerField;
+        }
+        set {
+            this.correctAnswerField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Time {
+        get {
+            return this.timeField;
+        }
+        set {
+            this.timeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TimeSpecified {
+        get {
+            return this.timeFieldSpecified;
+        }
+        set {
+            this.timeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Route {
+    
+    private byte[] valueField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute(DataType="base64Binary")]
+    public byte[] Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class ControlCard {
+    
+    private string punchingSystemField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    private string valueField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string punchingSystem {
+        get {
+            return this.punchingSystemField;
+        }
+        set {
+            this.punchingSystemField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute()]
+    public string Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamMemberResult {
+    
+    private Id entryIdField;
+    
+    private Person personField;
+    
+    private Organisation organisationField;
+    
+    private TeamMemberRaceResult[] resultField;
+    
+    private Extensions extensionsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id EntryId {
+        get {
+            return this.entryIdField;
+        }
+        set {
+            this.entryIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Person Person {
+        get {
+            return this.personField;
+        }
+        set {
+            this.personField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Organisation Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Result")]
+    public TeamMemberRaceResult[] Result {
+        get {
+            return this.resultField;
+        }
+        set {
+            this.resultField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamResult {
+    
+    private Id entryIdField;
+    
+    private string nameField;
+    
+    private Organisation[] organisationField;
+    
+    private string bibNumberField;
+    
+    private TeamMemberResult[] teamMemberResultField;
+    
+    private AssignedFee[] assignedFeeField;
+    
+    private ServiceRequest[] serviceRequestField;
+    
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    public Id EntryId {
+        get {
+            return this.entryIdField;
+        }
+        set {
+            this.entryIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Organisation")]
+    public Organisation[] Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string BibNumber {
+        get {
+            return this.bibNumberField;
+        }
+        set {
+            this.bibNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TeamMemberResult")]
+    public TeamMemberResult[] TeamMemberResult {
+        get {
+            return this.teamMemberResultField;
+        }
+        set {
+            this.teamMemberResultField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AssignedFee")]
+    public AssignedFee[] AssignedFee {
+        get {
+            return this.assignedFeeField;
+        }
+        set {
+            this.assignedFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
+    public ServiceRequest[] ServiceRequest {
+        get {
+            return this.serviceRequestField;
+        }
+        set {
+            this.serviceRequestField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class PersonRaceResult {
+    
+    private string bibNumberField;
+    
+    private System.DateTime startTimeField;
+    
+    private bool startTimeFieldSpecified;
+    
+    private System.DateTime finishTimeField;
+    
+    private bool finishTimeFieldSpecified;
+    
+    private double timeField;
+    
+    private bool timeFieldSpecified;
+    
+    private double timeBehindField;
+    
+    private bool timeBehindFieldSpecified;
+    
+    private string positionField;
+    
+    private ResultStatus statusField;
+    
+    private Score[] scoreField;
+    
+    private OverallResult overallResultField;
+    
+    private SimpleCourse courseField;
+    
+    private SplitTime[] splitTimeField;
+    
+    private ControlAnswer[] controlAnswerField;
+    
+    private Route routeField;
+    
+    private ControlCard[] controlCardField;
+    
+    private AssignedFee[] assignedFeeField;
+    
+    private ServiceRequest[] serviceRequestField;
+    
+    private Extensions extensionsField;
+    
+    private string raceNumberField;
+    
+    /// <remarks/>
+    public string BibNumber {
+        get {
+            return this.bibNumberField;
+        }
+        set {
+            this.bibNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime StartTime {
+        get {
+            return this.startTimeField;
+        }
+        set {
+            this.startTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool StartTimeSpecified {
+        get {
+            return this.startTimeFieldSpecified;
+        }
+        set {
+            this.startTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime FinishTime {
+        get {
+            return this.finishTimeField;
+        }
+        set {
+            this.finishTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool FinishTimeSpecified {
+        get {
+            return this.finishTimeFieldSpecified;
+        }
+        set {
+            this.finishTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Time {
+        get {
+            return this.timeField;
+        }
+        set {
+            this.timeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TimeSpecified {
+        get {
+            return this.timeFieldSpecified;
+        }
+        set {
+            this.timeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double TimeBehind {
+        get {
+            return this.timeBehindField;
+        }
+        set {
+            this.timeBehindField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TimeBehindSpecified {
+        get {
+            return this.timeBehindFieldSpecified;
+        }
+        set {
+            this.timeBehindFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string Position {
+        get {
+            return this.positionField;
+        }
+        set {
+            this.positionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public ResultStatus Status {
+        get {
+            return this.statusField;
+        }
+        set {
+            this.statusField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Score")]
+    public Score[] Score {
+        get {
+            return this.scoreField;
+        }
+        set {
+            this.scoreField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public OverallResult OverallResult {
+        get {
+            return this.overallResultField;
+        }
+        set {
+            this.overallResultField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public SimpleCourse Course {
+        get {
+            return this.courseField;
+        }
+        set {
+            this.courseField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("SplitTime")]
+    public SplitTime[] SplitTime {
+        get {
+            return this.splitTimeField;
+        }
+        set {
+            this.splitTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ControlAnswer")]
+    public ControlAnswer[] ControlAnswer {
+        get {
+            return this.controlAnswerField;
+        }
+        set {
+            this.controlAnswerField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Route Route {
+        get {
+            return this.routeField;
+        }
+        set {
+            this.routeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ControlCard")]
+    public ControlCard[] ControlCard {
+        get {
+            return this.controlCardField;
+        }
+        set {
+            this.controlCardField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AssignedFee")]
+    public AssignedFee[] AssignedFee {
+        get {
+            return this.assignedFeeField;
+        }
+        set {
+            this.assignedFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
+    public ServiceRequest[] ServiceRequest {
+        get {
+            return this.serviceRequestField;
+        }
+        set {
+            this.serviceRequestField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string raceNumber {
+        get {
+            return this.raceNumberField;
+        }
+        set {
+            this.raceNumberField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class PersonResult {
+    
+    private Id entryIdField;
+    
+    private Person personField;
+    
+    private Organisation organisationField;
+    
+    private PersonRaceResult[] resultField;
+    
+    private Extensions extensionsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id EntryId {
+        get {
+            return this.entryIdField;
+        }
+        set {
+            this.entryIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Person Person {
+        get {
+            return this.personField;
+        }
+        set {
+            this.personField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Organisation Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Result")]
+    public PersonRaceResult[] Result {
+        get {
+            return this.resultField;
+        }
+        set {
+            this.resultField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class ClassResult {
+    
+    private Class classField;
+    
+    private SimpleRaceCourse[] courseField;
+    
+    private PersonResult[] personResultField;
+    
+    private TeamResult[] teamResultField;
+    
+    private Extensions extensionsField;
+    
+    private double timeResolutionField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    public ClassResult() {
+        this.timeResolutionField = 1D;
+    }
+    
+    /// <remarks/>
+    public Class Class {
+        get {
+            return this.classField;
+        }
+        set {
+            this.classField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Course")]
+    public SimpleRaceCourse[] Course {
+        get {
+            return this.courseField;
+        }
+        set {
+            this.courseField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("PersonResult")]
+    public PersonResult[] PersonResult {
+        get {
+            return this.personResultField;
+        }
+        set {
+            this.personResultField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TeamResult")]
+    public TeamResult[] TeamResult {
+        get {
+            return this.teamResultField;
+        }
+        set {
+            this.teamResultField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(1D)]
+    public double timeResolution {
+        get {
+            return this.timeResolutionField;
+        }
+        set {
+            this.timeResolutionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Class {
+    
+    private Id idField;
+    
+    private string nameField;
+    
+    private string shortNameField;
+    
+    private ClassType[] classTypeField;
+    
+    private Leg[] legField;
+    
+    private Fee[] teamFeeField;
+    
+    private Fee[] feeField;
+    
+    private EventClassStatus statusField;
+    
+    private RaceClass[] raceClassField;
+    
+    private Class tooFewEntriesSubstituteClassField;
+    
+    private Class tooManyEntriesSubstituteClassField;
+    
+    private Extensions extensionsField;
+    
+    private string minAgeField;
+    
+    private string maxAgeField;
+    
+    private ClassSex sexField;
+    
+    private string minNumberOfTeamMembersField;
+    
+    private string maxNumberOfTeamMembersField;
+    
+    private string minTeamAgeField;
+    
+    private string maxTeamAgeField;
+    
+    private string numberOfCompetitorsField;
+    
+    private string maxNumberOfCompetitorsField;
+    
+    private ClassResultListMode resultListModeField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    public Class() {
+        this.statusField = EventClassStatus.Normal;
+        this.sexField = ClassSex.B;
+        this.minNumberOfTeamMembersField = "1";
+        this.maxNumberOfTeamMembersField = "1";
+        this.resultListModeField = ClassResultListMode.Default;
+    }
+    
+    /// <remarks/>
+    public Id Id {
+        get {
+            return this.idField;
+        }
+        set {
+            this.idField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string ShortName {
+        get {
+            return this.shortNameField;
+        }
+        set {
+            this.shortNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ClassType")]
+    public ClassType[] ClassType {
+        get {
+            return this.classTypeField;
+        }
+        set {
+            this.classTypeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Leg")]
+    public Leg[] Leg {
+        get {
+            return this.legField;
+        }
+        set {
+            this.legField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TeamFee")]
+    public Fee[] TeamFee {
+        get {
+            return this.teamFeeField;
+        }
+        set {
+            this.teamFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Fee")]
+    public Fee[] Fee {
+        get {
+            return this.feeField;
+        }
+        set {
+            this.feeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.ComponentModel.DefaultValueAttribute(EventClassStatus.Normal)]
+    public EventClassStatus Status {
+        get {
+            return this.statusField;
+        }
+        set {
+            this.statusField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("RaceClass")]
+    public RaceClass[] RaceClass {
+        get {
+            return this.raceClassField;
+        }
+        set {
+            this.raceClassField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Class TooFewEntriesSubstituteClass {
+        get {
+            return this.tooFewEntriesSubstituteClassField;
+        }
+        set {
+            this.tooFewEntriesSubstituteClassField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Class TooManyEntriesSubstituteClass {
+        get {
+            return this.tooManyEntriesSubstituteClassField;
+        }
+        set {
+            this.tooManyEntriesSubstituteClassField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string minAge {
+        get {
+            return this.minAgeField;
+        }
+        set {
+            this.minAgeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string maxAge {
+        get {
+            return this.maxAgeField;
+        }
+        set {
+            this.maxAgeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(ClassSex.B)]
+    public ClassSex sex {
+        get {
+            return this.sexField;
+        }
+        set {
+            this.sexField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    [System.ComponentModel.DefaultValueAttribute("1")]
+    public string minNumberOfTeamMembers {
+        get {
+            return this.minNumberOfTeamMembersField;
+        }
+        set {
+            this.minNumberOfTeamMembersField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    [System.ComponentModel.DefaultValueAttribute("1")]
+    public string maxNumberOfTeamMembers {
+        get {
+            return this.maxNumberOfTeamMembersField;
+        }
+        set {
+            this.maxNumberOfTeamMembersField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string minTeamAge {
+        get {
+            return this.minTeamAgeField;
+        }
+        set {
+            this.minTeamAgeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string maxTeamAge {
+        get {
+            return this.maxTeamAgeField;
+        }
+        set {
+            this.maxTeamAgeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string numberOfCompetitors {
+        get {
+            return this.numberOfCompetitorsField;
+        }
+        set {
+            this.numberOfCompetitorsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string maxNumberOfCompetitors {
+        get {
+            return this.maxNumberOfCompetitorsField;
+        }
+        set {
+            this.maxNumberOfCompetitorsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(ClassResultListMode.Default)]
+    public ClassResultListMode resultListMode {
+        get {
+            return this.resultListModeField;
+        }
+        set {
+            this.resultListModeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class ClassType {
+    
+    private Id idField;
+    
+    private string nameField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id Id {
+        get {
+            return this.idField;
+        }
+        set {
+            this.idField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Leg {
+    
+    private string nameField;
+    
+    private Extensions extensionsField;
+    
+    private string minNumberOfCompetitorsField;
+    
+    private string maxNumberOfCompetitorsField;
+    
+    public Leg() {
+        this.minNumberOfCompetitorsField = "1";
+        this.maxNumberOfCompetitorsField = "1";
+    }
+    
+    /// <remarks/>
+    public string Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    [System.ComponentModel.DefaultValueAttribute("1")]
+    public string minNumberOfCompetitors {
+        get {
+            return this.minNumberOfCompetitorsField;
+        }
+        set {
+            this.minNumberOfCompetitorsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    [System.ComponentModel.DefaultValueAttribute("1")]
+    public string maxNumberOfCompetitors {
+        get {
+            return this.maxNumberOfCompetitorsField;
+        }
+        set {
+            this.maxNumberOfCompetitorsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum EventClassStatus {
+    
+    /// <remarks/>
+    Normal,
+    
+    /// <remarks/>
+    Divided,
+    
+    /// <remarks/>
+    Joined,
+    
+    /// <remarks/>
+    Invalidated,
+    
+    /// <remarks/>
+    InvalidatedNoFee,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class RaceClass {
+    
+    private string[] punchingSystemField;
+    
+    private Fee[] teamFeeField;
+    
+    private Fee[] feeField;
+    
+    private System.DateTime firstStartField;
+    
+    private bool firstStartFieldSpecified;
+    
+    private RaceClassStatus statusField;
+    
+    private bool statusFieldSpecified;
+    
+    private SimpleCourse[] courseField;
+    
+    private Control[] onlineControlField;
+    
+    private Extensions extensionsField;
+    
+    private string raceNumberField;
+    
+    private string maxNumberOfCompetitorsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("PunchingSystem")]
+    public string[] PunchingSystem {
+        get {
+            return this.punchingSystemField;
+        }
+        set {
+            this.punchingSystemField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TeamFee")]
+    public Fee[] TeamFee {
+        get {
+            return this.teamFeeField;
+        }
+        set {
+            this.teamFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Fee")]
+    public Fee[] Fee {
+        get {
+            return this.feeField;
+        }
+        set {
+            this.feeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime FirstStart {
+        get {
+            return this.firstStartField;
+        }
+        set {
+            this.firstStartField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool FirstStartSpecified {
+        get {
+            return this.firstStartFieldSpecified;
+        }
+        set {
+            this.firstStartFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public RaceClassStatus Status {
+        get {
+            return this.statusField;
+        }
+        set {
+            this.statusField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool StatusSpecified {
+        get {
+            return this.statusFieldSpecified;
+        }
+        set {
+            this.statusFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Course")]
+    public SimpleCourse[] Course {
+        get {
+            return this.courseField;
+        }
+        set {
+            this.courseField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("OnlineControl")]
+    public Control[] OnlineControl {
+        get {
+            return this.onlineControlField;
+        }
+        set {
+            this.onlineControlField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string raceNumber {
+        get {
+            return this.raceNumberField;
+        }
+        set {
+            this.raceNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string maxNumberOfCompetitors {
+        get {
+            return this.maxNumberOfCompetitorsField;
+        }
+        set {
+            this.maxNumberOfCompetitorsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum RaceClassStatus {
+    
+    /// <remarks/>
+    StartTimesNotAllocated,
+    
+    /// <remarks/>
+    StartTimesAllocated,
+    
+    /// <remarks/>
+    NotUsed,
+    
+    /// <remarks/>
+    Completed,
+    
+    /// <remarks/>
+    Invalidated,
+    
+    /// <remarks/>
+    InvalidatedNoFee,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Control {
+    
+    private Id idField;
+    
+    private Id[] punchingUnitIdField;
+    
+    private LanguageString[] nameField;
+    
+    private GeoPosition positionField;
+    
+    private MapPosition mapPositionField;
+    
+    private Extensions extensionsField;
+    
+    private ControlType typeField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    public Control() {
+        this.typeField = ControlType.Control;
+    }
+    
+    /// <remarks/>
+    public Id Id {
+        get {
+            return this.idField;
+        }
+        set {
+            this.idField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("PunchingUnitId")]
+    public Id[] PunchingUnitId {
+        get {
+            return this.punchingUnitIdField;
+        }
+        set {
+            this.punchingUnitIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Name")]
+    public LanguageString[] Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public GeoPosition Position {
+        get {
+            return this.positionField;
+        }
+        set {
+            this.positionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public MapPosition MapPosition {
+        get {
+            return this.mapPositionField;
+        }
+        set {
+            this.mapPositionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(ControlType.Control)]
+    public ControlType type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class MapPosition {
+    
+    private double xField;
+    
+    private double yField;
+    
+    private MapPositionUnit unitField;
+    
+    public MapPosition() {
+        this.unitField = MapPositionUnit.mm;
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public double x {
+        get {
+            return this.xField;
+        }
+        set {
+            this.xField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public double y {
+        get {
+            return this.yField;
+        }
+        set {
+            this.yField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(MapPositionUnit.mm)]
+    public MapPositionUnit unit {
+        get {
+            return this.unitField;
+        }
+        set {
+            this.unitField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum MapPositionUnit {
+    
+    /// <remarks/>
+    px,
+    
+    /// <remarks/>
+    mm,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum ControlType {
+    
+    /// <remarks/>
+    Control,
+    
+    /// <remarks/>
+    Start,
+    
+    /// <remarks/>
+    Finish,
+    
+    /// <remarks/>
+    CrossingPoint,
+    
+    /// <remarks/>
+    EndOfMarkedRoute,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum ClassSex {
+    
+    /// <remarks/>
+    B,
+    
+    /// <remarks/>
+    F,
+    
+    /// <remarks/>
+    M,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum ClassResultListMode {
+    
+    /// <remarks/>
+    Default,
+    
+    /// <remarks/>
+    Unordered,
+    
+    /// <remarks/>
+    UnorderedNoTimes,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamMemberRaceStart {
+    
+    private string legField;
+    
+    private string legOrderField;
+    
+    private string bibNumberField;
+    
+    private System.DateTime startTimeField;
+    
+    private bool startTimeFieldSpecified;
+    
+    private SimpleCourse courseField;
+    
+    private ControlCard[] controlCardField;
+    
+    private AssignedFee[] assignedFeeField;
+    
+    private ServiceRequest[] serviceRequestField;
+    
+    private Extensions extensionsField;
+    
+    private string raceNumberField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string Leg {
+        get {
+            return this.legField;
+        }
+        set {
+            this.legField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string LegOrder {
+        get {
+            return this.legOrderField;
+        }
+        set {
+            this.legOrderField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string BibNumber {
+        get {
+            return this.bibNumberField;
+        }
+        set {
+            this.bibNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime StartTime {
+        get {
+            return this.startTimeField;
+        }
+        set {
+            this.startTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool StartTimeSpecified {
+        get {
+            return this.startTimeFieldSpecified;
+        }
+        set {
+            this.startTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public SimpleCourse Course {
+        get {
+            return this.courseField;
+        }
+        set {
+            this.courseField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ControlCard")]
+    public ControlCard[] ControlCard {
+        get {
+            return this.controlCardField;
+        }
+        set {
+            this.controlCardField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AssignedFee")]
+    public AssignedFee[] AssignedFee {
+        get {
+            return this.assignedFeeField;
+        }
+        set {
+            this.assignedFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
+    public ServiceRequest[] ServiceRequest {
+        get {
+            return this.serviceRequestField;
+        }
+        set {
+            this.serviceRequestField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string raceNumber {
+        get {
+            return this.raceNumberField;
+        }
+        set {
+            this.raceNumberField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamMemberStart {
+    
+    private Id entryIdField;
+    
+    private Person personField;
+    
+    private Organisation organisationField;
+    
+    private TeamMemberRaceStart[] startField;
+    
+    private Extensions extensionsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id EntryId {
+        get {
+            return this.entryIdField;
+        }
+        set {
+            this.entryIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Person Person {
+        get {
+            return this.personField;
+        }
+        set {
+            this.personField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Organisation Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Start")]
+    public TeamMemberRaceStart[] Start {
+        get {
+            return this.startField;
+        }
+        set {
+            this.startField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamStart {
+    
+    private Id entryIdField;
+    
+    private string nameField;
+    
+    private Organisation[] organisationField;
+    
+    private string bibNumberField;
+    
+    private TeamMemberStart[] teamMemberStartField;
+    
+    private AssignedFee[] assignedFeeField;
+    
+    private ServiceRequest[] serviceRequestField;
+    
+    private Extensions extensionsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id EntryId {
+        get {
+            return this.entryIdField;
+        }
+        set {
+            this.entryIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Organisation")]
+    public Organisation[] Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string BibNumber {
+        get {
+            return this.bibNumberField;
+        }
+        set {
+            this.bibNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TeamMemberStart")]
+    public TeamMemberStart[] TeamMemberStart {
+        get {
+            return this.teamMemberStartField;
+        }
+        set {
+            this.teamMemberStartField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AssignedFee")]
+    public AssignedFee[] AssignedFee {
+        get {
+            return this.assignedFeeField;
+        }
+        set {
+            this.assignedFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
+    public ServiceRequest[] ServiceRequest {
+        get {
+            return this.serviceRequestField;
+        }
+        set {
+            this.serviceRequestField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class PersonRaceStart {
+    
+    private string bibNumberField;
+    
+    private System.DateTime startTimeField;
+    
+    private bool startTimeFieldSpecified;
+    
+    private SimpleCourse courseField;
+    
+    private ControlCard[] controlCardField;
+    
+    private AssignedFee[] assignedFeeField;
+    
+    private ServiceRequest[] serviceRequestField;
+    
+    private Extensions extensionsField;
+    
+    private string raceNumberField;
+    
+    /// <remarks/>
+    public string BibNumber {
+        get {
+            return this.bibNumberField;
+        }
+        set {
+            this.bibNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime StartTime {
+        get {
+            return this.startTimeField;
+        }
+        set {
+            this.startTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool StartTimeSpecified {
+        get {
+            return this.startTimeFieldSpecified;
+        }
+        set {
+            this.startTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public SimpleCourse Course {
+        get {
+            return this.courseField;
+        }
+        set {
+            this.courseField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ControlCard")]
+    public ControlCard[] ControlCard {
+        get {
+            return this.controlCardField;
+        }
+        set {
+            this.controlCardField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AssignedFee")]
+    public AssignedFee[] AssignedFee {
+        get {
+            return this.assignedFeeField;
+        }
+        set {
+            this.assignedFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
+    public ServiceRequest[] ServiceRequest {
+        get {
+            return this.serviceRequestField;
+        }
+        set {
+            this.serviceRequestField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string raceNumber {
+        get {
+            return this.raceNumberField;
+        }
+        set {
+            this.raceNumberField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class PersonStart {
+    
+    private Id entryIdField;
+    
+    private Person personField;
+    
+    private Organisation organisationField;
+    
+    private PersonRaceStart[] startField;
+    
+    private Extensions extensionsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id EntryId {
+        get {
+            return this.entryIdField;
+        }
+        set {
+            this.entryIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Person Person {
+        get {
+            return this.personField;
+        }
+        set {
+            this.personField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Organisation Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Start")]
+    public PersonRaceStart[] Start {
+        get {
+            return this.startField;
+        }
+        set {
+            this.startField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class StartName {
+    
+    private string raceNumberField;
+    
+    private string valueField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string raceNumber {
+        get {
+            return this.raceNumberField;
+        }
+        set {
+            this.raceNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTextAttribute()]
+    public string Value {
+        get {
+            return this.valueField;
+        }
+        set {
+            this.valueField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class ClassStart {
+    
+    private Class classField;
+    
+    private SimpleRaceCourse[] courseField;
+    
+    private StartName[] startNameField;
+    
+    private PersonStart[] personStartField;
+    
+    private TeamStart[] teamStartField;
+    
+    private Extensions extensionsField;
+    
+    private double timeResolutionField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    public ClassStart() {
+        this.timeResolutionField = 1D;
+    }
+    
+    /// <remarks/>
+    public Class Class {
+        get {
+            return this.classField;
+        }
+        set {
+            this.classField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Course")]
+    public SimpleRaceCourse[] Course {
+        get {
+            return this.courseField;
+        }
+        set {
+            this.courseField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("StartName")]
+    public StartName[] StartName {
+        get {
+            return this.startNameField;
+        }
+        set {
+            this.startNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("PersonStart")]
+    public PersonStart[] PersonStart {
+        get {
+            return this.personStartField;
+        }
+        set {
+            this.personStartField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TeamStart")]
+    public TeamStart[] TeamStart {
+        get {
+            return this.teamStartField;
+        }
+        set {
+            this.teamStartField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(1D)]
+    public double timeResolution {
+        get {
+            return this.timeResolutionField;
+        }
+        set {
+            this.timeResolutionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamMemberCourseAssignment {
+    
+    private Id entryIdField;
+    
+    private string bibNumberField;
+    
+    private string legField;
+    
+    private string legOrderField;
+    
+    private string teamMemberNameField;
+    
+    private string courseNameField;
+    
+    private string courseFamilyField;
+    
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    public Id EntryId {
+        get {
+            return this.entryIdField;
+        }
+        set {
+            this.entryIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string BibNumber {
+        get {
+            return this.bibNumberField;
+        }
+        set {
+            this.bibNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string Leg {
+        get {
+            return this.legField;
+        }
+        set {
+            this.legField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string LegOrder {
+        get {
+            return this.legOrderField;
+        }
+        set {
+            this.legOrderField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string TeamMemberName {
+        get {
+            return this.teamMemberNameField;
+        }
+        set {
+            this.teamMemberNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string CourseName {
+        get {
+            return this.courseNameField;
+        }
+        set {
+            this.courseNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string CourseFamily {
+        get {
+            return this.courseFamilyField;
+        }
+        set {
+            this.courseFamilyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamCourseAssignment {
+    
+    private string bibNumberField;
+    
+    private string teamNameField;
+    
+    private string classNameField;
+    
+    private TeamMemberCourseAssignment[] teamMemberCourseAssignmentField;
+    
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    public string BibNumber {
+        get {
+            return this.bibNumberField;
+        }
+        set {
+            this.bibNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string TeamName {
+        get {
+            return this.teamNameField;
+        }
+        set {
+            this.teamNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string ClassName {
+        get {
+            return this.classNameField;
+        }
+        set {
+            this.classNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TeamMemberCourseAssignment")]
+    public TeamMemberCourseAssignment[] TeamMemberCourseAssignment {
+        get {
+            return this.teamMemberCourseAssignmentField;
+        }
+        set {
+            this.teamMemberCourseAssignmentField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class PersonCourseAssignment {
+    
+    private Id entryIdField;
+    
+    private string bibNumberField;
+    
+    private string personNameField;
+    
+    private string classNameField;
+    
+    private string courseNameField;
+    
+    private string courseFamilyField;
+    
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    public Id EntryId {
+        get {
+            return this.entryIdField;
+        }
+        set {
+            this.entryIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string BibNumber {
+        get {
+            return this.bibNumberField;
+        }
+        set {
+            this.bibNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string PersonName {
+        get {
+            return this.personNameField;
+        }
+        set {
+            this.personNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string ClassName {
+        get {
+            return this.classNameField;
+        }
+        set {
+            this.classNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string CourseName {
+        get {
+            return this.courseNameField;
+        }
+        set {
+            this.courseNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string CourseFamily {
+        get {
+            return this.courseFamilyField;
+        }
+        set {
+            this.courseFamilyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class ClassCourseAssignment {
+    
+    private Id classIdField;
+    
+    private string classNameField;
+    
+    private string[] allowedOnLegField;
+    
+    private string courseNameField;
+    
+    private string courseFamilyField;
+    
+    private Extensions extensionsField;
+    
+    private string numberOfCompetitorsField;
+    
+    /// <remarks/>
+    public Id ClassId {
+        get {
+            return this.classIdField;
+        }
+        set {
+            this.classIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string ClassName {
+        get {
+            return this.classNameField;
+        }
+        set {
+            this.classNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AllowedOnLeg", DataType="integer")]
+    public string[] AllowedOnLeg {
+        get {
+            return this.allowedOnLegField;
+        }
+        set {
+            this.allowedOnLegField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string CourseName {
+        get {
+            return this.courseNameField;
+        }
+        set {
+            this.courseNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string CourseFamily {
+        get {
+            return this.courseFamilyField;
+        }
+        set {
+            this.courseFamilyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string numberOfCompetitors {
+        get {
+            return this.numberOfCompetitorsField;
+        }
+        set {
+            this.numberOfCompetitorsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class CourseControl {
+    
+    private string[] controlField;
+    
+    private string mapTextField;
+    
+    private MapPosition mapTextPositionField;
+    
+    private double legLengthField;
+    
+    private bool legLengthFieldSpecified;
+    
+    private double scoreField;
+    
+    private bool scoreFieldSpecified;
+    
+    private Extensions extensionsField;
+    
+    private ControlType typeField;
+    
+    private bool typeFieldSpecified;
+    
+    private bool randomOrderField;
+    
+    private CourseControlSpecialInstruction specialInstructionField;
+    
+    private double tapedRouteLengthField;
+    
+    private bool tapedRouteLengthFieldSpecified;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    public CourseControl() {
+        this.randomOrderField = false;
+        this.specialInstructionField = CourseControlSpecialInstruction.None;
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Control")]
+    public string[] Control {
+        get {
+            return this.controlField;
+        }
+        set {
+            this.controlField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string MapText {
+        get {
+            return this.mapTextField;
+        }
+        set {
+            this.mapTextField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public MapPosition MapTextPosition {
+        get {
+            return this.mapTextPositionField;
+        }
+        set {
+            this.mapTextPositionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double LegLength {
+        get {
+            return this.legLengthField;
+        }
+        set {
+            this.legLengthField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool LegLengthSpecified {
+        get {
+            return this.legLengthFieldSpecified;
+        }
+        set {
+            this.legLengthFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Score {
+        get {
+            return this.scoreField;
+        }
+        set {
+            this.scoreField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool ScoreSpecified {
+        get {
+            return this.scoreFieldSpecified;
+        }
+        set {
+            this.scoreFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public ControlType type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool typeSpecified {
+        get {
+            return this.typeFieldSpecified;
+        }
+        set {
+            this.typeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(false)]
+    public bool randomOrder {
+        get {
+            return this.randomOrderField;
+        }
+        set {
+            this.randomOrderField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(CourseControlSpecialInstruction.None)]
+    public CourseControlSpecialInstruction specialInstruction {
+        get {
+            return this.specialInstructionField;
+        }
+        set {
+            this.specialInstructionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public double tapedRouteLength {
+        get {
+            return this.tapedRouteLengthField;
+        }
+        set {
+            this.tapedRouteLengthField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool tapedRouteLengthSpecified {
+        get {
+            return this.tapedRouteLengthFieldSpecified;
+        }
+        set {
+            this.tapedRouteLengthFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum CourseControlSpecialInstruction {
+    
+    /// <remarks/>
+    None,
+    
+    /// <remarks/>
+    TapedRoute,
+    
+    /// <remarks/>
+    FunnelTapedRoute,
+    
+    /// <remarks/>
+    MandatoryCrossingPoint,
+    
+    /// <remarks/>
+    MandatoryOutOfBoundsAreaPassage,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Course {
+    
+    private Id idField;
+    
+    private string nameField;
+    
+    private string courseFamilyField;
+    
+    private double lengthField;
+    
+    private bool lengthFieldSpecified;
+    
+    private double climbField;
+    
+    private bool climbFieldSpecified;
+    
+    private CourseControl[] courseControlField;
+    
+    private string mapIdField;
+    
+    private Extensions extensionsField;
+    
+    private string numberOfCompetitorsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id Id {
+        get {
+            return this.idField;
+        }
+        set {
+            this.idField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string CourseFamily {
+        get {
+            return this.courseFamilyField;
+        }
+        set {
+            this.courseFamilyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Length {
+        get {
+            return this.lengthField;
+        }
+        set {
+            this.lengthField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool LengthSpecified {
+        get {
+            return this.lengthFieldSpecified;
+        }
+        set {
+            this.lengthFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Climb {
+        get {
+            return this.climbField;
+        }
+        set {
+            this.climbField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool ClimbSpecified {
+        get {
+            return this.climbFieldSpecified;
+        }
+        set {
+            this.climbFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("CourseControl")]
+    public CourseControl[] CourseControl {
+        get {
+            return this.courseControlField;
+        }
+        set {
+            this.courseControlField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string MapId {
+        get {
+            return this.mapIdField;
+        }
+        set {
+            this.mapIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string numberOfCompetitors {
+        get {
+            return this.numberOfCompetitorsField;
+        }
+        set {
+            this.numberOfCompetitorsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Map {
+    
+    private Id idField;
+    
+    private Image imageField;
+    
+    private double scaleField;
+    
+    private MapPosition mapPositionTopLeftField;
+    
+    private MapPosition mapPositionBottomRightField;
+    
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    public Id Id {
+        get {
+            return this.idField;
+        }
+        set {
+            this.idField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Image Image {
+        get {
+            return this.imageField;
+        }
+        set {
+            this.imageField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public double Scale {
+        get {
+            return this.scaleField;
+        }
+        set {
+            this.scaleField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public MapPosition MapPositionTopLeft {
+        get {
+            return this.mapPositionTopLeftField;
+        }
+        set {
+            this.mapPositionTopLeftField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public MapPosition MapPositionBottomRight {
+        get {
+            return this.mapPositionBottomRightField;
+        }
+        set {
+            this.mapPositionBottomRightField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class RaceCourseData {
+    
+    private Map[] mapField;
+    
+    private Control[] controlField;
+    
+    private Course[] courseField;
+    
+    private ClassCourseAssignment[] classCourseAssignmentField;
+    
+    private PersonCourseAssignment[] personCourseAssignmentField;
+    
+    private TeamCourseAssignment[] teamCourseAssignmentField;
+    
+    private Extensions extensionsField;
+    
+    private string raceNumberField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Map")]
+    public Map[] Map {
+        get {
+            return this.mapField;
+        }
+        set {
+            this.mapField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Control")]
+    public Control[] Control {
+        get {
+            return this.controlField;
+        }
+        set {
+            this.controlField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Course")]
+    public Course[] Course {
+        get {
+            return this.courseField;
+        }
+        set {
+            this.courseField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ClassCourseAssignment")]
+    public ClassCourseAssignment[] ClassCourseAssignment {
+        get {
+            return this.classCourseAssignmentField;
+        }
+        set {
+            this.classCourseAssignmentField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("PersonCourseAssignment")]
+    public PersonCourseAssignment[] PersonCourseAssignment {
+        get {
+            return this.personCourseAssignmentField;
+        }
+        set {
+            this.personCourseAssignmentField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TeamCourseAssignment")]
+    public TeamCourseAssignment[] TeamCourseAssignment {
+        get {
+            return this.teamCourseAssignmentField;
+        }
+        set {
+            this.teamCourseAssignmentField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
+    public string raceNumber {
+        get {
+            return this.raceNumberField;
+        }
+        set {
+            this.raceNumberField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class PersonEntry {
+    
+    private Id idField;
+    
+    private Person personField;
+    
+    private Organisation organisationField;
+    
+    private ControlCard[] controlCardField;
+    
+    private Score[] scoreField;
+    
+    private Class[] classField;
+    
+    private string[] raceNumberField;
+    
+    private AssignedFee[] assignedFeeField;
+    
+    private ServiceRequest[] serviceRequestField;
+    
+    private StartTimeAllocationRequest startTimeAllocationRequestField;
+    
+    private System.DateTime entryTimeField;
+    
+    private bool entryTimeFieldSpecified;
+    
+    private Extensions extensionsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id Id {
+        get {
+            return this.idField;
+        }
+        set {
+            this.idField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Person Person {
+        get {
+            return this.personField;
+        }
+        set {
+            this.personField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Organisation Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ControlCard")]
+    public ControlCard[] ControlCard {
+        get {
+            return this.controlCardField;
+        }
+        set {
+            this.controlCardField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Score")]
+    public Score[] Score {
+        get {
+            return this.scoreField;
+        }
+        set {
+            this.scoreField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Class")]
+    public Class[] Class {
+        get {
+            return this.classField;
+        }
+        set {
+            this.classField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("RaceNumber", DataType="integer")]
+    public string[] RaceNumber {
+        get {
+            return this.raceNumberField;
+        }
+        set {
+            this.raceNumberField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AssignedFee")]
+    public AssignedFee[] AssignedFee {
+        get {
+            return this.assignedFeeField;
+        }
+        set {
+            this.assignedFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
+    public ServiceRequest[] ServiceRequest {
+        get {
+            return this.serviceRequestField;
+        }
+        set {
+            this.serviceRequestField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public StartTimeAllocationRequest StartTimeAllocationRequest {
+        get {
+            return this.startTimeAllocationRequestField;
+        }
+        set {
+            this.startTimeAllocationRequestField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime EntryTime {
+        get {
+            return this.entryTimeField;
+        }
+        set {
+            this.entryTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool EntryTimeSpecified {
+        get {
+            return this.entryTimeFieldSpecified;
+        }
+        set {
+            this.entryTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class StartTimeAllocationRequest {
+    
+    private Organisation organisationField;
+    
+    private Person personField;
+    
+    private StartTimeAllocationRequestType typeField;
+    
+    public StartTimeAllocationRequest() {
+        this.typeField = StartTimeAllocationRequestType.Normal;
+    }
+    
+    /// <remarks/>
+    public Organisation Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Person Person {
+        get {
+            return this.personField;
+        }
+        set {
+            this.personField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(StartTimeAllocationRequestType.Normal)]
+    public StartTimeAllocationRequestType type {
+        get {
+            return this.typeField;
+        }
+        set {
+            this.typeField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum StartTimeAllocationRequestType {
+    
+    /// <remarks/>
+    Normal,
+    
+    /// <remarks/>
+    EarlyStart,
+    
+    /// <remarks/>
+    LateStart,
+    
+    /// <remarks/>
+    SeparatedFrom,
+    
+    /// <remarks/>
+    GroupedWith,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamEntryPerson {
+    
+    private Person personField;
+    
+    private Organisation organisationField;
+    
+    private string legField;
+    
+    private string legOrderField;
+    
+    private ControlCard[] controlCardField;
+    
+    private Score[] scoreField;
+    
+    private AssignedFee[] assignedFeeField;
+    
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    public Person Person {
+        get {
+            return this.personField;
+        }
+        set {
+            this.personField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Organisation Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string Leg {
+        get {
+            return this.legField;
+        }
+        set {
+            this.legField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string LegOrder {
+        get {
+            return this.legOrderField;
+        }
+        set {
+            this.legOrderField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ControlCard")]
+    public ControlCard[] ControlCard {
+        get {
+            return this.controlCardField;
+        }
+        set {
+            this.controlCardField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Score")]
+    public Score[] Score {
+        get {
+            return this.scoreField;
+        }
+        set {
+            this.scoreField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AssignedFee")]
+    public AssignedFee[] AssignedFee {
+        get {
+            return this.assignedFeeField;
+        }
+        set {
+            this.assignedFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class TeamEntry {
+    
+    private Id idField;
+    
+    private string nameField;
+    
+    private Organisation[] organisationField;
+    
+    private TeamEntryPerson[] teamEntryPersonField;
+    
+    private Class[] classField;
+    
+    private string[] raceField;
+    
+    private AssignedFee[] assignedFeeField;
+    
+    private ServiceRequest[] serviceRequestField;
+    
+    private StartTimeAllocationRequest startTimeAllocationRequestField;
+    
+    private string contactInformationField;
+    
+    private System.DateTime entryTimeField;
+    
+    private bool entryTimeFieldSpecified;
+    
+    private Extensions extensionsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id Id {
+        get {
+            return this.idField;
+        }
+        set {
+            this.idField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Organisation")]
+    public Organisation[] Organisation {
+        get {
+            return this.organisationField;
+        }
+        set {
+            this.organisationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TeamEntryPerson")]
+    public TeamEntryPerson[] TeamEntryPerson {
+        get {
+            return this.teamEntryPersonField;
+        }
+        set {
+            this.teamEntryPersonField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Class")]
+    public Class[] Class {
+        get {
+            return this.classField;
+        }
+        set {
+            this.classField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Race", DataType="integer")]
+    public string[] Race {
+        get {
+            return this.raceField;
+        }
+        set {
+            this.raceField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AssignedFee")]
+    public AssignedFee[] AssignedFee {
+        get {
+            return this.assignedFeeField;
+        }
+        set {
+            this.assignedFeeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
+    public ServiceRequest[] ServiceRequest {
+        get {
+            return this.serviceRequestField;
+        }
+        set {
+            this.serviceRequestField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public StartTimeAllocationRequest StartTimeAllocationRequest {
+        get {
+            return this.startTimeAllocationRequestField;
+        }
+        set {
+            this.startTimeAllocationRequestField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string ContactInformation {
+        get {
+            return this.contactInformationField;
+        }
+        set {
+            this.contactInformationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime EntryTime {
+        get {
+            return this.entryTimeField;
+        }
+        set {
+            this.entryTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool EntryTimeSpecified {
+        get {
+            return this.entryTimeFieldSpecified;
+        }
+        set {
+            this.entryTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Schedule {
+    
+    private System.DateTime startTimeField;
+    
+    private System.DateTime endTimeField;
+    
+    private bool endTimeFieldSpecified;
+    
+    private string nameField;
+    
+    private string venueField;
+    
+    private GeoPosition positionField;
+    
+    private string detailsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public System.DateTime StartTime {
+        get {
+            return this.startTimeField;
+        }
+        set {
+            this.startTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.DateTime EndTime {
+        get {
+            return this.endTimeField;
+        }
+        set {
+            this.endTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool EndTimeSpecified {
+        get {
+            return this.endTimeFieldSpecified;
+        }
+        set {
+            this.endTimeFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Venue {
+        get {
+            return this.venueField;
+        }
+        set {
+            this.venueField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public GeoPosition Position {
+        get {
+            return this.positionField;
+        }
+        set {
+            this.positionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Details {
+        get {
+            return this.detailsField;
+        }
+        set {
+            this.detailsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class InformationItem {
+    
+    private string titleField;
+    
+    private string contentField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public string Title {
+        get {
+            return this.titleField;
+        }
+        set {
+            this.titleField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Content {
+        get {
+            return this.contentField;
+        }
+        set {
+            this.contentField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class EntryReceiver {
+    
+    private Address[] addressField;
+    
+    private Contact[] contactField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Address")]
+    public Address[] Address {
+        get {
+            return this.addressField;
+        }
+        set {
+            this.addressField = value;
+        }
+    }
+    
+    /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("Contact")]
     public Contact[] Contact {
         get {
@@ -2899,27 +7029,6 @@ public partial class Organisation {
             this.contactField = value;
         }
     }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("SubOrganisation")]
-    public SubOrganisation[] SubOrganisation {
-        get {
-            return this.subOrganisationField;
-        }
-        set {
-            this.subOrganisationField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
 }
 
 /// <remarks/>
@@ -2927,107 +7036,21 @@ public partial class Organisation {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class OrganisationType {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class EventURL {
     
-    private OrganisationTypeId organisationTypeIdField;
-    
-    private Name nameField;
-    
-    private SubOrganisationType[] subOrganisationTypeField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public OrganisationTypeId OrganisationTypeId {
-        get {
-            return this.organisationTypeIdField;
-        }
-        set {
-            this.organisationTypeIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("SubOrganisationType")]
-    public SubOrganisationType[] SubOrganisationType {
-        get {
-            return this.subOrganisationTypeField;
-        }
-        set {
-            this.subOrganisationTypeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class OrganisationTypeId {
-    
-    private OrganisationTypeIdType typeField;
-    
-    private bool typeFieldSpecified;
-    
-    private string idManagerField;
+    private EventURLType typeField;
     
     private string valueField;
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public OrganisationTypeIdType type {
+    public EventURLType type {
         get {
             return this.typeField;
         }
         set {
             this.typeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
-        get {
-            return this.typeFieldSpecified;
-        }
-        set {
-            this.typeFieldSpecified = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
-        get {
-            return this.idManagerField;
-        }
-        set {
-            this.idManagerField = value;
         }
     }
     
@@ -3046,23 +7069,20 @@ public partial class OrganisationTypeId {
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
 [System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum OrganisationTypeIdType {
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum EventURLType {
     
     /// <remarks/>
-    @int,
+    Website,
     
     /// <remarks/>
-    nat,
+    StartList,
     
     /// <remarks/>
-    reg,
+    ResultList,
     
     /// <remarks/>
-    loc,
-    
-    /// <remarks/>
-    other,
+    Other,
 }
 
 /// <remarks/>
@@ -3070,422 +7090,56 @@ public enum OrganisationTypeIdType {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class SubOrganisationType {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Race {
     
-    private object itemField;
+    private string raceNumberField;
     
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationType", typeof(OrganisationType))]
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationTypeId", typeof(OrganisationTypeId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class SubOrganisation {
+    private string nameField;
     
-    private object itemField;
+    private DateAndOptionalTime startTimeField;
     
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Organisation", typeof(Organisation))]
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationId", typeof(OrganisationId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ValidFromDate {
+    private DateAndOptionalTime endTimeField;
     
-    private Date dateField;
+    private EventStatus statusField;
     
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ValidToDate {
+    private bool statusFieldSpecified;
     
-    private Date dateField;
+    private EventClassification classificationField;
     
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class RankList {
+    private bool classificationFieldSpecified;
     
-    private IOFVersion iOFVersionField;
+    private GeoPosition positionField;
     
-    private Name nameField;
+    private RaceDiscipline[] disciplineField;
     
-    private object itemField;
+    private Organisation[] organiserField;
     
-    private Competitor[] competitorField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Organisation", typeof(Organisation))]
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationId", typeof(OrganisationId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Competitor")]
-    public Competitor[] Competitor {
-        get {
-            return this.competitorField;
-        }
-        set {
-            this.competitorField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClubList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private Club[] clubField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Club")]
-    public Club[] Club {
-        get {
-            return this.clubField;
-        }
-        set {
-            this.clubField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EventList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private EventClassification[] eventClassificationField;
-    
-    private Event[] eventField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EventClassification")]
-    public EventClassification[] EventClassification {
-        get {
-            return this.eventClassificationField;
-        }
-        set {
-            this.eventClassificationField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Event")]
-    public Event[] Event {
-        get {
-            return this.eventField;
-        }
-        set {
-            this.eventField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EventClassification {
-    
-    private EventClassificationId eventClassificationIdField;
-    
-    private Name nameField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public EventClassificationId EventClassificationId {
-        get {
-            return this.eventClassificationIdField;
-        }
-        set {
-            this.eventClassificationIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EventClassificationId {
-    
-    private EventClassificationIdType typeField;
-    
-    private bool typeFieldSpecified;
-    
-    private string idManagerField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public EventClassificationIdType type {
-        get {
-            return this.typeField;
-        }
-        set {
-            this.typeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
-        get {
-            return this.typeFieldSpecified;
-        }
-        set {
-            this.typeFieldSpecified = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
-        get {
-            return this.idManagerField;
-        }
-        set {
-            this.idManagerField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum EventClassificationIdType {
-    
-    /// <remarks/>
-    @int,
-    
-    /// <remarks/>
-    nat,
-    
-    /// <remarks/>
-    reg,
-    
-    /// <remarks/>
-    loc,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Event {
-    
-    private EventId eventIdField;
-    
-    private Name nameField;
-    
-    private object itemField;
-    
-    private StartDate startDateField;
-    
-    private FinishDate finishDateField;
-    
-    private EventOfficial[] eventOfficialField;
-    
-    private Organiser organiserField;
-    
-    private EventClass[] eventClassField;
-    
-    private EventRace[] eventRaceField;
-    
-    private string[] webURLField;
-    
-    private EntryData entryDataField;
+    private Role[] officialField;
     
     private Service[] serviceField;
     
-    private Account[] accountField;
+    private EventURL[] uRLField;
     
-    private ModifyDate modifyDateField;
+    private Extensions extensionsField;
     
-    private EventEventForm eventFormField;
+    private System.DateTime modifyTimeField;
     
-    public Event() {
-        this.eventFormField = EventEventForm.IndSingleDay;
-    }
+    private bool modifyTimeFieldSpecified;
     
     /// <remarks/>
-    public EventId EventId {
+    [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+    public string RaceNumber {
         get {
-            return this.eventIdField;
+            return this.raceNumberField;
         }
         set {
-            this.eventIdField = value;
+            this.raceNumberField = value;
         }
     }
     
     /// <remarks/>
-    public Name Name {
+    public string Name {
         get {
             return this.nameField;
         }
@@ -3495,50 +7149,91 @@ public partial class Event {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EventClassification", typeof(EventClassification))]
-    [System.Xml.Serialization.XmlElementAttribute("EventClassificationId", typeof(EventClassificationId))]
-    public object Item {
+    public DateAndOptionalTime StartTime {
         get {
-            return this.itemField;
+            return this.startTimeField;
         }
         set {
-            this.itemField = value;
+            this.startTimeField = value;
         }
     }
     
     /// <remarks/>
-    public StartDate StartDate {
+    public DateAndOptionalTime EndTime {
         get {
-            return this.startDateField;
+            return this.endTimeField;
         }
         set {
-            this.startDateField = value;
+            this.endTimeField = value;
         }
     }
     
     /// <remarks/>
-    public FinishDate FinishDate {
+    public EventStatus Status {
         get {
-            return this.finishDateField;
+            return this.statusField;
         }
         set {
-            this.finishDateField = value;
+            this.statusField = value;
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EventOfficial")]
-    public EventOfficial[] EventOfficial {
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool StatusSpecified {
         get {
-            return this.eventOfficialField;
+            return this.statusFieldSpecified;
         }
         set {
-            this.eventOfficialField = value;
+            this.statusFieldSpecified = value;
         }
     }
     
     /// <remarks/>
-    public Organiser Organiser {
+    public EventClassification Classification {
+        get {
+            return this.classificationField;
+        }
+        set {
+            this.classificationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool ClassificationSpecified {
+        get {
+            return this.classificationFieldSpecified;
+        }
+        set {
+            this.classificationFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public GeoPosition Position {
+        get {
+            return this.positionField;
+        }
+        set {
+            this.positionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Discipline")]
+    public RaceDiscipline[] Discipline {
+        get {
+            return this.disciplineField;
+        }
+        set {
+            this.disciplineField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Organiser")]
+    public Organisation[] Organiser {
         get {
             return this.organiserField;
         }
@@ -3548,45 +7243,386 @@ public partial class Event {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EventClass")]
-    public EventClass[] EventClass {
+    [System.Xml.Serialization.XmlElementAttribute("Official")]
+    public Role[] Official {
         get {
-            return this.eventClassField;
+            return this.officialField;
         }
         set {
-            this.eventClassField = value;
+            this.officialField = value;
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EventRace")]
-    public EventRace[] EventRace {
+    [System.Xml.Serialization.XmlElementAttribute("Service")]
+    public Service[] Service {
         get {
-            return this.eventRaceField;
+            return this.serviceField;
         }
         set {
-            this.eventRaceField = value;
+            this.serviceField = value;
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("WebURL")]
-    public string[] WebURL {
+    [System.Xml.Serialization.XmlElementAttribute("URL")]
+    public EventURL[] URL {
         get {
-            return this.webURLField;
+            return this.uRLField;
         }
         set {
-            this.webURLField = value;
+            this.uRLField = value;
         }
     }
     
     /// <remarks/>
-    public EntryData EntryData {
+    public Extensions Extensions {
         get {
-            return this.entryDataField;
+            return this.extensionsField;
         }
         set {
-            this.entryDataField = value;
+            this.extensionsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public System.DateTime modifyTime {
+        get {
+            return this.modifyTimeField;
+        }
+        set {
+            this.modifyTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool modifyTimeSpecified {
+        get {
+            return this.modifyTimeFieldSpecified;
+        }
+        set {
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class DateAndOptionalTime {
+    
+    private System.DateTime dateField;
+    
+    private System.DateTime timeField;
+    
+    private bool timeFieldSpecified;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+    public System.DateTime Date {
+        get {
+            return this.dateField;
+        }
+        set {
+            this.dateField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(DataType="time")]
+    public System.DateTime Time {
+        get {
+            return this.timeField;
+        }
+        set {
+            this.timeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TimeSpecified {
+        get {
+            return this.timeFieldSpecified;
+        }
+        set {
+            this.timeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum EventStatus {
+    
+    /// <remarks/>
+    Planned,
+    
+    /// <remarks/>
+    Applied,
+    
+    /// <remarks/>
+    Proposed,
+    
+    /// <remarks/>
+    Sanctioned,
+    
+    /// <remarks/>
+    Canceled,
+    
+    /// <remarks/>
+    Rescheduled,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum EventClassification {
+    
+    /// <remarks/>
+    International,
+    
+    /// <remarks/>
+    National,
+    
+    /// <remarks/>
+    Regional,
+    
+    /// <remarks/>
+    Local,
+    
+    /// <remarks/>
+    Club,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum RaceDiscipline {
+    
+    /// <remarks/>
+    Sprint,
+    
+    /// <remarks/>
+    Middle,
+    
+    /// <remarks/>
+    Long,
+    
+    /// <remarks/>
+    Ultralong,
+    
+    /// <remarks/>
+    Other,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class Event {
+    
+    private Id idField;
+    
+    private string nameField;
+    
+    private DateAndOptionalTime startTimeField;
+    
+    private DateAndOptionalTime endTimeField;
+    
+    private EventStatus statusField;
+    
+    private bool statusFieldSpecified;
+    
+    private EventClassification classificationField;
+    
+    private bool classificationFieldSpecified;
+    
+    private EventForm[] formField;
+    
+    private Organisation[] organiserField;
+    
+    private Role[] officialField;
+    
+    private Class[] classField;
+    
+    private Race[] raceField;
+    
+    private EntryReceiver entryReceiverField;
+    
+    private Service[] serviceField;
+    
+    private Account[] accountField;
+    
+    private EventURL[] uRLField;
+    
+    private InformationItem[] informationField;
+    
+    private Schedule[] scheduleField;
+    
+    private InformationItem[] newsField;
+    
+    private Extensions extensionsField;
+    
+    private System.DateTime modifyTimeField;
+    
+    private bool modifyTimeFieldSpecified;
+    
+    /// <remarks/>
+    public Id Id {
+        get {
+            return this.idField;
+        }
+        set {
+            this.idField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Name {
+        get {
+            return this.nameField;
+        }
+        set {
+            this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public DateAndOptionalTime StartTime {
+        get {
+            return this.startTimeField;
+        }
+        set {
+            this.startTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public DateAndOptionalTime EndTime {
+        get {
+            return this.endTimeField;
+        }
+        set {
+            this.endTimeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public EventStatus Status {
+        get {
+            return this.statusField;
+        }
+        set {
+            this.statusField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool StatusSpecified {
+        get {
+            return this.statusFieldSpecified;
+        }
+        set {
+            this.statusFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    public EventClassification Classification {
+        get {
+            return this.classificationField;
+        }
+        set {
+            this.classificationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool ClassificationSpecified {
+        get {
+            return this.classificationFieldSpecified;
+        }
+        set {
+            this.classificationFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Form")]
+    public EventForm[] Form {
+        get {
+            return this.formField;
+        }
+        set {
+            this.formField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Organiser")]
+    public Organisation[] Organiser {
+        get {
+            return this.organiserField;
+        }
+        set {
+            this.organiserField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Official")]
+    public Role[] Official {
+        get {
+            return this.officialField;
+        }
+        set {
+            this.officialField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Class")]
+    public Class[] Class {
+        get {
+            return this.classField;
+        }
+        set {
+            this.classField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Race")]
+    public Race[] Race {
+        get {
+            return this.raceField;
+        }
+        set {
+            this.raceField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public EntryReceiver EntryReceiver {
+        get {
+            return this.entryReceiverField;
+        }
+        set {
+            this.entryReceiverField = value;
         }
     }
     
@@ -3613,1436 +7649,192 @@ public partial class Event {
     }
     
     /// <remarks/>
-    public ModifyDate ModifyDate {
+    [System.Xml.Serialization.XmlElementAttribute("URL")]
+    public EventURL[] URL {
         get {
-            return this.modifyDateField;
+            return this.uRLField;
         }
         set {
-            this.modifyDateField = value;
+            this.uRLField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Information")]
+    public InformationItem[] Information {
+        get {
+            return this.informationField;
+        }
+        set {
+            this.informationField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Schedule")]
+    public Schedule[] Schedule {
+        get {
+            return this.scheduleField;
+        }
+        set {
+            this.scheduleField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("News")]
+    public InformationItem[] News {
+        get {
+            return this.newsField;
+        }
+        set {
+            this.newsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(EventEventForm.IndSingleDay)]
-    public EventEventForm eventForm {
+    public System.DateTime modifyTime {
         get {
-            return this.eventFormField;
+            return this.modifyTimeField;
         }
         set {
-            this.eventFormField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EventId {
-    
-    private EventIdType typeField;
-    
-    private bool typeFieldSpecified;
-    
-    private string idManagerField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public EventIdType type {
-        get {
-            return this.typeField;
-        }
-        set {
-            this.typeField = value;
+            this.modifyTimeField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
+    public bool modifyTimeSpecified {
         get {
-            return this.typeFieldSpecified;
+            return this.modifyTimeFieldSpecified;
         }
         set {
-            this.typeFieldSpecified = value;
+            this.modifyTimeFieldSpecified = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum EventForm {
+    
+    /// <remarks/>
+    Individual,
+    
+    /// <remarks/>
+    Team,
+    
+    /// <remarks/>
+    Relay,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public partial class PersonName {
+    
+    private string familyField;
+    
+    private string givenField;
+    
+    /// <remarks/>
+    public string Family {
+        get {
+            return this.familyField;
+        }
+        set {
+            this.familyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Given {
+        get {
+            return this.givenField;
+        }
+        set {
+            this.givenField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.orienteering.org/datastandard/3.0")]
+public abstract partial class BaseMessageElement {
+    
+    private string iofVersionField;
+    
+    private System.DateTime createTimeField;
+    
+    private bool createTimeFieldSpecified;
+    
+    private string creatorField;
+    
+    public BaseMessageElement() {
+        this.iofVersionField = "3.0";
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string iofVersion {
+        get {
+            return this.iofVersionField;
+        }
+        set {
+            this.iofVersionField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
+    public System.DateTime createTime {
         get {
-            return this.idManagerField;
+            return this.createTimeField;
         }
         set {
-            this.idManagerField = value;
+            this.createTimeField = value;
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum EventIdType {
-    
-    /// <remarks/>
-    @int,
-    
-    /// <remarks/>
-    nat,
-    
-    /// <remarks/>
-    reg,
-    
-    /// <remarks/>
-    loc,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class StartDate {
-    
-    private Date dateField;
-    
-    private Clock clockField;
-    
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Clock Clock {
-        get {
-            return this.clockField;
-        }
-        set {
-            this.clockField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class FinishDate {
-    
-    private Date dateField;
-    
-    private Clock clockField;
-    
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Clock Clock {
-        get {
-            return this.clockField;
-        }
-        set {
-            this.clockField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EventOfficial {
-    
-    private string eventOfficialRoleField;
-    
-    private object itemField;
-    
-    /// <remarks/>
-    public string EventOfficialRole {
-        get {
-            return this.eventOfficialRoleField;
-        }
-        set {
-            this.eventOfficialRoleField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Person", typeof(Person))]
-    [System.Xml.Serialization.XmlElementAttribute("PersonId", typeof(PersonId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Organiser {
-    
-    private object[] itemsField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Club", typeof(Club))]
-    [System.Xml.Serialization.XmlElementAttribute("ClubId", typeof(ClubId))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EventClass {
-    
-    private object itemField;
-    
-    private object[] itemsField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Class", typeof(Class))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassId", typeof(ClassId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClassRaceInfo", typeof(ClassRaceInfo))]
-    [System.Xml.Serialization.XmlElementAttribute("DividedIntoClass", typeof(DividedIntoClass))]
-    [System.Xml.Serialization.XmlElementAttribute("EventRaceId", typeof(string))]
-    [System.Xml.Serialization.XmlElementAttribute("PunchingUnitType", typeof(PunchingUnitType))]
-    [System.Xml.Serialization.XmlElementAttribute("TransferedToClass", typeof(TransferedToClass))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClassRaceInfo {
-    
-    private FirstStart firstStartField;
-    
-    private StartInterval startIntervalField;
-    
-    private EstimatedBestTime estimatedBestTimeField;
-    
-    private EstimatedLastPrizeTime estimatedLastPrizeTimeField;
-    
-    private PrizeCeremonyTime prizeCeremonyTimeField;
-    
-    private AllocationMethod allocationMethodField;
-    
-    private StartMethod startMethodField;
-    
-    private ClassRaceStatus classRaceStatusField;
-    
-    private string[] courseVariationIdField;
-    
-    private ModifyDate modifyDateField;
-    
-    private string numberOfVacantsField;
-    
-    private ClassRaceInfoRankingRace rankingRaceField;
-    
-    private string numberOfPrizesField;
-    
-    private string bibNumberPrefixField;
-    
-    private string bibNumberBaseField;
-    
-    private string finishChuteField;
-    
-    public ClassRaceInfo() {
-        this.rankingRaceField = ClassRaceInfoRankingRace.N;
-    }
-    
-    /// <remarks/>
-    public FirstStart FirstStart {
-        get {
-            return this.firstStartField;
-        }
-        set {
-            this.firstStartField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public StartInterval StartInterval {
-        get {
-            return this.startIntervalField;
-        }
-        set {
-            this.startIntervalField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public EstimatedBestTime EstimatedBestTime {
-        get {
-            return this.estimatedBestTimeField;
-        }
-        set {
-            this.estimatedBestTimeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public EstimatedLastPrizeTime EstimatedLastPrizeTime {
-        get {
-            return this.estimatedLastPrizeTimeField;
-        }
-        set {
-            this.estimatedLastPrizeTimeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public PrizeCeremonyTime PrizeCeremonyTime {
-        get {
-            return this.prizeCeremonyTimeField;
-        }
-        set {
-            this.prizeCeremonyTimeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public AllocationMethod AllocationMethod {
-        get {
-            return this.allocationMethodField;
-        }
-        set {
-            this.allocationMethodField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public StartMethod StartMethod {
-        get {
-            return this.startMethodField;
-        }
-        set {
-            this.startMethodField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ClassRaceStatus ClassRaceStatus {
-        get {
-            return this.classRaceStatusField;
-        }
-        set {
-            this.classRaceStatusField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CourseVariationId")]
-    public string[] CourseVariationId {
-        get {
-            return this.courseVariationIdField;
-        }
-        set {
-            this.courseVariationIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string numberOfVacants {
-        get {
-            return this.numberOfVacantsField;
-        }
-        set {
-            this.numberOfVacantsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(ClassRaceInfoRankingRace.N)]
-    public ClassRaceInfoRankingRace rankingRace {
-        get {
-            return this.rankingRaceField;
-        }
-        set {
-            this.rankingRaceField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string numberOfPrizes {
-        get {
-            return this.numberOfPrizesField;
-        }
-        set {
-            this.numberOfPrizesField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string bibNumberPrefix {
-        get {
-            return this.bibNumberPrefixField;
-        }
-        set {
-            this.bibNumberPrefixField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string bibNumberBase {
-        get {
-            return this.bibNumberBaseField;
-        }
-        set {
-            this.bibNumberBaseField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string finishChute {
-        get {
-            return this.finishChuteField;
-        }
-        set {
-            this.finishChuteField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class FirstStart {
-    
-    private Date dateField;
-    
-    private Clock clockField;
-    
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Clock Clock {
-        get {
-            return this.clockField;
-        }
-        set {
-            this.clockField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class StartInterval {
-    
-    private Time timeField;
-    
-    /// <remarks/>
-    public Time Time {
-        get {
-            return this.timeField;
-        }
-        set {
-            this.timeField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Time {
-    
-    private string timeFormatField;
-    
-    private string valueField;
-    
-    public Time() {
-        this.timeFormatField = "MM:SS";
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute("MM:SS")]
-    public string timeFormat {
-        get {
-            return this.timeFormatField;
-        }
-        set {
-            this.timeFormatField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EstimatedBestTime {
-    
-    private Time timeField;
-    
-    /// <remarks/>
-    public Time Time {
-        get {
-            return this.timeField;
-        }
-        set {
-            this.timeField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EstimatedLastPrizeTime {
-    
-    private Time timeField;
-    
-    /// <remarks/>
-    public Time Time {
-        get {
-            return this.timeField;
-        }
-        set {
-            this.timeField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PrizeCeremonyTime {
-    
-    private Date dateField;
-    
-    private Clock clockField;
-    
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Clock Clock {
-        get {
-            return this.clockField;
-        }
-        set {
-            this.clockField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class AllocationMethod {
-    
-    private AllocationMethodValue valueField;
-    
-    public AllocationMethod() {
-        this.valueField = AllocationMethodValue.normal;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(AllocationMethodValue.normal)]
-    public AllocationMethodValue value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum AllocationMethodValue {
-    
-    /// <remarks/>
-    normal,
-    
-    /// <remarks/>
-    seeded,
-    
-    /// <remarks/>
-    group,
-    
-    /// <remarks/>
-    invertedResult,
-    
-    /// <remarks/>
-    preseedingResult,
-    
-    /// <remarks/>
-    manual,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class StartMethod {
-    
-    private StartMethodValue valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public StartMethodValue value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum StartMethodValue {
-    
-    /// <remarks/>
-    allocatTime,
-    
-    /// <remarks/>
-    punching,
-    
-    /// <remarks/>
-    limitedPunching,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClassRaceStatus {
-    
-    private ClassRaceStatusValue valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public ClassRaceStatusValue value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ClassRaceStatusValue {
-    
-    /// <remarks/>
-    notAllocated,
-    
-    /// <remarks/>
-    allocated,
-    
-    /// <remarks/>
-    started,
-    
-    /// <remarks/>
-    finished,
-    
-    /// <remarks/>
-    deleted,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ClassRaceInfoRankingRace {
-    
-    /// <remarks/>
-    Y,
-    
-    /// <remarks/>
-    N,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class DividedIntoClass {
-    
-    private EventClass[] eventClassField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EventClass")]
-    public EventClass[] EventClass {
-        get {
-            return this.eventClassField;
-        }
-        set {
-            this.eventClassField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class TransferedToClass {
-    
-    private object itemField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClassId", typeof(ClassId))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassShortName", typeof(ClassShortName))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EventRace {
-    
-    private string eventRaceIdField;
-    
-    private Name nameField;
-    
-    private RaceDate raceDateField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public string EventRaceId {
-        get {
-            return this.eventRaceIdField;
-        }
-        set {
-            this.eventRaceIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public RaceDate RaceDate {
-        get {
-            return this.raceDateField;
-        }
-        set {
-            this.raceDateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class RaceDate {
-    
-    private Date dateField;
-    
-    private Clock clockField;
-    
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Clock Clock {
-        get {
-            return this.clockField;
-        }
-        set {
-            this.clockField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EntryData {
-    
-    private Address[] addressField;
-    
-    private Tele[] teleField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Address")]
-    public Address[] Address {
-        get {
-            return this.addressField;
-        }
-        set {
-            this.addressField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Tele")]
-    public Tele[] Tele {
-        get {
-            return this.teleField;
-        }
-        set {
-            this.teleField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Service {
-    
-    private string serviceIdField;
-    
-    private Name nameField;
-    
-    private Amount amountField;
-    
-    private Comment commentField;
-    
-    private MaxNumber maxNumberField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public string ServiceId {
-        get {
-            return this.serviceIdField;
-        }
-        set {
-            this.serviceIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Amount Amount {
-        get {
-            return this.amountField;
-        }
-        set {
-            this.amountField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Comment Comment {
-        get {
-            return this.commentField;
-        }
-        set {
-            this.commentField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public MaxNumber MaxNumber {
-        get {
-            return this.maxNumberField;
-        }
-        set {
-            this.maxNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Comment {
-    
-    private string languageIdField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string languageId {
-        get {
-            return this.languageIdField;
-        }
-        set {
-            this.languageIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class MaxNumber {
-    
-    private string unitField;
-    
-    private string valueField;
-    
-    public MaxNumber() {
-        this.unitField = "Pcs";
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute("Pcs")]
-    public string unit {
-        get {
-            return this.unitField;
-        }
-        set {
-            this.unitField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum EventEventForm {
-    
-    /// <remarks/>
-    IndSingleDay,
-    
-    /// <remarks/>
-    IndMultiDay,
-    
-    /// <remarks/>
-    teamSingleDay,
-    
-    /// <remarks/>
-    teamMultiDay,
-    
-    /// <remarks/>
-    relay,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EntryClass {
-    
-    private object itemField;
-    
-    private string sequenceField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClassId", typeof(ClassId))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassShortName", typeof(ClassShortName))]
-    [System.Xml.Serialization.XmlElementAttribute("EventClass", typeof(EventClass))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string sequence {
-        get {
-            return this.sequenceField;
-        }
-        set {
-            this.sequenceField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EntryList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private ClubEntry[] clubEntryField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClubEntry")]
-    public ClubEntry[] ClubEntry {
-        get {
-            return this.clubEntryField;
-        }
-        set {
-            this.clubEntryField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClubEntry {
-    
-    private object itemField;
-    
-    private Contact contactField;
-    
-    private Entry[] entryField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Club", typeof(Club))]
-    [System.Xml.Serialization.XmlElementAttribute("ClubId", typeof(ClubId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Contact Contact {
-        get {
-            return this.contactField;
-        }
-        set {
-            this.contactField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Entry")]
-    public Entry[] Entry {
-        get {
-            return this.entryField;
-        }
-        set {
-            this.entryField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Entry {
-    
-    private string entryIdField;
-    
-    private object[] itemsField;
-    
-    private ItemsChoiceType[] itemsElementNameField;
-    
-    private EntryClass[] entryClassField;
-    
-    private AllocationControl allocationControlField;
-    
-    private EntryDate entryDateField;
-    
-    private ModifyDate modifyDateField;
-    
-    private EntryNonCompetitor nonCompetitorField;
-    
-    public Entry() {
-        this.nonCompetitorField = EntryNonCompetitor.N;
-    }
-    
-    /// <remarks/>
-    public string EntryId {
-        get {
-            return this.entryIdField;
-        }
-        set {
-            this.entryIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CCard", typeof(CCard))]
-    [System.Xml.Serialization.XmlElementAttribute("Club", typeof(Club))]
-    [System.Xml.Serialization.XmlElementAttribute("ClubId", typeof(ClubId))]
-    [System.Xml.Serialization.XmlElementAttribute("Person", typeof(Person))]
-    [System.Xml.Serialization.XmlElementAttribute("PersonId", typeof(PersonId))]
-    [System.Xml.Serialization.XmlElementAttribute("Rank", typeof(Rank))]
-    [System.Xml.Serialization.XmlElementAttribute("TeamName", typeof(string))]
-    [System.Xml.Serialization.XmlElementAttribute("TeamSequence", typeof(string))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
     [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public ItemsChoiceType[] ItemsElementName {
+    public bool createTimeSpecified {
         get {
-            return this.itemsElementNameField;
+            return this.createTimeFieldSpecified;
         }
         set {
-            this.itemsElementNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EntryClass")]
-    public EntryClass[] EntryClass {
-        get {
-            return this.entryClassField;
-        }
-        set {
-            this.entryClassField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public AllocationControl AllocationControl {
-        get {
-            return this.allocationControlField;
-        }
-        set {
-            this.allocationControlField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public EntryDate EntryDate {
-        get {
-            return this.entryDateField;
-        }
-        set {
-            this.entryDateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
+            this.createTimeFieldSpecified = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(EntryNonCompetitor.N)]
-    public EntryNonCompetitor nonCompetitor {
+    public string creator {
         get {
-            return this.nonCompetitorField;
+            return this.creatorField;
         }
         set {
-            this.nonCompetitorField = value;
+            this.creatorField = value;
         }
     }
 }
@@ -5050,32 +7842,14 @@ public partial class Entry {
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
 [System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/IOFdata", IncludeInSchema=false)]
-public enum ItemsChoiceType {
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+public enum PersonSex {
     
     /// <remarks/>
-    CCard,
+    F,
     
     /// <remarks/>
-    Club,
-    
-    /// <remarks/>
-    ClubId,
-    
-    /// <remarks/>
-    Person,
-    
-    /// <remarks/>
-    PersonId,
-    
-    /// <remarks/>
-    Rank,
-    
-    /// <remarks/>
-    TeamName,
-    
-    /// <remarks/>
-    TeamSequence,
+    M,
 }
 
 /// <remarks/>
@@ -5083,35 +7857,32 @@ public enum ItemsChoiceType {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class AllocationControl {
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.orienteering.org/datastandard/3.0", IsNullable=false)]
+public partial class OrganisationList : BaseMessageElement {
     
-    private object itemField;
+    private Organisation[] organisationField;
     
-    private AllocationControlType allocationControlTypeField;
+    private Extensions extensionsField;
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Club", typeof(Club))]
-    [System.Xml.Serialization.XmlElementAttribute("ClubId", typeof(ClubId))]
-    [System.Xml.Serialization.XmlElementAttribute("Person", typeof(Person))]
-    [System.Xml.Serialization.XmlElementAttribute("PersonId", typeof(PersonId))]
-    public object Item {
+    [System.Xml.Serialization.XmlElementAttribute("Organisation")]
+    public Organisation[] Organisation {
         get {
-            return this.itemField;
+            return this.organisationField;
         }
         set {
-            this.itemField = value;
+            this.organisationField = value;
         }
     }
     
     /// <remarks/>
-    public AllocationControlType AllocationControlType {
+    public Extensions Extensions {
         get {
-            return this.allocationControlTypeField;
+            return this.extensionsField;
         }
         set {
-            this.allocationControlTypeField = value;
+            this.extensionsField = value;
         }
     }
 }
@@ -5121,52 +7892,34 @@ public partial class AllocationControl {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class AllocationControlType {
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.orienteering.org/datastandard/3.0", IsNullable=false)]
+public partial class EventList : BaseMessageElement {
     
-    private AllocationControlTypeValue valueField;
+    private Event[] eventField;
     
-    public AllocationControlType() {
-        this.valueField = AllocationControlTypeValue.normal;
-    }
+    private Extensions extensionsField;
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(AllocationControlTypeValue.normal)]
-    public AllocationControlTypeValue value {
+    [System.Xml.Serialization.XmlElementAttribute("Event")]
+    public Event[] Event {
         get {
-            return this.valueField;
+            return this.eventField;
         }
         set {
-            this.valueField = value;
+            this.eventField = value;
         }
     }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum AllocationControlTypeValue {
     
     /// <remarks/>
-    normal,
-    
-    /// <remarks/>
-    groupedWithRef,
-    
-    /// <remarks/>
-    distributedFromRef,
-    
-    /// <remarks/>
-    earlyStart,
-    
-    /// <remarks/>
-    lateStart,
-    
-    /// <remarks/>
-    other,
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
 }
 
 /// <remarks/>
@@ -5174,46 +7927,34 @@ public enum AllocationControlTypeValue {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class EntryDate {
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.orienteering.org/datastandard/3.0", IsNullable=false)]
+public partial class ClassList : BaseMessageElement {
     
-    private Date dateField;
+    private Class[] classField;
     
-    private Clock clockField;
+    private Extensions extensionsField;
     
     /// <remarks/>
-    public Date Date {
+    [System.Xml.Serialization.XmlElementAttribute("Class")]
+    public Class[] Class {
         get {
-            return this.dateField;
+            return this.classField;
         }
         set {
-            this.dateField = value;
+            this.classField = value;
         }
     }
     
     /// <remarks/>
-    public Clock Clock {
+    public Extensions Extensions {
         get {
-            return this.clockField;
+            return this.extensionsField;
         }
         set {
-            this.clockField = value;
+            this.extensionsField = value;
         }
     }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum EntryNonCompetitor {
-    
-    /// <remarks/>
-    Y,
-    
-    /// <remarks/>
-    N,
 }
 
 /// <remarks/>
@@ -5221,37 +7962,130 @@ public enum EntryNonCompetitor {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class StartList {
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.orienteering.org/datastandard/3.0", IsNullable=false)]
+public partial class EntryList : BaseMessageElement {
     
-    private IOFVersion iOFVersionField;
+    private Event eventField;
     
-    private object itemField;
+    private TeamEntry[] teamEntryField;
+    
+    private PersonEntry[] personEntryField;
+    
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    public Event Event {
+        get {
+            return this.eventField;
+        }
+        set {
+            this.eventField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("TeamEntry")]
+    public TeamEntry[] TeamEntry {
+        get {
+            return this.teamEntryField;
+        }
+        set {
+            this.teamEntryField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("PersonEntry")]
+    public PersonEntry[] PersonEntry {
+        get {
+            return this.personEntryField;
+        }
+        set {
+            this.personEntryField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.orienteering.org/datastandard/3.0", IsNullable=false)]
+public partial class CourseData : BaseMessageElement {
+    
+    private Event eventField;
+    
+    private RaceCourseData[] raceCourseDataField;
+    
+    private Extensions extensionsField;
+    
+    /// <remarks/>
+    public Event Event {
+        get {
+            return this.eventField;
+        }
+        set {
+            this.eventField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("RaceCourseData")]
+    public RaceCourseData[] RaceCourseData {
+        get {
+            return this.raceCourseDataField;
+        }
+        set {
+            this.raceCourseDataField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public Extensions Extensions {
+        get {
+            return this.extensionsField;
+        }
+        set {
+            this.extensionsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.orienteering.org/datastandard/3.0", IsNullable=false)]
+public partial class StartList : BaseMessageElement {
+    
+    private Event eventField;
     
     private ClassStart[] classStartField;
     
-    private ModifyDate modifyDateField;
+    private Extensions extensionsField;
     
     /// <remarks/>
-    public IOFVersion IOFVersion {
+    public Event Event {
         get {
-            return this.iOFVersionField;
+            return this.eventField;
         }
         set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Event", typeof(Event))]
-    [System.Xml.Serialization.XmlElementAttribute("EventId", typeof(EventId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
+            this.eventField = value;
         }
     }
     
@@ -5267,12 +8101,12 @@ public partial class StartList {
     }
     
     /// <remarks/>
-    public ModifyDate ModifyDate {
+    public Extensions Extensions {
         get {
-            return this.modifyDateField;
+            return this.extensionsField;
         }
         set {
-            this.modifyDateField = value;
+            this.extensionsField = value;
         }
     }
 }
@@ -5282,433 +8116,29 @@ public partial class StartList {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClassStart {
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.orienteering.org/datastandard/3.0", IsNullable=false)]
+public partial class ResultList : BaseMessageElement {
     
-    private object itemField;
-    
-    private object[] itemsField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClassId", typeof(ClassId))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassShortName", typeof(ClassShortName))]
-    [System.Xml.Serialization.XmlElementAttribute("EventClass", typeof(EventClass))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("PersonStart", typeof(PersonStart))]
-    [System.Xml.Serialization.XmlElementAttribute("TeamStart", typeof(TeamStart))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PersonStart {
-    
-    private object itemField;
-    
-    private object item1Field;
-    
-    private Rank[] rankField;
-    
-    private object[] itemsField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Person", typeof(Person))]
-    [System.Xml.Serialization.XmlElementAttribute("PersonId", typeof(PersonId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Club", typeof(Club))]
-    [System.Xml.Serialization.XmlElementAttribute("ClubId", typeof(ClubId))]
-    [System.Xml.Serialization.XmlElementAttribute("Country", typeof(Country))]
-    [System.Xml.Serialization.XmlElementAttribute("CountryId", typeof(CountryId))]
-    public object Item1 {
-        get {
-            return this.item1Field;
-        }
-        set {
-            this.item1Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Rank")]
-    public Rank[] Rank {
-        get {
-            return this.rankField;
-        }
-        set {
-            this.rankField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("RaceStart", typeof(RaceStart))]
-    [System.Xml.Serialization.XmlElementAttribute("Start", typeof(Start))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class RaceStart {
-    
-    private object itemField;
-    
-    private Start startField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EventRace", typeof(EventRace))]
-    [System.Xml.Serialization.XmlElementAttribute("EventRaceId", typeof(string))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Start Start {
-        get {
-            return this.startField;
-        }
-        set {
-            this.startField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Start {
-    
-    private string startNumberField;
-    
-    private string bibNumberField;
-    
-    private object itemField;
-    
-    private StartTime startTimeField;
-    
-    private string teamSequenceField;
-    
-    private CourseLength courseLengthField;
-    
-    private string startIdField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public string StartNumber {
-        get {
-            return this.startNumberField;
-        }
-        set {
-            this.startNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string BibNumber {
-        get {
-            return this.bibNumberField;
-        }
-        set {
-            this.bibNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CCard", typeof(CCard))]
-    [System.Xml.Serialization.XmlElementAttribute("CCardId", typeof(string))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public StartTime StartTime {
-        get {
-            return this.startTimeField;
-        }
-        set {
-            this.startTimeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string TeamSequence {
-        get {
-            return this.teamSequenceField;
-        }
-        set {
-            this.teamSequenceField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public CourseLength CourseLength {
-        get {
-            return this.courseLengthField;
-        }
-        set {
-            this.courseLengthField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string StartId {
-        get {
-            return this.startIdField;
-        }
-        set {
-            this.startIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class StartTime {
-    
-    private Date dateField;
-    
-    private Clock clockField;
-    
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Clock Clock {
-        get {
-            return this.clockField;
-        }
-        set {
-            this.clockField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CourseLength {
-    
-    private CourseLengthUnit unitField;
-    
-    private string valueField;
-    
-    public CourseLength() {
-        this.unitField = CourseLengthUnit.m;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(CourseLengthUnit.m)]
-    public CourseLengthUnit unit {
-        get {
-            return this.unitField;
-        }
-        set {
-            this.unitField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum CourseLengthUnit {
-    
-    /// <remarks/>
-    m,
-    
-    /// <remarks/>
-    km,
-    
-    /// <remarks/>
-    ft,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class TeamStart {
-    
-    private string teamNameField;
-    
-    private object itemField;
-    
-    private PersonStart[] personStartField;
-    
-    /// <remarks/>
-    public string TeamName {
-        get {
-            return this.teamNameField;
-        }
-        set {
-            this.teamNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Country", typeof(Country))]
-    [System.Xml.Serialization.XmlElementAttribute("CountryId", typeof(CountryId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("PersonStart")]
-    public PersonStart[] PersonStart {
-        get {
-            return this.personStartField;
-        }
-        set {
-            this.personStartField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ResultList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private object itemField;
+    private Event eventField;
     
     private ClassResult[] classResultField;
     
-    private ModifyDate modifyDateField;
+    private Extensions extensionsField;
     
     private ResultListStatus statusField;
     
     public ResultList() {
-        this.statusField = ResultListStatus.complete;
+        this.statusField = ResultListStatus.Complete;
     }
     
     /// <remarks/>
-    public IOFVersion IOFVersion {
+    public Event Event {
         get {
-            return this.iOFVersionField;
+            return this.eventField;
         }
         set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Event", typeof(Event))]
-    [System.Xml.Serialization.XmlElementAttribute("EventId", typeof(EventId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
+            this.eventField = value;
         }
     }
     
@@ -5724,18 +8154,18 @@ public partial class ResultList {
     }
     
     /// <remarks/>
-    public ModifyDate ModifyDate {
+    public Extensions Extensions {
         get {
-            return this.modifyDateField;
+            return this.extensionsField;
         }
         set {
-            this.modifyDateField = value;
+            this.extensionsField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(ResultListStatus.complete)]
+    [System.ComponentModel.DefaultValueAttribute(ResultListStatus.Complete)]
     public ResultListStatus status {
         get {
             return this.statusField;
@@ -5749,2155 +8179,17 @@ public partial class ResultList {
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
 [System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClassResult {
-    
-    private object itemField;
-    
-    private object[] itemsField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClassId", typeof(ClassId))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassShortName", typeof(ClassShortName))]
-    [System.Xml.Serialization.XmlElementAttribute("EventClass", typeof(EventClass))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("PersonResult", typeof(PersonResult))]
-    [System.Xml.Serialization.XmlElementAttribute("TeamResult", typeof(TeamResult))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PersonResult {
-    
-    private object itemField;
-    
-    private object item1Field;
-    
-    private Rank[] rankField;
-    
-    private Result resultField;
-    
-    private RaceResult[] raceResultField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Person", typeof(Person))]
-    [System.Xml.Serialization.XmlElementAttribute("PersonId", typeof(PersonId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Club", typeof(Club))]
-    [System.Xml.Serialization.XmlElementAttribute("ClubId", typeof(ClubId))]
-    [System.Xml.Serialization.XmlElementAttribute("Country", typeof(Country))]
-    [System.Xml.Serialization.XmlElementAttribute("CountryId", typeof(CountryId))]
-    public object Item1 {
-        get {
-            return this.item1Field;
-        }
-        set {
-            this.item1Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Rank")]
-    public Rank[] Rank {
-        get {
-            return this.rankField;
-        }
-        set {
-            this.rankField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Result Result {
-        get {
-            return this.resultField;
-        }
-        set {
-            this.resultField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("RaceResult")]
-    public RaceResult[] RaceResult {
-        get {
-            return this.raceResultField;
-        }
-        set {
-            this.raceResultField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Result {
-    
-    private string startNumberField;
-    
-    private string bibNumberField;
-    
-    private object itemField;
-    
-    private StartTime startTimeField;
-    
-    private FinishTime finishTimeField;
-    
-    private Time timeField;
-    
-    private string resultPositionField;
-    
-    private CompetitorStatus competitorStatusField;
-    
-    private string teamSequenceField;
-    
-    private object item1Field;
-    
-    private SplitTime[] splitTimeField;
-    
-    private object item2Field;
-    
-    private Point[] pointField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public string StartNumber {
-        get {
-            return this.startNumberField;
-        }
-        set {
-            this.startNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string BibNumber {
-        get {
-            return this.bibNumberField;
-        }
-        set {
-            this.bibNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CCard", typeof(CCard))]
-    [System.Xml.Serialization.XmlElementAttribute("CCardId", typeof(string))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public StartTime StartTime {
-        get {
-            return this.startTimeField;
-        }
-        set {
-            this.startTimeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public FinishTime FinishTime {
-        get {
-            return this.finishTimeField;
-        }
-        set {
-            this.finishTimeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Time Time {
-        get {
-            return this.timeField;
-        }
-        set {
-            this.timeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string ResultPosition {
-        get {
-            return this.resultPositionField;
-        }
-        set {
-            this.resultPositionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public CompetitorStatus CompetitorStatus {
-        get {
-            return this.competitorStatusField;
-        }
-        set {
-            this.competitorStatusField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string TeamSequence {
-        get {
-            return this.teamSequenceField;
-        }
-        set {
-            this.teamSequenceField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CourseLength", typeof(CourseLength))]
-    [System.Xml.Serialization.XmlElementAttribute("CourseVariation", typeof(CourseVariation))]
-    [System.Xml.Serialization.XmlElementAttribute("CourseVariationId", typeof(string))]
-    public object Item1 {
-        get {
-            return this.item1Field;
-        }
-        set {
-            this.item1Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("SplitTime")]
-    public SplitTime[] SplitTime {
-        get {
-            return this.splitTimeField;
-        }
-        set {
-            this.splitTimeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("BadgeValue", typeof(BadgeValue))]
-    [System.Xml.Serialization.XmlElementAttribute("BadgeValueId", typeof(BadgeValueId))]
-    public object Item2 {
-        get {
-            return this.item2Field;
-        }
-        set {
-            this.item2Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Point")]
-    public Point[] Point {
-        get {
-            return this.pointField;
-        }
-        set {
-            this.pointField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class FinishTime {
-    
-    private Date dateField;
-    
-    private Clock clockField;
-    
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Clock Clock {
-        get {
-            return this.clockField;
-        }
-        set {
-            this.clockField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CompetitorStatus {
-    
-    private CompetitorStatusValue valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public CompetitorStatusValue value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum CompetitorStatusValue {
-    
-    /// <remarks/>
-    Inactive,
-    
-    /// <remarks/>
-    DidNotStart,
-    
-    /// <remarks/>
-    Active,
-    
-    /// <remarks/>
-    Finished,
-    
-    /// <remarks/>
-    OK,
-    
-    /// <remarks/>
-    MisPunch,
-    
-    /// <remarks/>
-    DidNotFinish,
-    
-    /// <remarks/>
-    Disqualified,
-    
-    /// <remarks/>
-    NotCompeting,
-    
-    /// <remarks/>
-    SportWithdr,
-    
-    /// <remarks/>
-    OverTime,
-    
-    /// <remarks/>
-    Moved,
-    
-    /// <remarks/>
-    MovedUp,
-    
-    /// <remarks/>
-    Cancelled,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CourseVariation {
-    
-    private string courseVariationIdField;
-    
-    private Name nameField;
-    
-    private CourseLength courseLengthField;
-    
-    private CourseClimb courseClimbField;
-    
-    private object itemField;
-    
-    private string finishChuteField;
-    
-    private CourseControl[] courseControlField;
-    
-    private object item1Field;
-    
-    private DistanceToFinish distanceToFinishField;
-    
-    private ModifyDate modifyDateField;
-    
-    private string numberOfRunnersField;
-    
-    /// <remarks/>
-    public string CourseVariationId {
-        get {
-            return this.courseVariationIdField;
-        }
-        set {
-            this.courseVariationIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public CourseLength CourseLength {
-        get {
-            return this.courseLengthField;
-        }
-        set {
-            this.courseLengthField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public CourseClimb CourseClimb {
-        get {
-            return this.courseClimbField;
-        }
-        set {
-            this.courseClimbField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("StartPoint", typeof(StartPoint))]
-    [System.Xml.Serialization.XmlElementAttribute("StartPointCode", typeof(string))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string FinishChute {
-        get {
-            return this.finishChuteField;
-        }
-        set {
-            this.finishChuteField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CourseControl")]
-    public CourseControl[] CourseControl {
-        get {
-            return this.courseControlField;
-        }
-        set {
-            this.courseControlField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("FinishPoint", typeof(FinishPoint))]
-    [System.Xml.Serialization.XmlElementAttribute("FinishPointCode", typeof(string))]
-    public object Item1 {
-        get {
-            return this.item1Field;
-        }
-        set {
-            this.item1Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    public DistanceToFinish DistanceToFinish {
-        get {
-            return this.distanceToFinishField;
-        }
-        set {
-            this.distanceToFinishField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string numberOfRunners {
-        get {
-            return this.numberOfRunnersField;
-        }
-        set {
-            this.numberOfRunnersField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CourseClimb {
-    
-    private CourseClimbUnit unitField;
-    
-    private string valueField;
-    
-    public CourseClimb() {
-        this.unitField = CourseClimbUnit.m;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(CourseClimbUnit.m)]
-    public CourseClimbUnit unit {
-        get {
-            return this.unitField;
-        }
-        set {
-            this.unitField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum CourseClimbUnit {
-    
-    /// <remarks/>
-    m,
-    
-    /// <remarks/>
-    km,
-    
-    /// <remarks/>
-    ft,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class StartPoint {
-    
-    private string startPointCodeField;
-    
-    private Description descriptionField;
-    
-    private ControlPosition controlPositionField;
-    
-    private MapPosition mapPositionField;
-    
-    private Comment commentField;
-    
-    private DistanceFromStart distanceFromStartField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public string StartPointCode {
-        get {
-            return this.startPointCodeField;
-        }
-        set {
-            this.startPointCodeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Description Description {
-        get {
-            return this.descriptionField;
-        }
-        set {
-            this.descriptionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ControlPosition ControlPosition {
-        get {
-            return this.controlPositionField;
-        }
-        set {
-            this.controlPositionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public MapPosition MapPosition {
-        get {
-            return this.mapPositionField;
-        }
-        set {
-            this.mapPositionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Comment Comment {
-        get {
-            return this.commentField;
-        }
-        set {
-            this.commentField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public DistanceFromStart DistanceFromStart {
-        get {
-            return this.distanceFromStartField;
-        }
-        set {
-            this.distanceFromStartField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Description {
-    
-    private Box[] boxField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Box")]
-    public Box[] Box {
-        get {
-            return this.boxField;
-        }
-        set {
-            this.boxField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Box {
-    
-    private object[] itemsField;
-    
-    private BoxColumn columnField;
-    
-    private BoxHasDiagonal hasDiagonalField;
-    
-    public Box() {
-        this.hasDiagonalField = BoxHasDiagonal.N;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Symbol", typeof(Symbol))]
-    [System.Xml.Serialization.XmlElementAttribute("Text", typeof(Text))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public BoxColumn column {
-        get {
-            return this.columnField;
-        }
-        set {
-            this.columnField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(BoxHasDiagonal.N)]
-    public BoxHasDiagonal hasDiagonal {
-        get {
-            return this.hasDiagonalField;
-        }
-        set {
-            this.hasDiagonalField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Symbol {
-    
-    private string symbolIdField;
-    
-    private Name nameField;
-    
-    /// <remarks/>
-    public string SymbolId {
-        get {
-            return this.symbolIdField;
-        }
-        set {
-            this.symbolIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Text {
-    
-    private string languageIdField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string languageId {
-        get {
-            return this.languageIdField;
-        }
-        set {
-            this.languageIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum BoxColumn {
-    
-    /// <remarks/>
-    A,
-    
-    /// <remarks/>
-    B,
-    
-    /// <remarks/>
-    C,
-    
-    /// <remarks/>
-    D,
-    
-    /// <remarks/>
-    E,
-    
-    /// <remarks/>
-    F,
-    
-    /// <remarks/>
-    G,
-    
-    /// <remarks/>
-    H,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum BoxHasDiagonal {
-    
-    /// <remarks/>
-    Y,
-    
-    /// <remarks/>
-    N,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ControlPosition {
-    
-    private string xField;
-    
-    private string yField;
-    
-    private ControlPositionUnit unitField;
-    
-    public ControlPosition() {
-        this.unitField = ControlPositionUnit.m;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string x {
-        get {
-            return this.xField;
-        }
-        set {
-            this.xField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string y {
-        get {
-            return this.yField;
-        }
-        set {
-            this.yField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(ControlPositionUnit.m)]
-    public ControlPositionUnit unit {
-        get {
-            return this.unitField;
-        }
-        set {
-            this.unitField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum ControlPositionUnit {
-    
-    /// <remarks/>
-    m,
-    
-    /// <remarks/>
-    ft,
-    
-    /// <remarks/>
-    km,
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlEnumAttribute("WGS-84")]
-    WGS84,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class MapPosition {
-    
-    private string xField;
-    
-    private string yField;
-    
-    private MapPositionUnit unitField;
-    
-    public MapPosition() {
-        this.unitField = MapPositionUnit.mm;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string x {
-        get {
-            return this.xField;
-        }
-        set {
-            this.xField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string y {
-        get {
-            return this.yField;
-        }
-        set {
-            this.yField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(MapPositionUnit.mm)]
-    public MapPositionUnit unit {
-        get {
-            return this.unitField;
-        }
-        set {
-            this.unitField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum MapPositionUnit {
-    
-    /// <remarks/>
-    mm,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class DistanceFromStart {
-    
-    private DistanceFromStartUnit unitField;
-    
-    private string valueField;
-    
-    public DistanceFromStart() {
-        this.unitField = DistanceFromStartUnit.m;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(DistanceFromStartUnit.m)]
-    public DistanceFromStartUnit unit {
-        get {
-            return this.unitField;
-        }
-        set {
-            this.unitField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum DistanceFromStartUnit {
-    
-    /// <remarks/>
-    m,
-    
-    /// <remarks/>
-    km,
-    
-    /// <remarks/>
-    ft,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CourseControl {
-    
-    private string sequenceField;
-    
-    private object itemField;
-    
-    private Comment[] commentField;
-    
-    private LegLength[] legLengthField;
-    
-    private MapTextPosition mapTextPositionField;
-    
-    private CourseControlMarkedRoute markedRouteField;
-    
-    public CourseControl() {
-        this.markedRouteField = CourseControlMarkedRoute.N;
-    }
-    
-    /// <remarks/>
-    public string Sequence {
-        get {
-            return this.sequenceField;
-        }
-        set {
-            this.sequenceField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Control", typeof(Control))]
-    [System.Xml.Serialization.XmlElementAttribute("ControlCode", typeof(string))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Comment")]
-    public Comment[] Comment {
-        get {
-            return this.commentField;
-        }
-        set {
-            this.commentField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("LegLength")]
-    public LegLength[] LegLength {
-        get {
-            return this.legLengthField;
-        }
-        set {
-            this.legLengthField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public MapTextPosition MapTextPosition {
-        get {
-            return this.mapTextPositionField;
-        }
-        set {
-            this.mapTextPositionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(CourseControlMarkedRoute.N)]
-    public CourseControlMarkedRoute markedRoute {
-        get {
-            return this.markedRouteField;
-        }
-        set {
-            this.markedRouteField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-[System.Xml.Serialization.XmlRootAttribute(IsNullable=false)]
-public partial class Control {
-    
-    private string controlCodeField;
-    
-    private Description descriptionField;
-    
-    private ControlPosition controlPositionField;
-    
-    private object[] itemsField;
-    
-    private PunchingUnitType punchingUnitTypeField;
-    
-    private MapPosition mapPositionField;
-    
-    private Comment[] commentField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public string ControlCode {
-        get {
-            return this.controlCodeField;
-        }
-        set {
-            this.controlCodeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Description Description {
-        get {
-            return this.descriptionField;
-        }
-        set {
-            this.descriptionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ControlPosition ControlPosition {
-        get {
-            return this.controlPositionField;
-        }
-        set {
-            this.controlPositionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("PunchPattern", typeof(string))]
-    [System.Xml.Serialization.XmlElementAttribute("PunchingUnit", typeof(PunchingUnit))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public PunchingUnitType PunchingUnitType {
-        get {
-            return this.punchingUnitTypeField;
-        }
-        set {
-            this.punchingUnitTypeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public MapPosition MapPosition {
-        get {
-            return this.mapPositionField;
-        }
-        set {
-            this.mapPositionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Comment")]
-    public Comment[] Comment {
-        get {
-            return this.commentField;
-        }
-        set {
-            this.commentField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PunchingUnit {
-    
-    private string unitCodeField;
-    
-    private PunchingUnitType punchingUnitTypeField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public string UnitCode {
-        get {
-            return this.unitCodeField;
-        }
-        set {
-            this.unitCodeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public PunchingUnitType PunchingUnitType {
-        get {
-            return this.punchingUnitTypeField;
-        }
-        set {
-            this.punchingUnitTypeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class LegLength {
-    
-    private string fromControlField;
-    
-    private LegLengthUnit unitField;
-    
-    private string valueField;
-    
-    public LegLength() {
-        this.unitField = LegLengthUnit.m;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string FromControl {
-        get {
-            return this.fromControlField;
-        }
-        set {
-            this.fromControlField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(LegLengthUnit.m)]
-    public LegLengthUnit unit {
-        get {
-            return this.unitField;
-        }
-        set {
-            this.unitField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum LegLengthUnit {
-    
-    /// <remarks/>
-    m,
-    
-    /// <remarks/>
-    km,
-    
-    /// <remarks/>
-    ft,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class MapTextPosition {
-    
-    private MapPosition mapPositionField;
-    
-    /// <remarks/>
-    public MapPosition MapPosition {
-        get {
-            return this.mapPositionField;
-        }
-        set {
-            this.mapPositionField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum CourseControlMarkedRoute {
-    
-    /// <remarks/>
-    Y,
-    
-    /// <remarks/>
-    N,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class FinishPoint {
-    
-    private string finishPointCodeField;
-    
-    private Description descriptionField;
-    
-    private ControlPosition controlPositionField;
-    
-    private object[] itemsField;
-    
-    private PunchingUnitType punchingUnitTypeField;
-    
-    private MapPosition mapPositionField;
-    
-    private Comment commentField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public string FinishPointCode {
-        get {
-            return this.finishPointCodeField;
-        }
-        set {
-            this.finishPointCodeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Description Description {
-        get {
-            return this.descriptionField;
-        }
-        set {
-            this.descriptionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ControlPosition ControlPosition {
-        get {
-            return this.controlPositionField;
-        }
-        set {
-            this.controlPositionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("PunchPattern", typeof(string))]
-    [System.Xml.Serialization.XmlElementAttribute("PunchingUnit", typeof(PunchingUnit))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public PunchingUnitType PunchingUnitType {
-        get {
-            return this.punchingUnitTypeField;
-        }
-        set {
-            this.punchingUnitTypeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public MapPosition MapPosition {
-        get {
-            return this.mapPositionField;
-        }
-        set {
-            this.mapPositionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Comment Comment {
-        get {
-            return this.commentField;
-        }
-        set {
-            this.commentField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class DistanceToFinish {
-    
-    private string fromControlField;
-    
-    private DistanceToFinishUnit unitField;
-    
-    private string valueField;
-    
-    public DistanceToFinish() {
-        this.unitField = DistanceToFinishUnit.m;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string FromControl {
-        get {
-            return this.fromControlField;
-        }
-        set {
-            this.fromControlField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(DistanceToFinishUnit.m)]
-    public DistanceToFinishUnit unit {
-        get {
-            return this.unitField;
-        }
-        set {
-            this.unitField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum DistanceToFinishUnit {
-    
-    /// <remarks/>
-    m,
-    
-    /// <remarks/>
-    km,
-    
-    /// <remarks/>
-    ft,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class SplitTime {
-    
-    private object itemField;
-    
-    private Time timeField;
-    
-    private string sequenceField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Control", typeof(Control))]
-    [System.Xml.Serialization.XmlElementAttribute("ControlCode", typeof(string))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Time Time {
-        get {
-            return this.timeField;
-        }
-        set {
-            this.timeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string sequence {
-        get {
-            return this.sequenceField;
-        }
-        set {
-            this.sequenceField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class BadgeValue {
-    
-    private BadgeValueId badgeValueIdField;
-    
-    private Name nameField;
-    
-    private ShortName shortNameField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public BadgeValueId BadgeValueId {
-        get {
-            return this.badgeValueIdField;
-        }
-        set {
-            this.badgeValueIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ShortName ShortName {
-        get {
-            return this.shortNameField;
-        }
-        set {
-            this.shortNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class BadgeValueId {
-    
-    private BadgeValueIdType typeField;
-    
-    private bool typeFieldSpecified;
-    
-    private string idManagerField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public BadgeValueIdType type {
-        get {
-            return this.typeField;
-        }
-        set {
-            this.typeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool typeSpecified {
-        get {
-            return this.typeFieldSpecified;
-        }
-        set {
-            this.typeFieldSpecified = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string idManager {
-        get {
-            return this.idManagerField;
-        }
-        set {
-            this.idManagerField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum BadgeValueIdType {
-    
-    /// <remarks/>
-    @int,
-    
-    /// <remarks/>
-    nat,
-    
-    /// <remarks/>
-    reg,
-    
-    /// <remarks/>
-    loc,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Point {
-    
-    private string typeField;
-    
-    private string valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string type {
-        get {
-            return this.typeField;
-        }
-        set {
-            this.typeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class RaceResult {
-    
-    private object itemField;
-    
-    private Result resultField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EventRace", typeof(EventRace))]
-    [System.Xml.Serialization.XmlElementAttribute("EventRaceId", typeof(string))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Result Result {
-        get {
-            return this.resultField;
-        }
-        set {
-            this.resultField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class TeamResult {
-    
-    private string teamNameField;
-    
-    private object itemField;
-    
-    private string startNumberField;
-    
-    private string bibNumberField;
-    
-    private StartTime startTimeField;
-    
-    private FinishTime finishTimeField;
-    
-    private Time timeField;
-    
-    private string resultPositionField;
-    
-    private TeamStatus teamStatusField;
-    
-    private Rank[] rankField;
-    
-    private Point[] pointField;
-    
-    private PersonResult[] personResultField;
-    
-    /// <remarks/>
-    public string TeamName {
-        get {
-            return this.teamNameField;
-        }
-        set {
-            this.teamNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Country", typeof(Country))]
-    [System.Xml.Serialization.XmlElementAttribute("CountryId", typeof(CountryId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string StartNumber {
-        get {
-            return this.startNumberField;
-        }
-        set {
-            this.startNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string BibNumber {
-        get {
-            return this.bibNumberField;
-        }
-        set {
-            this.bibNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public StartTime StartTime {
-        get {
-            return this.startTimeField;
-        }
-        set {
-            this.startTimeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public FinishTime FinishTime {
-        get {
-            return this.finishTimeField;
-        }
-        set {
-            this.finishTimeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Time Time {
-        get {
-            return this.timeField;
-        }
-        set {
-            this.timeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string ResultPosition {
-        get {
-            return this.resultPositionField;
-        }
-        set {
-            this.resultPositionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public TeamStatus TeamStatus {
-        get {
-            return this.teamStatusField;
-        }
-        set {
-            this.teamStatusField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Rank")]
-    public Rank[] Rank {
-        get {
-            return this.rankField;
-        }
-        set {
-            this.rankField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Point")]
-    public Point[] Point {
-        get {
-            return this.pointField;
-        }
-        set {
-            this.pointField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("PersonResult")]
-    public PersonResult[] PersonResult {
-        get {
-            return this.personResultField;
-        }
-        set {
-            this.personResultField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class TeamStatus {
-    
-    private TeamStatusValue valueField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public TeamStatusValue value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum TeamStatusValue {
-    
-    /// <remarks/>
-    Inactive,
-    
-    /// <remarks/>
-    DidNotStart,
-    
-    /// <remarks/>
-    Active,
-    
-    /// <remarks/>
-    Finished,
-    
-    /// <remarks/>
-    OK,
-    
-    /// <remarks/>
-    MisPunch,
-    
-    /// <remarks/>
-    DidNotFinish,
-    
-    /// <remarks/>
-    Disqualified,
-    
-    /// <remarks/>
-    NotCompeting,
-    
-    /// <remarks/>
-    SportWithdr,
-    
-    /// <remarks/>
-    OverTime,
-    
-    /// <remarks/>
-    Moved,
-    
-    /// <remarks/>
-    MovedUp,
-    
-    /// <remarks/>
-    Cancelled,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
 public enum ResultListStatus {
     
     /// <remarks/>
-    complete,
+    Complete,
     
     /// <remarks/>
-    snapshot,
+    Delta,
     
     /// <remarks/>
-    delta,
+    Snapshot,
 }
 
 /// <remarks/>
@@ -7905,851 +8197,25 @@ public enum ResultListStatus {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class BadgeList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private BadgeValue[] badgeValueField;
-    
-    private BadgeLimit[] badgeLimitField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("BadgeValue")]
-    public BadgeValue[] BadgeValue {
-        get {
-            return this.badgeValueField;
-        }
-        set {
-            this.badgeValueField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("BadgeLimit")]
-    public BadgeLimit[] BadgeLimit {
-        get {
-            return this.badgeLimitField;
-        }
-        set {
-            this.badgeLimitField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class BadgeLimit {
-    
-    private object itemField;
-    
-    private object item1Field;
-    
-    private object item2Field;
-    
-    private string timeFactorField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("BadgeValue", typeof(BadgeValue))]
-    [System.Xml.Serialization.XmlElementAttribute("BadgeValueId", typeof(BadgeValueId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EventClassification", typeof(EventClassification))]
-    [System.Xml.Serialization.XmlElementAttribute("EventClassificationId", typeof(EventClassificationId))]
-    public object Item1 {
-        get {
-            return this.item1Field;
-        }
-        set {
-            this.item1Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClassType", typeof(ClassType))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassTypeId", typeof(ClassTypeId))]
-    public object Item2 {
-        get {
-            return this.item2Field;
-        }
-        set {
-            this.item2Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string TimeFactor {
-        get {
-            return this.timeFactorField;
-        }
-        set {
-            this.timeFactorField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ResultSelection {
-    
-    private object[] itemsField;
-    
-    private object[] items1Field;
-    
-    private object[] items2Field;
-    
-    private string positionField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Organisation", typeof(Organisation))]
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationId", typeof(OrganisationId))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Club", typeof(Club))]
-    [System.Xml.Serialization.XmlElementAttribute("ClubId", typeof(ClubId))]
-    public object[] Items1 {
-        get {
-            return this.items1Field;
-        }
-        set {
-            this.items1Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Class", typeof(Class))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassId", typeof(ClassId))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassShortName", typeof(ClassShortName))]
-    public object[] Items2 {
-        get {
-            return this.items2Field;
-        }
-        set {
-            this.items2Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string Position {
-        get {
-            return this.positionField;
-        }
-        set {
-            this.positionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClassData {
-    
-    private IOFVersion iOFVersionField;
-    
-    private ClassType[] classTypeField;
-    
-    private Class[] classField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClassType")]
-    public ClassType[] ClassType {
-        get {
-            return this.classTypeField;
-        }
-        set {
-            this.classTypeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Class")]
-    public Class[] Class {
-        get {
-            return this.classField;
-        }
-        set {
-            this.classField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-[System.Xml.Serialization.XmlRootAttribute(IsNullable=false)]
-public partial class CourseData {
-    
-    private IOFVersion iOFVersionField;
-    
-    private Map mapField;
-    
-    private StartPoint[] startPointField;
-    
-    private Control[] controlField;
-    
-    private FinishPoint[] finishPointField;
-    
-    private Course[] courseField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Map Map {
-        get {
-            return this.mapField;
-        }
-        set {
-            this.mapField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("StartPoint")]
-    public StartPoint[] StartPoint {
-        get {
-            return this.startPointField;
-        }
-        set {
-            this.startPointField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Control")]
-    public Control[] Control {
-        get {
-            return this.controlField;
-        }
-        set {
-            this.controlField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("FinishPoint")]
-    public FinishPoint[] FinishPoint {
-        get {
-            return this.finishPointField;
-        }
-        set {
-            this.finishPointField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Course")]
-    public Course[] Course {
-        get {
-            return this.courseField;
-        }
-        set {
-            this.courseField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Map {
-    
-    private string scaleField;
-    
-    private MapPosition mapPositionField;
-    
-    /// <remarks/>
-    public string Scale {
-        get {
-            return this.scaleField;
-        }
-        set {
-            this.scaleField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public MapPosition MapPosition {
-        get {
-            return this.mapPositionField;
-        }
-        set {
-            this.mapPositionField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Course {
-    
-    private string courseNameField;
-    
-    private string courseIdField;
-    
-    private EventId eventIdField;
-    
-    private string eventRaceIdField;
-    
-    private object[] itemsField;
-    
-    private CourseVariation[] courseVariationField;
-    
-    private CourseSectionList courseSectionListField;
-    
-    /// <remarks/>
-    public string CourseName {
-        get {
-            return this.courseNameField;
-        }
-        set {
-            this.courseNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string CourseId {
-        get {
-            return this.courseIdField;
-        }
-        set {
-            this.courseIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public EventId EventId {
-        get {
-            return this.eventIdField;
-        }
-        set {
-            this.eventIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string EventRaceId {
-        get {
-            return this.eventRaceIdField;
-        }
-        set {
-            this.eventRaceIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClassId", typeof(ClassId))]
-    [System.Xml.Serialization.XmlElementAttribute("ClassShortName", typeof(ClassShortName))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CourseVariation")]
-    public CourseVariation[] CourseVariation {
-        get {
-            return this.courseVariationField;
-        }
-        set {
-            this.courseVariationField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public CourseSectionList CourseSectionList {
-        get {
-            return this.courseSectionListField;
-        }
-        set {
-            this.courseSectionListField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CourseSectionList {
-    
-    private string startPointCodeField;
-    
-    private CourseSection[] courseSectionField;
-    
-    private string finishPointCodeField;
-    
-    private DistanceToFinish[] distanceToFinishField;
-    
-    /// <remarks/>
-    public string StartPointCode {
-        get {
-            return this.startPointCodeField;
-        }
-        set {
-            this.startPointCodeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CourseSection")]
-    public CourseSection[] CourseSection {
-        get {
-            return this.courseSectionField;
-        }
-        set {
-            this.courseSectionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string FinishPointCode {
-        get {
-            return this.finishPointCodeField;
-        }
-        set {
-            this.finishPointCodeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("DistanceToFinish")]
-    public DistanceToFinish[] DistanceToFinish {
-        get {
-            return this.distanceToFinishField;
-        }
-        set {
-            this.distanceToFinishField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CourseSection {
-    
-    private string courseSectionIdField;
-    
-    private CourseBranch[] courseBranchField;
-    
-    /// <remarks/>
-    public string CourseSectionId {
-        get {
-            return this.courseSectionIdField;
-        }
-        set {
-            this.courseSectionIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CourseBranch")]
-    public CourseBranch[] CourseBranch {
-        get {
-            return this.courseBranchField;
-        }
-        set {
-            this.courseBranchField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CourseBranch {
-    
-    private string courseBranchIdField;
-    
-    private CourseControl[] courseControlField;
-    
-    /// <remarks/>
-    public string CourseBranchId {
-        get {
-            return this.courseBranchIdField;
-        }
-        set {
-            this.courseBranchIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CourseControl")]
-    public CourseControl[] CourseControl {
-        get {
-            return this.courseControlField;
-        }
-        set {
-            this.courseControlField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class OrganisationList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private OrganisationType[] organisationTypeField;
-    
-    private Organisation[] organisationField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationType")]
-    public OrganisationType[] OrganisationType {
-        get {
-            return this.organisationTypeField;
-        }
-        set {
-            this.organisationTypeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Organisation")]
-    public Organisation[] Organisation {
-        get {
-            return this.organisationField;
-        }
-        set {
-            this.organisationField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Press {
-    
-    private Name nameField;
-    
-    private Contact[] contactField;
-    
-    private Address[] addressField;
-    
-    private Tele[] teleField;
-    
-    private object itemField;
-    
-    private ResultSelection[] resultSelectionField;
-    
-    private ModifyDate modifyDateField;
-    
-    private PressMediaType mediaTypeField;
-    
-    /// <remarks/>
-    public Name Name {
-        get {
-            return this.nameField;
-        }
-        set {
-            this.nameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Contact")]
-    public Contact[] Contact {
-        get {
-            return this.contactField;
-        }
-        set {
-            this.contactField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Address")]
-    public Address[] Address {
-        get {
-            return this.addressField;
-        }
-        set {
-            this.addressField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Tele")]
-    public Tele[] Tele {
-        get {
-            return this.teleField;
-        }
-        set {
-            this.teleField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Country", typeof(Country))]
-    [System.Xml.Serialization.XmlElementAttribute("CountryId", typeof(CountryId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ResultSelection")]
-    public ResultSelection[] ResultSelection {
-        get {
-            return this.resultSelectionField;
-        }
-        set {
-            this.resultSelectionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public PressMediaType mediaType {
-        get {
-            return this.mediaTypeField;
-        }
-        set {
-            this.mediaTypeField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-public enum PressMediaType {
-    
-    /// <remarks/>
-    paper,
-    
-    /// <remarks/>
-    tv,
-    
-    /// <remarks/>
-    radio,
-    
-    /// <remarks/>
-    magazine,
-    
-    /// <remarks/>
-    web,
-    
-    /// <remarks/>
-    other,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PressList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private Press[] pressField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Press")]
-    public Press[] Press {
-        get {
-            return this.pressField;
-        }
-        set {
-            this.pressField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ServiceRequestList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private ClubServiceRequest[] clubServiceRequestField;
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.orienteering.org/datastandard/3.0", IsNullable=false)]
+public partial class ServiceRequestList : BaseMessageElement {
+    
+    private Event eventField;
     
     private OrganisationServiceRequest[] organisationServiceRequestField;
     
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
+    private PersonServiceRequest[] personServiceRequestField;
+    
+    private Extensions extensionsField;
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ClubServiceRequest")]
-    public ClubServiceRequest[] ClubServiceRequest {
+    public Event Event {
         get {
-            return this.clubServiceRequestField;
+            return this.eventField;
         }
         set {
-            this.clubServiceRequestField = value;
+            this.eventField = value;
         }
     }
     
@@ -8763,45 +8229,6 @@ public partial class ServiceRequestList {
             this.organisationServiceRequestField = value;
         }
     }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ClubServiceRequest {
-    
-    private object itemField;
-    
-    private ServiceRequest[] serviceRequestField;
-    
-    private PersonServiceRequest[] personServiceRequestField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Club", typeof(Club))]
-    [System.Xml.Serialization.XmlElementAttribute("ClubId", typeof(ClubId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
-    public ServiceRequest[] ServiceRequest {
-        get {
-            return this.serviceRequestField;
-        }
-        set {
-            this.serviceRequestField = value;
-        }
-    }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("PersonServiceRequest")]
@@ -8813,88 +8240,14 @@ public partial class ClubServiceRequest {
             this.personServiceRequestField = value;
         }
     }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ServiceRequest {
-    
-    private object itemField;
-    
-    private string serviceOrderNumberField;
-    
-    private RequestedQuantity requestedQuantityField;
-    
-    private DeliveredQuantity deliveredQuantityField;
-    
-    private Comment commentField;
-    
-    private ModifyDate modifyDateField;
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Service", typeof(Service))]
-    [System.Xml.Serialization.XmlElementAttribute("ServiceId", typeof(string))]
-    public object Item {
+    public Extensions Extensions {
         get {
-            return this.itemField;
+            return this.extensionsField;
         }
         set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string ServiceOrderNumber {
-        get {
-            return this.serviceOrderNumberField;
-        }
-        set {
-            this.serviceOrderNumberField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public RequestedQuantity RequestedQuantity {
-        get {
-            return this.requestedQuantityField;
-        }
-        set {
-            this.requestedQuantityField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public DeliveredQuantity DeliveredQuantity {
-        get {
-            return this.deliveredQuantityField;
-        }
-        set {
-            this.deliveredQuantityField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Comment Comment {
-        get {
-            return this.commentField;
-        }
-        set {
-            this.commentField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
+            this.extensionsField = value;
         }
     }
 }
@@ -8904,431 +8257,44 @@ public partial class ServiceRequest {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class RequestedQuantity {
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.orienteering.org/datastandard/3.0")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.orienteering.org/datastandard/3.0", IsNullable=false)]
+public partial class ControlCardList : BaseMessageElement {
     
-    private string unitField;
+    private string ownerField;
     
-    private string valueField;
+    private ControlCard[] controlCardField;
     
-    public RequestedQuantity() {
-        this.unitField = "Pcs";
-    }
+    private Extensions extensionsField;
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute("Pcs")]
-    public string unit {
+    public string Owner {
         get {
-            return this.unitField;
+            return this.ownerField;
         }
         set {
-            this.unitField = value;
+            this.ownerField = value;
         }
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
+    [System.Xml.Serialization.XmlElementAttribute("ControlCard")]
+    public ControlCard[] ControlCard {
         get {
-            return this.valueField;
+            return this.controlCardField;
         }
         set {
-            this.valueField = value;
+            this.controlCardField = value;
         }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class DeliveredQuantity {
-    
-    private string unitField;
-    
-    private string valueField;
-    
-    public DeliveredQuantity() {
-        this.unitField = "Pcs";
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute("Pcs")]
-    public string unit {
+    public Extensions Extensions {
         get {
-            return this.unitField;
+            return this.extensionsField;
         }
         set {
-            this.unitField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-        get {
-            return this.valueField;
-        }
-        set {
-            this.valueField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class PersonServiceRequest {
-    
-    private object itemField;
-    
-    private ServiceRequest[] serviceRequestField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Person", typeof(Person))]
-    [System.Xml.Serialization.XmlElementAttribute("PersonId", typeof(PersonId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
-    public ServiceRequest[] ServiceRequest {
-        get {
-            return this.serviceRequestField;
-        }
-        set {
-            this.serviceRequestField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class OrganisationServiceRequest {
-    
-    private object itemField;
-    
-    private ServiceRequest[] serviceRequestField;
-    
-    private PersonServiceRequest[] personServiceRequestField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Organisation", typeof(Organisation))]
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationId", typeof(OrganisationId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ServiceRequest")]
-    public ServiceRequest[] ServiceRequest {
-        get {
-            return this.serviceRequestField;
-        }
-        set {
-            this.serviceRequestField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("PersonServiceRequest")]
-    public PersonServiceRequest[] PersonServiceRequest {
-        get {
-            return this.personServiceRequestField;
-        }
-        set {
-            this.personServiceRequestField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class Transaction {
-    
-    private Account accountField;
-    
-    private ForeignAccount foreignAccountField;
-    
-    private Date dateField;
-    
-    private Amount amountField;
-    
-    private object itemField;
-    
-    private object[] itemsField;
-    
-    private string[] entryIdField;
-    
-    private object[] items1Field;
-    
-    private Items1ChoiceType[] items1ElementNameField;
-    
-    private ModifyDate modifyDateField;
-    
-    /// <remarks/>
-    public Account Account {
-        get {
-            return this.accountField;
-        }
-        set {
-            this.accountField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ForeignAccount ForeignAccount {
-        get {
-            return this.foreignAccountField;
-        }
-        set {
-            this.foreignAccountField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Date Date {
-        get {
-            return this.dateField;
-        }
-        set {
-            this.dateField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public Amount Amount {
-        get {
-            return this.amountField;
-        }
-        set {
-            this.amountField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Club", typeof(Club))]
-    [System.Xml.Serialization.XmlElementAttribute("ClubId", typeof(ClubId))]
-    [System.Xml.Serialization.XmlElementAttribute("Organisation", typeof(Organisation))]
-    [System.Xml.Serialization.XmlElementAttribute("OrganisationId", typeof(OrganisationId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Person", typeof(Person))]
-    [System.Xml.Serialization.XmlElementAttribute("PersonId", typeof(PersonId))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("EntryId")]
-    public string[] EntryId {
-        get {
-            return this.entryIdField;
-        }
-        set {
-            this.entryIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Service", typeof(Service))]
-    [System.Xml.Serialization.XmlElementAttribute("ServiceId", typeof(string))]
-    [System.Xml.Serialization.XmlElementAttribute("ServiceOrderNumber", typeof(string))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("Items1ElementName")]
-    public object[] Items1 {
-        get {
-            return this.items1Field;
-        }
-        set {
-            this.items1Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Items1ElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public Items1ChoiceType[] Items1ElementName {
-        get {
-            return this.items1ElementNameField;
-        }
-        set {
-            this.items1ElementNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public ModifyDate ModifyDate {
-        get {
-            return this.modifyDateField;
-        }
-        set {
-            this.modifyDateField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class ForeignAccount {
-    
-    private Account accountField;
-    
-    /// <remarks/>
-    public Account Account {
-        get {
-            return this.accountField;
-        }
-        set {
-            this.accountField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/IOFdata", IncludeInSchema=false)]
-public enum Items1ChoiceType {
-    
-    /// <remarks/>
-    Service,
-    
-    /// <remarks/>
-    ServiceId,
-    
-    /// <remarks/>
-    ServiceOrderNumber,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class TransactionList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private object itemField;
-    
-    private Transaction[] transactionField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Event", typeof(Event))]
-    [System.Xml.Serialization.XmlElementAttribute("EventId", typeof(EventId))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Transaction")]
-    public Transaction[] Transaction {
-        get {
-            return this.transactionField;
-        }
-        set {
-            this.transactionField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.18020")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/IOFdata")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/IOFdata", IsNullable=false)]
-public partial class CountryList {
-    
-    private IOFVersion iOFVersionField;
-    
-    private Country[] countryField;
-    
-    /// <remarks/>
-    public IOFVersion IOFVersion {
-        get {
-            return this.iOFVersionField;
-        }
-        set {
-            this.iOFVersionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Country")]
-    public Country[] Country {
-        get {
-            return this.countryField;
-        }
-        set {
-            this.countryField = value;
+            this.extensionsField = value;
         }
     }
 }
