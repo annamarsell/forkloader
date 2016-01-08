@@ -9,8 +9,8 @@ namespace ForkLoader
     public class ForkKeysValidator
     {
         private List<ForkKey> m_keys;
-        private List<Course> m_courses;
-        public ForkKeysValidator(List<ForkKey> keys, List<Course> courses)
+        private Dictionary<string, Course> m_courses;
+        public ForkKeysValidator(List<ForkKey> keys, Dictionary<string, Course> courses)
         {
             m_keys = keys;
             m_courses = courses;
@@ -26,9 +26,13 @@ namespace ForkLoader
             List<Leg> legsToComplete = GetLegs(m_keys.First());
             foreach (ForkKey forkKey in m_keys)
             {
-                
+                List<Leg> otherLegsToComplete = GetLegs(forkKey);
+                if (!ContainSameLegs(legsToComplete, otherLegsToComplete, m_keys.First().TeamNumber, forkKey.TeamNumber))
+                {
+                    return false;
+                }
             }
-            return false;
+            return true;
         }
 
         private List<Leg> GetLegs(ForkKey key)
@@ -36,8 +40,7 @@ namespace ForkLoader
             var legs = new List<Leg>();
             foreach (string fork in key.Forks)
             {
-                int courseId = GetCourseIdFromFork(fork);
-                Course course = m_courses[courseId];
+                Course course = m_courses[fork];
                 legs.Add(new Leg(course.StartPointId, course.Controls[0].ToString(), true, false));
                 for (int i = 1; i < course.Controls.Count; i++)
                 {
@@ -48,18 +51,18 @@ namespace ForkLoader
             return legs;
         }
 
-        private bool ContainSameLegs(List<Leg> legs1, List<Leg> legs2)
+        private bool ContainSameLegs(List<Leg> legs1, List<Leg> legs2, int teamNumber1, int teamNumber2)
         {
             List<Leg> tempLegs = new List<Leg>(legs2);
             foreach (Leg l1 in legs1)
             {
                 if (tempLegs.Any(l2 => l2.IsEqual(l1)))
                 {
-                    tempLegs.Remove(legs2.First(l2 => l2.IsEqual(l1)));
+                    tempLegs.Remove(tempLegs.First(l2 => l2.IsEqual(l1)));
                 }
                 else
                 {
-                    Console.WriteLine("Could not find leg {0}", l1);
+                    Console.WriteLine("Could not find leg {0} for team number {1}", l1, teamNumber2);
                     return false;
                 }
             }
@@ -67,16 +70,13 @@ namespace ForkLoader
             {
                 foreach (Leg leg in tempLegs)
                 {
-                    Console.WriteLine("Could not find leg {0}", leg);                    
+                    Console.WriteLine("Could not find leg {0} for team number {1}", leg, teamNumber1);                    
                 }
                 return false;
             }
             return true;
         }
 
-        private int GetCourseIdFromFork(string fork)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

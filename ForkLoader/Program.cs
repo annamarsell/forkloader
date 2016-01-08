@@ -64,9 +64,19 @@ namespace ForkLoader
             courseDataReader = new CourseDataReader(courseDataFileName);
 
             List<ForkKey> forkKeys = forkKeyReader.ReadForkKeys();
-            Dictionary<string, Course> corses = courseDataReader.ReadCourses();
+            Dictionary<string, Course> courses = courseDataReader.ReadCourses();
 
+            var forkKeysValidator = new ForkKeysValidator(forkKeys, courses);
+            bool forkKeysOK = forkKeysValidator.Validate();
 
+            if (forkKeysOK)
+            {
+                Console.WriteLine("Fork keys validated OK.");
+            }
+            else
+            {
+                Console.WriteLine("Fork keys did not validate OK.");
+            }
             Console.ReadKey();
         }
     }

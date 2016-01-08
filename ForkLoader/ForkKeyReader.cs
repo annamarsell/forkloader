@@ -28,21 +28,25 @@ namespace ForkLoader
                 {
                     ForkKey forkKey = new ForkKey();
                     string[] parts = forkKeyString.Split(new char[] {';'});
-                    try
+                    if (!string.IsNullOrEmpty(parts[0]))
                     {
-                        forkKey.TeamNumber = Convert.ToInt32(parts[0]);
+                        try
+                        {
+                            forkKey.TeamNumber = Convert.ToInt32(parts[0]);
+                        }
+                        catch (Exception)
+                        {
+                            if (m_loggger.IsErrorEnabled)
+                                m_loggger.ErrorFormat("{0} does not begin with a valid team number.", forkKeyString);
+                            throw;
+                        }
+                        forkKey.Forks = new List<string>();
+                        for (int i = 1; i < parts.Length; i++)
+                        {
+                            forkKey.Forks.Add(parts[i]);
+                        }
+                        forkKeys.Add(forkKey);
                     }
-                    catch (Exception)
-                    {
-                        if(m_loggger.IsErrorEnabled) m_loggger.ErrorFormat("{0} does not begin with a valid team number.", forkKeyString);
-                        throw;
-                    }
-                    forkKey.Forks = new List<string>();
-                    for(int i=1; i<parts.Length; i++)
-                    {
-                        forkKey.Forks.Add(parts[i]);
-                    }
-                    forkKeys.Add(forkKey);
                 }
             }
             return forkKeys;

@@ -7,3 +7,4 @@ E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoader\obj\Debug\ForkLoader.exe
 E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoader\obj\Debug\ForkLoader.pdb
 E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoader\bin\Debug\MySql.Data.Entity.EF6.dll
 E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoader\bin\Debug\MySql.Fabric.Plugin.dll
+E:\privat\10Mila2016\ForkLoader\forkloader\ForkLoader\obj\Debug\ForkLoader.csprojResolveAssemblyReference.cache
