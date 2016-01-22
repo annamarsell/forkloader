@@ -63,9 +63,12 @@ namespace ForkLoader
             string myConnectionString;
 
             myConnectionString = "server=127.0.0.1;uid=root;" +
-                "pwd=12345;database=dmstafett;";
+                "pwd=12345;database=dmstafett;";          
+        }
 
-            
+        public List<ForkKey> ReadForkKeys()
+        {
+            throw new NotImplementedException();
         }
 
         private List<RaceClass> ReadRaceClasses()
@@ -107,15 +110,34 @@ namespace ForkLoader
             return null;
         }
 
-        private int CourseNameToId(string name)
+        private int? CourseNameToId(string name)
         {
             MySql.Data.MySqlClient.MySqlConnection conn = null;
+            int? courseId = null;
             try
             {
                 conn = new MySql.Data.MySqlClient.MySqlConnection(m_connectionString);
                 conn.Open();
                 IDbCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "select * from raceclasscourses where eventClassId = " + m_eventClassId;
+                cmd.CommandText = "select * from courses where name = " + name;
+                IDataReader reader = cmd.ExecuteReader();
+                int nFoundCourses = 0;
+                while (reader.Read())
+                {
+                    try
+                    {
+                        courseId = Convert.ToInt32(reader["courseId"]);
+                        nFoundCourses++;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Failed to convert course id " + reader["courseId"] + " for course with name " + name);
+                    }
+                }
+                if (nFoundCourses != 1)
+                {
+                    Console.WriteLine("Found " + nFoundCourses + " with name " + name + " expected 1.");
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -128,6 +150,7 @@ namespace ForkLoader
                     conn.Close();
                 }
             }
+            return courseId;
         }
     }
 }
