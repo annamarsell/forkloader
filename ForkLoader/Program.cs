@@ -16,6 +16,7 @@ namespace ForkLoader
 
             bool verifySourceOnly = false;
             bool verifyTargetOnly = false;
+            bool verifySourceAndTargetOnly = false;
             int eventClassId;
 
 
@@ -36,6 +37,7 @@ namespace ForkLoader
                 Console.WriteLine("Second argument is options (optional):");
                 Console.WriteLine("-s Verify source only, no import.");
                 Console.WriteLine("-t Verify target only, no import.");
+                Console.WriteLine("-st Verify source and target only, no import.");
                 Console.WriteLine("Press any key to terminate the program.");
                 Console.ReadKey();
                 return;
@@ -61,6 +63,10 @@ namespace ForkLoader
                 if (string.Equals(option, "-t", StringComparison.OrdinalIgnoreCase))
                 {
                     verifyTargetOnly = true;
+                }
+                if (string.Equals(option, "-t", StringComparison.OrdinalIgnoreCase))
+                {
+                    verifySourceAndTargetOnly = true;
                 }
             }
 
@@ -129,7 +135,7 @@ namespace ForkLoader
                     Console.ReadKey();
                     return;
                 }
-                if (!verifySourceOnly)
+                if (!verifySourceOnly && !verifySourceAndTargetOnly)
                 {
                     writer.WriteForkKeys(forkKeys);
                 }
@@ -150,15 +156,18 @@ namespace ForkLoader
                             " fork key was: " + targetForkKey + ", expected: " + forkKey);
                     }
                 }
+                targetForkKeys.Remove(targetForkKey);
             }
-
+            if (targetForkKeys.Any())
+            {
+                Console.WriteLine("Validation failed, target contains " + targetForkKeys.Count + " fork keys more than source.");
+            }
             if (targetValidationOk)
             {
                 Console.WriteLine("Target validation OK.");
             }
             Console.WriteLine("Press any key to terminate the program.");
             Console.ReadKey();
-            return;
         }
     }
 }
