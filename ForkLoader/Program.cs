@@ -143,10 +143,10 @@ namespace ForkLoader
             // Finally, verify the target
             List<ForkKey> targetForkKeys = writer.ReadForkKeys();
             bool targetValidationOk = true;
-            foreach (ForkKey forkKey in forkKeys)
+            foreach (ForkKey targetForkKey in targetForkKeys)
             {
-                ForkKey targetForkKey =
-                    targetForkKeys.Single(tfk => tfk.ClassId == forkKey.ClassId && tfk.TeamNumber == forkKey.TeamNumber);
+                ForkKey  forkKey=
+                    targetForkKeys.Single(tfk => tfk.ClassId == targetForkKey.ClassId && tfk.TeamNumber == targetForkKey.TeamNumber);
                 for (int i = 0; i < forkKey.Forks.Count; i++)
                 {
                     if (!string.Equals(forkKey.Forks[i], targetForkKey.Forks[i]))
@@ -156,11 +156,6 @@ namespace ForkLoader
                             " fork key was: " + targetForkKey + ", expected: " + forkKey);
                     }
                 }
-                targetForkKeys.Remove(targetForkKey);
-            }
-            if (targetForkKeys.Any())
-            {
-                Console.WriteLine("Validation failed, target contains " + targetForkKeys.Count + " fork keys more than source.");
             }
             if (targetValidationOk)
             {

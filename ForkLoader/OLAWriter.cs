@@ -21,11 +21,11 @@ namespace ForkLoader
         // raceClasses table keyed by startNumberBase and relayLeg
 
         private readonly string m_connectionString;
-        private readonly int m_raceClassId;
-        public OlaWriter(string connectionString, int raceClassId)
+        private readonly int m_eventClassId;
+        public OlaWriter(string connectionString, int eventClassId)
         {
             m_connectionString = connectionString;
-            m_raceClassId = raceClassId;
+            m_eventClassId = eventClassId;
         }
 
         public void WriteForkKeys(List<ForkKey> forkKeys)
@@ -54,11 +54,19 @@ namespace ForkLoader
                             //{
                             //    Console.WriteLine("");
                             //}
-                            cmd.CommandText = "update results set individualCourseId = " +
-                                              CourseNameToId(forkKey.Forks[leg - 1]) +
-                                              ", forkedCourseId = " + CourseNameToId(forkKey.Forks[leg - 1]) +
-                                              " where raceClassId = " + raceClassId;
-                            cmd.ExecuteNonQuery();
+                            int? courseId = CourseNameToId(forkKey.Forks[leg - 1]);
+                            if (courseId.HasValue)
+                            {
+                                cmd.CommandText = "update results set individualCourseId = " +
+                                                  + courseId.Value +
+                                                      ", forkedCourseId = " + courseId.Value +
+                                                  " where raceClassId = " + raceClassId;
+                                cmd.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Failed to retrieve course id for course with name " + forkKey.Forks[leg - 1]);
+                            }
                         }
                     }
                 }
@@ -84,37 +92,51 @@ namespace ForkLoader
         {
             var forkKeys = new List<ForkKey>();
             List<RaceClass> raceClasses = ReadRaceClasses();
+            int[] raceClassIds = raceClasses.Select(rc => rc.RaceClassId).ToArray();
+            string raceClassesString = string.Empty;
+            for (int i=0; i<eventClasses.Count(); i++)
+            {
+                raceClassesString += eventClasses[i];
+                if (i != eventClasses.Count() - 1)
+                {
+                    raceClassesString += ",";
+                }
+                raceClassesString += " ";
+            }
             MySql.Data.MySqlClient.MySqlConnection conn = null;
             try
             {
                 conn = new MySql.Data.MySqlClient.MySqlConnection(m_connectionString);
                 conn.Open();
                 IDbCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "select * from results where raceClassId = " + m_raceClassId;
+                cmd.CommandText = "select * from results where raceClassId in " + raceClassesString;
                 IDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     int classId = Convert.ToInt32(reader["raceClassId"]);
                     int bibNumber = Convert.ToInt32(reader["bibNumber"]);
-                    int leg = raceClasses.Single(rc => rc.RaceClassId == classId).RelayLeg;
-                    int individualCourseId = Convert.ToInt32(reader["individualCourseId"]);
-                    int forkedCourseId = Convert.ToInt32(reader["forkedCourseId"]);
-                    if (individualCourseId != forkedCourseId)
+                    if (raceClasses.Any(rc => rc.RaceClassId == classId))
                     {
-                        Console.WriteLine("Individual course id " + individualCourseId + " differs from forkedCourseId " + forkedCourseId + " for team number " + bibNumber);
-                    }
-                    if(!forkKeys.Any(fk => fk.TeamNumber == bibNumber))
-                    {
-                        forkKeys.Add(new ForkKey
+                        int leg = raceClasses.Single(rc => rc.RaceClassId == classId).RelayLeg;
+                        int individualCourseId = Convert.ToInt32(reader["individualCourseId"]);
+                        int forkedCourseId =Convert.ToInt32(reader["forkedCourseId"]);
+                        if (individualCourseId != forkedCourseId)
                         {
-                            TeamNumber = bibNumber,
-                            ClassId = classId,
-                            Forks = new List<string>()
-                        });
+                            Console.WriteLine("Individual course id " + individualCourseId + " differs from forkedCourseId " +
+                                              forkedCourseId + " for team number " + bibNumber);
+                        }
+                        if (!forkKeys.Any(fk => fk.TeamNumber == bibNumber))
+                        {
+                            forkKeys.Add(new ForkKey
+                            {
+                                TeamNumber = bibNumber,
+                                ClassId = classId,
+                                Forks = new List<string>()
+                            });
+                        }
+                        ForkKey forkKey = forkKeys.Single(fk => fk.TeamNumber == bibNumber);
+                        forkKey.Forks[leg - 1] = CourseIdToName(individualCourseId);
                     }
-                    ForkKey forkKey = forkKeys.Single(fk => fk.TeamNumber == bibNumber);
-                    forkKey.Forks[leg - 1] = CourseIdToName(individualCourseId);
-
                 }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
@@ -139,19 +161,27 @@ namespace ForkLoader
                 conn = new MySql.Data.MySqlClient.MySqlConnection(m_connectionString);
                 conn.Open();
                 IDbCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "select * from raceclasses where eventClassId = " + m_raceClassId;
+                cmd.CommandText = "select * from raceclasses where eventClassId = " + m_eventClassId;
                 IDataReader reader = cmd.ExecuteReader();
                 var raceClasses = new List<RaceClass>();
+                int startNumberBase = -1;
                 while (reader.Read())
                 {
+                     
                     if (reader["eventClassId"] != null && reader["eventClassId"] != DBNull.Value &&
                         reader["raceClassId"] != null && reader["raceClassId"] != DBNull.Value &&
                         reader["startNumberBase"] != null && reader["startNumberBase"] != DBNull.Value &&
                         reader["relayLeg"] != null && reader["relayLeg"] != DBNull.Value)
                     {
-                        raceClasses.Add(new RaceClass(Convert.ToInt32(reader["eventClassId"]),
-                            Convert.ToInt32(reader["raceClassId"]),
-                            Convert.ToInt32(reader["startNumberBase"]), Convert.ToInt32(reader["relayLeg"])));
+                        if (Convert.ToInt32(reader["startNumberInherit"]) == 0)
+                        {
+                            startNumberBase = Convert.ToInt32(reader["startNumberBase"]);
+                        }
+                        RaceClass raceClass = new RaceClass(Convert.ToInt32(reader["eventClassId"]),
+                            Convert.ToInt32(reader["raceClassId"]), startNumberBase,
+                             Convert.ToInt32(reader["relayLeg"]));
+
+                        raceClasses.Add(raceClass);
                     }
                 }
                 return raceClasses;
@@ -179,7 +209,7 @@ namespace ForkLoader
                 conn = new MySql.Data.MySqlClient.MySqlConnection(m_connectionString);
                 conn.Open();
                 IDbCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "select * from courses where name = " + name;
+                cmd.CommandText = "select * from courses where name = '" + name + "'";
                 IDataReader reader = cmd.ExecuteReader();
                 int nFoundCourses = 0;
                 while (reader.Read())
