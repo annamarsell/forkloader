@@ -14,7 +14,7 @@ namespace ForkLoaderTest
         [Test]
         public void CanCreateOlaWriter()
         {
-            var sut = new OlaWriter(string.Empty);
+            var sut = new OlaWriter(string.Empty, 1);
         }
     }
 }

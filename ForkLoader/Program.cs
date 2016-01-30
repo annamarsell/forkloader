@@ -60,13 +60,18 @@ namespace ForkLoader
                 {
                     verifySourceOnly = true;
                 }
-                if (string.Equals(option, "-t", StringComparison.OrdinalIgnoreCase))
+                else if (string.Equals(option, "-t", StringComparison.OrdinalIgnoreCase))
                 {
                     verifyTargetOnly = true;
                 }
-                if (string.Equals(option, "-t", StringComparison.OrdinalIgnoreCase))
+                else if (string.Equals(option, "-st", StringComparison.OrdinalIgnoreCase))
                 {
                     verifySourceAndTargetOnly = true;
+                }
+                else
+                {
+                    Console.WriteLine("Valid options are -s, -t, and -st. Using default option -s");
+                    verifySourceOnly = true;
                 }
             }
 
@@ -141,25 +146,30 @@ namespace ForkLoader
                 }
             }
             // Finally, verify the target
-            List<ForkKey> targetForkKeys = writer.ReadForkKeys();
-            bool targetValidationOk = true;
-            foreach (ForkKey targetForkKey in targetForkKeys)
+            if (!verifySourceOnly)
             {
-                ForkKey  forkKey=
-                    targetForkKeys.Single(tfk => tfk.ClassId == targetForkKey.ClassId && tfk.TeamNumber == targetForkKey.TeamNumber);
-                for (int i = 0; i < forkKey.Forks.Count; i++)
+                List<ForkKey> targetForkKeys = writer.ReadForkKeys();
+                bool targetValidationOk = true;
+                foreach (ForkKey targetForkKey in targetForkKeys)
                 {
-                    if (!string.Equals(forkKey.Forks[i], targetForkKey.Forks[i]))
+                    ForkKey forkKey =
+                        targetForkKeys.Single(
+                            tfk => tfk.ClassId == targetForkKey.ClassId && tfk.TeamNumber == targetForkKey.TeamNumber);
+                    for (int i = 0; i < forkKey.Forks.Count; i++)
                     {
-                        targetValidationOk = false;
-                        Console.WriteLine("Validation of target failed for team " + forkKey.TeamNumber + " in class " + forkKey.ClassId + " on leg " + (i+1).ToString() +
-                            " fork key was: " + targetForkKey + ", expected: " + forkKey);
+                        if (!string.Equals(forkKey.Forks[i], targetForkKey.Forks[i]))
+                        {
+                            targetValidationOk = false;
+                            Console.WriteLine("Validation of target failed for team " + forkKey.TeamNumber +
+                                              " in class " + forkKey.ClassId + " on leg " + (i + 1).ToString() +
+                                              " fork key was: " + targetForkKey + ", expected: " + forkKey);
+                        }
                     }
                 }
-            }
-            if (targetValidationOk)
-            {
-                Console.WriteLine("Target validation OK.");
+                if (targetValidationOk)
+                {
+                    Console.WriteLine("Target validation OK.");
+                }
             }
             Console.WriteLine("Press any key to terminate the program.");
             Console.ReadKey();

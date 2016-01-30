@@ -94,10 +94,10 @@ namespace ForkLoader
             List<RaceClass> raceClasses = ReadRaceClasses();
             int[] raceClassIds = raceClasses.Select(rc => rc.RaceClassId).ToArray();
             string raceClassesString = string.Empty;
-            for (int i=0; i<eventClasses.Count(); i++)
+            for (int i = 0; i < raceClassIds.Count(); i++)
             {
-                raceClassesString += eventClasses[i];
-                if (i != eventClasses.Count() - 1)
+                raceClassesString += raceClassIds[i];
+                if (i != raceClassIds.Count() - 1)
                 {
                     raceClassesString += ",";
                 }
