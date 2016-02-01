@@ -11,11 +11,13 @@ namespace ForkLoader
     public class ForkKeyReader
     {
         private readonly string m_filename;
+        private readonly int m_eventClassId;
         private static readonly ILog m_loggger = LogManager.GetLogger(typeof (ForkKeyReader));
 
-        public ForkKeyReader(string filename)
+        public ForkKeyReader(string filename, int eventClassId)
         {
             m_filename = filename;
+            m_eventClassId = eventClassId;
         }
 
         public List<ForkKey> ReadForkKeys()
@@ -26,7 +28,10 @@ namespace ForkLoader
                 string forkKeyString;
                 while (!string.IsNullOrEmpty(forkKeyString = sr.ReadLine()))
                 {
-                    ForkKey forkKey = new ForkKey();
+                    ForkKey forkKey = new ForkKey
+                    {
+                        ClassId = m_eventClassId
+                    };
                     string[] parts = forkKeyString.Split(new char[] {';'});
                     if (!string.IsNullOrEmpty(parts[0]))
                     {

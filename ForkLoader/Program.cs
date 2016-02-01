@@ -19,7 +19,7 @@ namespace ForkLoader
             bool verifySourceAndTargetOnly = false;
             int eventClassId;
 
-
+            Console.WriteLine("Welcome to the fork key loader.");
             if (args.Length == 0)
             {
                 Console.WriteLine("This program needs the event class id as command line argument.");
@@ -45,6 +45,7 @@ namespace ForkLoader
             try
             {
                 eventClassId = Convert.ToInt32(args[0]);
+                Console.WriteLine("Working with event class " + eventClassId);
             }
             catch (Exception)
             {
@@ -59,14 +60,17 @@ namespace ForkLoader
                 if (string.Equals(option, "-s", StringComparison.OrdinalIgnoreCase))
                 {
                     verifySourceOnly = true;
+                    Console.WriteLine("Set to verify the source only.");
                 }
                 else if (string.Equals(option, "-t", StringComparison.OrdinalIgnoreCase))
                 {
                     verifyTargetOnly = true;
+                    Console.WriteLine("Set to verify the target only");
                 }
                 else if (string.Equals(option, "-st", StringComparison.OrdinalIgnoreCase))
                 {
                     verifySourceAndTargetOnly = true;
+                    Console.WriteLine("Set to verify only (source and target).");
                 }
                 else
                 {
@@ -87,7 +91,8 @@ namespace ForkLoader
                 Console.ReadKey();
                 return;
             }
-            var forkKeyReader = new ForkKeyReader(forkKeyFileName);
+
+            var forkKeyReader = new ForkKeyReader(forkKeyFileName, eventClassId);
 
             string courseDataFileName = string.Empty;
             CourseDataReader courseDataReader;
@@ -103,9 +108,15 @@ namespace ForkLoader
                 return;
             }
             courseDataReader = new CourseDataReader(courseDataFileName);
-
+       
+            Console.WriteLine("Reading fork keys from " + forkKeyFileName);
             List<ForkKey> forkKeys = forkKeyReader.ReadForkKeys();
+            Console.WriteLine("Read " + forkKeys.Count + " fork keys.");
+
+            Console.WriteLine("Reading course data from " + courseDataFileName);
             Dictionary<string, Course> courses = courseDataReader.ReadCourses();
+            Console.WriteLine("Read " + courses.Count + " courses.");
+
             OlaWriter writer = null;
             string olaConnectionString = string.Empty;
             if (!verifySourceOnly) // If we want to do anything more than verifying the source we need a connection to the target
@@ -127,6 +138,7 @@ namespace ForkLoader
             {
 
                 var forkKeysValidator = new ForkKeysValidator(forkKeys, courses);
+                Console.WriteLine("Validating source.");
                 bool forkKeysOK = forkKeysValidator.Validate();
 
                 if (forkKeysOK)
@@ -142,33 +154,43 @@ namespace ForkLoader
                 }
                 if (!verifySourceOnly && !verifySourceAndTargetOnly)
                 {
+                    Console.WriteLine("Writing fork keys.");
                     writer.WriteForkKeys(forkKeys);
+                    Console.WriteLine("Fork keys written.");
                 }
             }
             // Finally, verify the target
             if (!verifySourceOnly)
             {
+                Console.WriteLine("Validating target.");
                 List<ForkKey> targetForkKeys = writer.ReadForkKeys();
-                bool targetValidationOk = true;
-                foreach (ForkKey targetForkKey in targetForkKeys)
+                if (targetForkKeys == null)
                 {
-                    ForkKey forkKey =
-                        targetForkKeys.Single(
-                            tfk => tfk.ClassId == targetForkKey.ClassId && tfk.TeamNumber == targetForkKey.TeamNumber);
-                    for (int i = 0; i < forkKey.Forks.Count; i++)
+                    Console.WriteLine("No fork keys could be read from the database.");
+                }
+                else
+                {
+                    bool targetValidationOk = true;
+                    foreach (ForkKey targetForkKey in targetForkKeys)
                     {
-                        if (!string.Equals(forkKey.Forks[i], targetForkKey.Forks[i]))
+                        ForkKey forkKey =
+                            forkKeys.Single(
+                                fk => fk.ClassId == targetForkKey.ClassId && fk.TeamNumber == targetForkKey.TeamNumber);
+                        for (int i = 0; i < forkKey.Forks.Count; i++)
                         {
-                            targetValidationOk = false;
-                            Console.WriteLine("Validation of target failed for team " + forkKey.TeamNumber +
-                                              " in class " + forkKey.ClassId + " on leg " + (i + 1).ToString() +
-                                              " fork key was: " + targetForkKey + ", expected: " + forkKey);
+                            if (!string.Equals(forkKey.Forks[i], targetForkKey.Forks[i]))
+                            {
+                                targetValidationOk = false;
+                                Console.WriteLine("Validation of target failed for team " + forkKey.TeamNumber +
+                                                  " in class " + forkKey.ClassId + " on leg " + (i + 1).ToString() +
+                                                  " fork key was: " + targetForkKey.Forks[i] + ", expected: " + forkKey.Forks[i]);
+                            }
                         }
                     }
-                }
-                if (targetValidationOk)
-                {
-                    Console.WriteLine("Target validation OK.");
+                    if (targetValidationOk)
+                    {
+                        Console.WriteLine("Target validation OK.");
+                    }
                 }
             }
             Console.WriteLine("Press any key to terminate the program.");

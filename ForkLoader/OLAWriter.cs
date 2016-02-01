@@ -37,15 +37,19 @@ namespace ForkLoader
                 conn = new MySql.Data.MySqlClient.MySqlConnection(m_connectionString);
                 conn.Open();
                 IDbCommand cmd = conn.CreateCommand();
-
+                int counter = 0;
                 foreach (ForkKey forkKey in forkKeys)
                 {
+                    if (counter%10 == 0)
+                    {
+                        Console.Write(".");
+                    }
                     for (int leg = 1; leg <= forkKey.Forks.Count; leg++)
                     {
-                        if (raceClasses.Any(r => r.StartNumberBase == forkKey.TeamNumber && r.RelayLeg == leg))
+                        if (raceClasses.Any(r => r.EventClassId == m_eventClassId && r.RelayLeg == leg))
                         {
                             int raceClassId =
-                                raceClasses.Single(r => r.StartNumberBase == forkKey.TeamNumber && r.RelayLeg == leg)
+                                raceClasses.Single(r => r.EventClassId == m_eventClassId && r.RelayLeg == leg)
                                     .RaceClassId;
                             //cmd.CommandText =
                             //    "select count(*) from results where (individualCourseId is not null or forkedCourseId is not null) and raceClassId = " +
@@ -60,19 +64,22 @@ namespace ForkLoader
                                 cmd.CommandText = "update results set individualCourseId = " +
                                                   + courseId.Value +
                                                       ", forkedCourseId = " + courseId.Value +
-                                                  " where raceClassId = " + raceClassId;
+                                                  " where raceClassId = " + raceClassId + " and bibNumber = " + forkKey.TeamNumber;
                                 cmd.ExecuteNonQuery();
                             }
                             else
                             {
+                                Console.WriteLine();
                                 Console.WriteLine("Failed to retrieve course id for course with name " + forkKey.Forks[leg - 1]);
                             }
                         }
                     }
                 }
+                Console.WriteLine();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
+                Console.WriteLine();
                 Console.WriteLine(ex.Message);
             }
             finally
@@ -92,6 +99,10 @@ namespace ForkLoader
         {
             var forkKeys = new List<ForkKey>();
             List<RaceClass> raceClasses = ReadRaceClasses();
+            if (raceClasses == null)
+            {
+                return null;
+            }
             int[] raceClassIds = raceClasses.Select(rc => rc.RaceClassId).ToArray();
             string raceClassesString = string.Empty;
             for (int i = 0; i < raceClassIds.Count(); i++)
@@ -109,7 +120,7 @@ namespace ForkLoader
                 conn = new MySql.Data.MySqlClient.MySqlConnection(m_connectionString);
                 conn.Open();
                 IDbCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "select * from results where raceClassId in " + raceClassesString;
+                cmd.CommandText = "select * from results where raceClassId in (" + raceClassesString + ")";
                 IDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -130,8 +141,8 @@ namespace ForkLoader
                             forkKeys.Add(new ForkKey
                             {
                                 TeamNumber = bibNumber,
-                                ClassId = classId,
-                                Forks = new List<string>()
+                                ClassId = raceClasses.First(rc => rc.RaceClassId == classId).EventClassId,
+                                Forks = new List<string> { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty }
                             });
                         }
                         ForkKey forkKey = forkKeys.Single(fk => fk.TeamNumber == bibNumber);
