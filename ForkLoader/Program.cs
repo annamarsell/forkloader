@@ -152,6 +152,8 @@ namespace ForkLoader
                     Console.ReadKey();
                     return;
                 }
+                var validationWriter = new ValidationWriter(forkKeys);
+                validationWriter.Write("Forks_" + eventClassId + ".txt");
                 if (!verifySourceOnly && !verifySourceAndTargetOnly)
                 {
                     Console.WriteLine("Writing fork keys.");
