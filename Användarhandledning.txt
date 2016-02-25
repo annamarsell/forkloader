@@ -1,0 +1,3 @@
+1. Öppna filen ForkLoader.exe.config och skriv in sökvägar till filen med gafflingsnycklarna, banfilen och anslutningsuppgifter till databasen.
+2. Starta ett kommandofönster och gå till katalogen där ForkLoader.exe ligger.
+3. Skriv ForkLoader.exe x där x är id:t för klassen som ska läsas in. 1 = 10Mila herr, 2 = Damkavlen, 3 = Ungdomskavlen och 4 = 10Mila dam. För att bara verifiera källdata lägg till -s, bara verifiera mål lägg till -t eller verifiera både källa och mål men inte läsa in lägg till -st

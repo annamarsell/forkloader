@@ -124,29 +124,47 @@ namespace ForkLoader
                 IDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    int classId = Convert.ToInt32(reader["raceClassId"]);
-                    int bibNumber = Convert.ToInt32(reader["bibNumber"]);
-                    if (raceClasses.Any(rc => rc.RaceClassId == classId))
+                    if (reader["bibNumber"] != null && reader["bibNumber"] != DBNull.Value &&
+                        reader["raceClassId"] != null && reader["raceClassId"] != DBNull.Value)
                     {
-                        int leg = raceClasses.Single(rc => rc.RaceClassId == classId).RelayLeg;
-                        int individualCourseId = Convert.ToInt32(reader["individualCourseId"]);
-                        int forkedCourseId =Convert.ToInt32(reader["forkedCourseId"]);
-                        if (individualCourseId != forkedCourseId)
+                        int bibNumber = Convert.ToInt32(reader["bibNumber"]);
+                        int classId = Convert.ToInt32(reader["raceClassId"]);
+                        if (raceClasses.Any(rc => rc.RaceClassId == classId))
                         {
-                            Console.WriteLine("Individual course id " + individualCourseId + " differs from forkedCourseId " +
-                                              forkedCourseId + " for team number " + bibNumber);
-                        }
-                        if (!forkKeys.Any(fk => fk.TeamNumber == bibNumber))
-                        {
-                            forkKeys.Add(new ForkKey
+                            int leg = raceClasses.Single(rc => rc.RaceClassId == classId).RelayLeg;
+                            int individualCourseId = Convert.ToInt32(reader["individualCourseId"]);
+                            int forkedCourseId = Convert.ToInt32(reader["forkedCourseId"]);
+                            if (individualCourseId != forkedCourseId)
                             {
-                                TeamNumber = bibNumber,
-                                ClassId = raceClasses.First(rc => rc.RaceClassId == classId).EventClassId,
-                                Forks = new List<string> { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty }
-                            });
+                                Console.WriteLine("Individual course id " + individualCourseId +
+                                                  " differs from forkedCourseId " +
+                                                  forkedCourseId + " for team number " + bibNumber);
+                            }
+                            if (!forkKeys.Any(fk => fk.TeamNumber == bibNumber))
+                            {
+                                forkKeys.Add(new ForkKey
+                                {
+                                    TeamNumber = bibNumber,
+                                    ClassId = raceClasses.First(rc => rc.RaceClassId == classId).EventClassId,
+                                    Forks =
+                                        new List<string>
+                                        {
+                                            string.Empty,
+                                            string.Empty,
+                                            string.Empty,
+                                            string.Empty,
+                                            string.Empty,
+                                            string.Empty,
+                                            string.Empty,
+                                            string.Empty,
+                                            string.Empty,
+                                            string.Empty
+                                        }
+                                });
+                            }
+                            ForkKey forkKey = forkKeys.Single(fk => fk.TeamNumber == bibNumber);
+                            forkKey.Forks[leg - 1] = CourseIdToName(individualCourseId);
                         }
-                        ForkKey forkKey = forkKeys.Single(fk => fk.TeamNumber == bibNumber);
-                        forkKey.Forks[leg - 1] = CourseIdToName(individualCourseId);
                     }
                 }
             }
