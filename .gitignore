@@ -3,3 +3,9 @@
 *.config
 /ForkLoader/bin
 obj
+ForkLoader.sln.DotSettings.user
+*.user
+ForkLoader/bin/Debug/ForkLoader.pdb
+*.pdb
+ForkLoaderTest/obj/Debug/ForkLoaderTest.csprojResolveAssemblyReference.cache
+ForkLoaderTest/obj/Debug/ForkLoaderTest.pdb
