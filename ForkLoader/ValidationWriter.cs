@@ -24,7 +24,7 @@ namespace ForkLoader
                     for (int i=0; i<forkKey.Forks.Count; i++)
                     {                  
                         streamWriter.WriteLine(forkKey.TeamNumber + ", " + (i+1).ToString() + ", " + "1, " + forkKey.Forks[i]);
-                        if (forkKey.TeamNumber > 1000 && i == 1)
+                        if (forkKey.TeamNumber > 1000 && (i == 1 || i==2))
                         {
                             streamWriter.WriteLine(forkKey.TeamNumber + ", " + (i + 1).ToString() + ", " + "2, " + forkKey.Forks[i]);                        
                         }
